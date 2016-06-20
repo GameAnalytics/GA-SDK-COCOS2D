@@ -3,9 +3,14 @@ GameAnalytics Cocos2D SDK.
 
 Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/wiki).
 
-
 > :information_source:<br>
-> The Cocos2D SDK include support for **iOS** and **Android** platforms.<br>
+> 
+> The Cocos2D SDK include support for **iOS** and **Android** platforms
+>
+> Requirements:<br/>
+> **Cocos2D-X:** 3.x+  
+> **iOS:** iOS 7+
+> **Android:** Android API Level 14<br>
 
 
 Changelog

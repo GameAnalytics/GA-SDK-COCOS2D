@@ -6,20 +6,20 @@
 
 namespace gameanalytics {
 
-	enum GAResourceFlowType
+	enum EGAResourceFlowType
     {
         Source = 1,
         Sink = 2
     };
 
-    enum GAProgressionStatus
+    enum EGAProgressionStatus
     {
         Start = 1,
         Complete = 2,
         Fail = 3
     };
 
-    enum GAErrorSeverity
+    enum EGAErrorSeverity
     {
         Debug = 1,
         Info = 2,
@@ -28,7 +28,7 @@ namespace gameanalytics {
         Critical = 5
     };
 
-    enum GAGender
+    enum EGAGender
     {
         Male = 1,
         Female = 2
@@ -56,16 +56,16 @@ namespace gameanalytics {
 	    static void addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt, const char *signature);
 #endif
 	    static void addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType);
-	    static void addResourceEvent(GAResourceFlowType flowType, const char *currency, float amount, const char *itemType, const char *itemId);
-	    static void addProgressionEvent(GAProgressionStatus progressionStatus, const char *progression01);
-	    static void addProgressionEvent(GAProgressionStatus progressionStatus, const char *progression01, int score);
-	    static void addProgressionEvent(GAProgressionStatus progressionStatus, const char *progression01, const char *progression02);
-	    static void addProgressionEvent(GAProgressionStatus progressionStatus, const char *progression01, const char *progression02, int score);
-	    static void addProgressionEvent(GAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03);
-	    static void addProgressionEvent(GAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03, int score);
+	    static void addResourceEvent(EGAResourceFlowType flowType, const char *currency, float amount, const char *itemType, const char *itemId);
+	    static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01);
+	    static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, int score);
+	    static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02);
+	    static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, int score);
+	    static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03);
+	    static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03, int score);
 	    static void addDesignEvent(const char *eventId);
 	    static void addDesignEvent(const char *eventId, float value);
-	    static void addErrorEvent(GAErrorSeverity severity, const char *message);
+	    static void addErrorEvent(EGAErrorSeverity severity, const char *message);
 	    
 	    static void setEnabledInfoLog(bool flag);
 	    static void setEnabledVerboseLog(bool flag);
@@ -73,7 +73,7 @@ namespace gameanalytics {
 	    static void setCustomDimension02(const char *customDimension);
 	    static void setCustomDimension03(const char *customDimension);
 	    static void setFacebookId(const char *facebookId);
-	    static void setGender(GAGender gender);
+	    static void setGender(EGAGender gender);
 	    static void setBirthYear(int birthYear);
 	};
 }

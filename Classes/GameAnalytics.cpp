@@ -137,7 +137,7 @@ namespace gameanalytics {
 #endif
     }
 
-    void GameAnalytics::addResourceEvent(GAResourceFlowType flowType, const char *currency, float amount, const char *itemType, const char *itemId)
+    void GameAnalytics::addResourceEvent(EGAResourceFlowType flowType, const char *currency, float amount, const char *itemType, const char *itemId)
     {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     	GameAnalyticsCpp::addResourceEvent((int)flowType, currency, amount, itemType, itemId);
@@ -146,27 +146,27 @@ namespace gameanalytics {
 #endif
     }
 
-    void GameAnalytics::addProgressionEvent(GAProgressionStatus progressionStatus, const char *progression01)
+    void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01)
     {
         addProgressionEvent(progressionStatus, progression01, (const char *)NULL, (const char *)NULL);
     }
 
-    void GameAnalytics::addProgressionEvent(GAProgressionStatus progressionStatus, const char *progression01, int score)
+    void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, int score)
     {
         addProgressionEvent(progressionStatus, progression01, (const char *)NULL, (const char *)NULL, score);
     }
 
-    void GameAnalytics::addProgressionEvent(GAProgressionStatus progressionStatus, const char *progression01, const char *progression02)
+    void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02)
     {
         addProgressionEvent(progressionStatus, progression01, progression02, (const char *)NULL);
     }
 
-    void GameAnalytics::addProgressionEvent(GAProgressionStatus progressionStatus, const char *progression01, const char *progression02, int score)
+    void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, int score)
     {
         addProgressionEvent(progressionStatus, progression01, progression02, (const char *)NULL, score);
     }
 
-    void GameAnalytics::addProgressionEvent(GAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03)
+    void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03)
     {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     	GameAnalyticsCpp::addProgressionEvent((int)progressionStatus, progression01, progression02, progression03);
@@ -175,7 +175,7 @@ namespace gameanalytics {
 #endif
     }
 
-    void GameAnalytics::addProgressionEvent(GAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03, int score)
+    void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03, int score)
     {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     	GameAnalyticsCpp::addProgressionEventWithScore((int)progressionStatus, progression01, progression02, progression03, score);
@@ -202,7 +202,7 @@ namespace gameanalytics {
 #endif
     }
 
-    void GameAnalytics::addErrorEvent(GAErrorSeverity severity, const char *message)
+    void GameAnalytics::addErrorEvent(EGAErrorSeverity severity, const char *message)
     {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     	GameAnalyticsCpp::addErrorEvent((int)severity, message);
@@ -265,7 +265,7 @@ namespace gameanalytics {
 #endif
     }
 
-    void GameAnalytics::setGender(GAGender gender)
+    void GameAnalytics::setGender(EGAGender gender)
     {
     	switch(gender)
     	{
