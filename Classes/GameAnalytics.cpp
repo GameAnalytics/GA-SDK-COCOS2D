@@ -8,7 +8,7 @@
 #include "GameAnalyticsJNI.h"
 #endif
 
-#define GA_VERSION "cocos2d 1.0.0"
+#define GA_VERSION "cocos2d 1.0.1"
 
 namespace gameanalytics {
 	void GameAnalytics::configureAvailableCustomDimensions01(const std::vector<std::string>& list)
