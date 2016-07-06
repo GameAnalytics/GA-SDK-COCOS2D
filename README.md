@@ -5,11 +5,11 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/w
 
 > :information_source:<br>
 > 
-> The Cocos2D SDK include support for **iOS** and **Android** platforms
+> The Cocos2D SDK include support for **iOS**, **Android**, **Windows** and **Mac** platforms
 >
 > Requirements:<br/>
-> **Cocos2D-X:** 3.x+  
-> **iOS:** iOS 7+
+> **Cocos2D-X:** 3.x+<br/>  
+> **iOS:** iOS 7+<br/>
 > **Android:** Android API Level 14<br>
 
 
