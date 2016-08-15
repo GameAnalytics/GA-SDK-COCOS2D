@@ -15,6 +15,9 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/w
 
 Changelog
 ---------
+**1.2.0**
+* added support for manual session handling
+
 **1.1.0**
 * added support for Windows and Mac
 

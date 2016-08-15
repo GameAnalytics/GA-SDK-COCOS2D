@@ -166,16 +166,16 @@ void GameAnalyticsCpp::addErrorEvent(int severity, const char *message) {
     [GameAnalytics addErrorEventWithSeverity:(GAErrorSeverity)severity message:messageString];
 }
 
-void GameAnalyticsCpp::setEnabledAnalyticsLog(bool flag) {
-    [GameAnalytics setEnabledAnalyticsLog:flag];
-}
-
-void GameAnalyticsCpp::setEnabledOrbitLog(bool flag) {
-    [GameAnalytics setEnabledOrbitLog:flag];
+void GameAnalyticsCpp::setEnabledInfoLog(bool flag) {
+    [GameAnalytics setEnabledInfoLog:flag];
 }
 
 void GameAnalyticsCpp::setEnabledVerboseLog(bool flag) {
     [GameAnalytics setEnabledVerboseLog:flag];
+}
+
+void GameAnalyticsCpp::setEnabledManualSessionHandling(bool flag) {
+    [GameAnalytics setEnabledManualSessionHandling:flag];
 }
 
 void GameAnalyticsCpp::setCustomDimension01(const char *customDimension) {
@@ -206,4 +206,12 @@ void GameAnalyticsCpp::setGender(const char *gender) {
 void GameAnalyticsCpp::setBirthYear(int birthYear) {
     NSInteger birthYearInteger = (NSInteger)birthYear;
     [GameAnalytics setBirthYear:birthYearInteger];
+}
+
+void GameAnalyticsCpp::startSession() {
+    [GameAnalytics startSession];
+}
+
+void GameAnalyticsCpp::endSession() {
+    [GameAnalytics endSession];
 }

@@ -330,6 +330,16 @@ namespace gameanalytics {
 	        }
 	    }
 
+	    void jni_setEnabledManualSessionHandling(bool flag)
+	    {
+	    	cocos2d::JniMethodInfo methodInfo;
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setEnabledManualSessionHandling", 
+	        	"(Z)V")) 
+	        {
+	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, flag);
+	        }
+	    }
+
 	    void jni_setCustomDimension01(const char *customDimension)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
@@ -395,6 +405,26 @@ namespace gameanalytics {
 	        	"(I)V")) 
 	        {
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, birthYear);
+	        }
+	    }
+
+	    void jni_startSession()
+	    {
+	    	cocos2d::JniMethodInfo methodInfo;
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "startSession", 
+	        	"()V")) 
+	        {
+	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID);
+	        }
+	    }
+
+	    void jni_endSession()
+	    {
+	    	cocos2d::JniMethodInfo methodInfo;
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "endSession", 
+	        	"()V")) 
+	        {
+	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID);
 	        }
 	    }
 	}

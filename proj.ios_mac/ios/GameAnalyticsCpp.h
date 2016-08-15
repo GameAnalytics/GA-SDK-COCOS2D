@@ -25,13 +25,16 @@ public:
     static void addDesignEventWithValue(const char *eventId, float value);
     static void addErrorEvent(int severity, const char *message);
     
-    static void setEnabledAnalyticsLog(bool flag);
-    static void setEnabledOrbitLog(bool flag);
+    static void setEnabledInfoLog(bool flag);
     static void setEnabledVerboseLog(bool flag);
+    static void setEnabledManualSessionHandling(bool flag);
     static void setCustomDimension01(const char *customDimension);
     static void setCustomDimension02(const char *customDimension);
     static void setCustomDimension03(const char *customDimension);
     static void setFacebookId(const char *facebookId);
     static void setGender(const char *gender);
     static void setBirthYear(int birthYear);
+
+    static void startSession();
+    static void endSession();
 };

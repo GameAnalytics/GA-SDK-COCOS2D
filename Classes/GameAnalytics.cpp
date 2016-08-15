@@ -16,7 +16,7 @@
 #define PATH_SEPARATOR "\\"
 #endif
 
-#define GA_VERSION "cocos2d 1.1.0"
+#define GA_VERSION "cocos2d 1.2.0"
 
 namespace gameanalytics {
     namespace cocos2d
@@ -265,7 +265,7 @@ namespace gameanalytics {
         void GameAnalytics::setEnabledInfoLog(bool flag)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-        	GameAnalyticsCpp::setEnabledAnalyticsLog(flag);
+        	GameAnalyticsCpp::setEnabledInfoLog(flag);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_setEnabledInfoLog(flag);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
@@ -281,6 +281,17 @@ namespace gameanalytics {
         	jni_setEnabledVerboseLog(flag);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
             gameanalytics::GameAnalytics::setEnabledVerboseLog(flag);
+#endif
+        }
+
+        void GameAnalytics::setEnabledManualSessionHandling(bool flag)
+        {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+            GameAnalyticsCpp::setEnabledManualSessionHandling(flag);
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+            jni_setEnabledManualSessionHandling(flag);
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+            gameanalytics::GameAnalytics::setEnabledManualSessionHandling(flag);
 #endif
         }
 
@@ -366,6 +377,22 @@ namespace gameanalytics {
         	jni_setBirthYear(birthYear);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
                     gameanalytics::GameAnalytics::setBirthYear(birthYear);
+#endif
+        }
+
+        void GameAnalytics::startSession()
+        {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#endif
+        }
+
+        void GameAnalytics::endSession()
+        {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #endif
         }
     }
