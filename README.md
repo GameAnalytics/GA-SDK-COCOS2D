@@ -15,6 +15,10 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/w
 
 Changelog
 ---------
+**1.2.1**
+* wrong platform in events bug fix (windows, mac)
+* crash bug fix (windows, mac)
+
 **1.2.0**
 * added support for manual session handling
 
