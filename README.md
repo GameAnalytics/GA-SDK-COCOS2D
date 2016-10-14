@@ -4,7 +4,7 @@ GameAnalytics Cocos2D SDK.
 Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/wiki).
 
 > :information_source:<br>
-> 
+>
 > The Cocos2D SDK include support for **iOS**, **Android**, **Windows** and **Mac** platforms
 >
 > Requirements:<br/>
@@ -15,6 +15,11 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/w
 
 Changelog
 ---------
+**1.2.2**
+* fixed user_id tracking for iOS 10 (ios)
+* fix isAppStoreReceiptSandbox bug on iOS 6 devices and lower (ios)
+* switched to use libCurl as networking library (mac, windows)
+
 **1.2.1**
 * wrong platform in events bug fix (windows, mac)
 * crash bug fix (windows, mac)

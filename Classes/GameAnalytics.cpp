@@ -16,7 +16,7 @@
 #define PATH_SEPARATOR "\\"
 #endif
 
-#define GA_VERSION "cocos2d 1.2.1"
+#define GA_VERSION "cocos2d 1.2.2"
 
 namespace gameanalytics {
     namespace cocos2d
@@ -53,7 +53,7 @@ namespace gameanalytics {
             gameanalytics::GameAnalytics::configureAvailableCustomDimensions03(list);
 #endif
         }
-        
+
         void GameAnalytics::configureAvailableResourceCurrencies(const std::vector<std::string>& list)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -75,7 +75,7 @@ namespace gameanalytics {
             gameanalytics::GameAnalytics::configureAvailableResourceItemTypes(list);
 #endif
         }
-        
+
         void GameAnalytics::configureBuild(const char *build)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -147,7 +147,7 @@ namespace gameanalytics {
             gameanalytics::GameAnalytics::initialize(gameKey, gameSecret);
 #endif
         }
-        
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         void GameAnalytics::addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt)
         {
@@ -261,7 +261,7 @@ namespace gameanalytics {
             gameanalytics::GameAnalytics::addErrorEvent((gameanalytics::EGAErrorSeverity)((int)severity), message);
 #endif
         }
-        
+
         void GameAnalytics::setEnabledInfoLog(bool flag)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
