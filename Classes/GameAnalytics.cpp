@@ -16,13 +16,16 @@
 #define PATH_SEPARATOR "\\"
 #endif
 
-#define GA_VERSION "cocos2d 1.2.2"
+#define GA_VERSION "cocos2d 1.2.3"
 
 namespace gameanalytics {
     namespace cocos2d
     {
+        bool GameAnalytics::isWritablePathSet = false;
+
     	void GameAnalytics::configureAvailableCustomDimensions01(const std::vector<std::string>& list)
     	{
+            lazySetWritablePath();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     		GameAnalyticsCpp::configureAvailableCustomDimensions01(list);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -34,6 +37,7 @@ namespace gameanalytics {
 
         void GameAnalytics::configureAvailableCustomDimensions02(const std::vector<std::string>& list)
         {
+            lazySetWritablePath();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         	GameAnalyticsCpp::configureAvailableCustomDimensions02(list);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -45,6 +49,7 @@ namespace gameanalytics {
 
         void GameAnalytics::configureAvailableCustomDimensions03(const std::vector<std::string>& list)
         {
+            lazySetWritablePath();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         	GameAnalyticsCpp::configureAvailableCustomDimensions03(list);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -53,9 +58,10 @@ namespace gameanalytics {
             gameanalytics::GameAnalytics::configureAvailableCustomDimensions03(list);
 #endif
         }
-
+        
         void GameAnalytics::configureAvailableResourceCurrencies(const std::vector<std::string>& list)
         {
+            lazySetWritablePath();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         	GameAnalyticsCpp::configureAvailableResourceCurrencies(list);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -67,6 +73,7 @@ namespace gameanalytics {
 
         void GameAnalytics::configureAvailableResourceItemTypes(const std::vector<std::string>& list)
         {
+            lazySetWritablePath();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         	GameAnalyticsCpp::configureAvailableResourceItemTypes(list);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -75,9 +82,10 @@ namespace gameanalytics {
             gameanalytics::GameAnalytics::configureAvailableResourceItemTypes(list);
 #endif
         }
-
+        
         void GameAnalytics::configureBuild(const char *build)
         {
+            lazySetWritablePath();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         	GameAnalyticsCpp::configureBuild(build);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -89,6 +97,7 @@ namespace gameanalytics {
 
         void GameAnalytics::configureUserId(const char *userId)
         {
+            lazySetWritablePath();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         	GameAnalyticsCpp::configureUserId(userId);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -100,6 +109,7 @@ namespace gameanalytics {
 
         void GameAnalytics::configureSdkGameEngineVersion(const char *gameEngineSdkVersion)
         {
+            lazySetWritablePath();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         	GameAnalyticsCpp::configureSdkGameEngineVersion(gameEngineSdkVersion);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -111,6 +121,7 @@ namespace gameanalytics {
 
         void GameAnalytics::configureGameEngineVersion(const char *gameEngineVersion)
         {
+            lazySetWritablePath();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         	GameAnalyticsCpp::configureGameEngineVersion(gameEngineVersion);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -122,13 +133,7 @@ namespace gameanalytics {
 
         void GameAnalytics::initialize(const char *gameKey, const char *gameSecret)
         {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-            if(::cocos2d::FileUtils::getInstance()->isDirectoryExist(::cocos2d::FileUtils::getInstance()->getWritablePath() + PATH_SEPARATOR + gameKey))
-            {
-                ::cocos2d::FileUtils::getInstance()->createDirectory(::cocos2d::FileUtils::getInstance()->getWritablePath() + PATH_SEPARATOR + gameKey);
-            }
-            gameanalytics::GameAnalytics::configureWritablePath(::cocos2d::FileUtils::getInstance()->getWritablePath() + PATH_SEPARATOR + gameKey);
-#endif
+            lazySetWritablePath();
             configureSdkGameEngineVersion(GA_VERSION);
 
             int v = COCOS2D_VERSION;
@@ -147,7 +152,7 @@ namespace gameanalytics {
             gameanalytics::GameAnalytics::initialize(gameKey, gameSecret);
 #endif
         }
-
+        
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         void GameAnalytics::addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt)
         {
@@ -261,9 +266,10 @@ namespace gameanalytics {
             gameanalytics::GameAnalytics::addErrorEvent((gameanalytics::EGAErrorSeverity)((int)severity), message);
 #endif
         }
-
+        
         void GameAnalytics::setEnabledInfoLog(bool flag)
         {
+            lazySetWritablePath();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         	GameAnalyticsCpp::setEnabledInfoLog(flag);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -275,6 +281,7 @@ namespace gameanalytics {
 
         void GameAnalytics::setEnabledVerboseLog(bool flag)
         {
+            lazySetWritablePath();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         	GameAnalyticsCpp::setEnabledVerboseLog(flag);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -286,6 +293,7 @@ namespace gameanalytics {
 
         void GameAnalytics::setEnabledManualSessionHandling(bool flag)
         {
+            lazySetWritablePath();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
             GameAnalyticsCpp::setEnabledManualSessionHandling(flag);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -297,6 +305,7 @@ namespace gameanalytics {
 
         void GameAnalytics::setCustomDimension01(const char *customDimension)
         {
+            lazySetWritablePath();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         	GameAnalyticsCpp::setCustomDimension01(customDimension);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -308,6 +317,7 @@ namespace gameanalytics {
 
         void GameAnalytics::setCustomDimension02(const char *customDimension)
         {
+            lazySetWritablePath();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         	GameAnalyticsCpp::setCustomDimension02(customDimension);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -319,6 +329,7 @@ namespace gameanalytics {
 
         void GameAnalytics::setCustomDimension03(const char *customDimension)
         {
+            lazySetWritablePath();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         	GameAnalyticsCpp::setCustomDimension03(customDimension);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -330,6 +341,7 @@ namespace gameanalytics {
 
         void GameAnalytics::setFacebookId(const char *facebookId)
         {
+            lazySetWritablePath();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         	GameAnalyticsCpp::setFacebookId(facebookId);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -341,6 +353,7 @@ namespace gameanalytics {
 
         void GameAnalytics::setGender(EGAGender gender)
         {
+            lazySetWritablePath();
         	switch(gender)
         	{
         		case Male:
@@ -371,6 +384,7 @@ namespace gameanalytics {
 
         void GameAnalytics::setBirthYear(int birthYear)
         {
+            lazySetWritablePath();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         	GameAnalyticsCpp::setBirthYear(birthYear);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -394,6 +408,17 @@ namespace gameanalytics {
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #endif
+        }
+
+        void  GameAnalytics::lazySetWritablePath()
+        {
+            if (!isWritablePathSet)
+            {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+                gameanalytics::GameAnalytics::configureWritablePath(::cocos2d::FileUtils::getInstance()->getWritablePath());
+#endif
+                isWritablePathSet = true;
+            }
         }
     }
 }

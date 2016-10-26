@@ -81,6 +81,10 @@ namespace gameanalytics {
 
 		    static void startSession();
 		    static void endSession();
+
+        private:
+            static void lazySetWritablePath();
+            static bool isWritablePathSet;
 		};
 	}
 }
