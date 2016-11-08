@@ -5,7 +5,7 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/w
 
 > :information_source:<br>
 >
-> The Cocos2D SDK include support for **iOS**, **Android**, **Windows** and **Mac** platforms
+> The Cocos2D SDK include support for **iOS**, **Android**, **Windows**, **UWP** and **Mac** platforms
 >
 > Requirements:<br/>
 > **Cocos2D-X:** 3.x+  
@@ -15,6 +15,9 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/w
 
 Changelog
 ---------
+**1.3.0**
+* added support for UWP
+
 **1.2.2**
 * fixed user_id tracking for iOS 10 (ios)
 * fix isAppStoreReceiptSandbox bug on iOS 6 devices and lower (ios)
