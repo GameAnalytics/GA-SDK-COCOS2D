@@ -16,7 +16,7 @@
 #define PATH_SEPARATOR "\\"
 #endif
 
-#define GA_VERSION "cocos2d 1.3.1"
+#define GA_VERSION "cocos2d 1.4.0"
 
 namespace gameanalytics {
     namespace cocos2d
