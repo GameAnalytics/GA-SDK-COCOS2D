@@ -18,6 +18,9 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/w
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.4.1**
+* restructured file hierarchy
+
 **1.4.0**
 * added js and lua support
 
