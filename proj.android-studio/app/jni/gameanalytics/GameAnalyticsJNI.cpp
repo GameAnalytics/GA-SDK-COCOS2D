@@ -74,7 +74,7 @@ namespace gameanalytics {
 			    methodInfo.env->DeleteLocalRef(j_array);
 		    }
 	    }
-	    
+
 	    void jni_configureAvailableResourceCurrencies(const std::vector<std::string>& list)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
@@ -120,11 +120,11 @@ namespace gameanalytics {
 			    methodInfo.env->DeleteLocalRef(j_array);
 		    }
 	    }
-	    
+
 	    void jni_configureBuild(const char *build)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "configureBuild", "(Ljava/lang/String;)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "configureBuild", "(Ljava/lang/String;)V"))
 	        {
 	            jstring j_string = methodInfo.env->NewStringUTF(build);
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_string);
@@ -135,7 +135,7 @@ namespace gameanalytics {
 	    void jni_configureUserId(const char *userId)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "configureUserId", "(Ljava/lang/String;)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "configureUserId", "(Ljava/lang/String;)V"))
 	        {
 	            jstring j_string = methodInfo.env->NewStringUTF(userId);
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_string);
@@ -146,7 +146,7 @@ namespace gameanalytics {
 	    void jni_configureSdkGameEngineVersion(const char *gameEngineSdkVersion)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "configureSdkGameEngineVersion", "(Ljava/lang/String;)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "configureSdkGameEngineVersion", "(Ljava/lang/String;)V"))
 	        {
 	            jstring j_string = methodInfo.env->NewStringUTF(gameEngineSdkVersion);
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_string);
@@ -157,7 +157,7 @@ namespace gameanalytics {
 	    void jni_configureGameEngineVersion(const char *gameEngineVersion)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "configureGameEngineVersion", "(Ljava/lang/String;)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "configureGameEngineVersion", "(Ljava/lang/String;)V"))
 	        {
 	            jstring j_string = methodInfo.env->NewStringUTF(gameEngineVersion);
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_string);
@@ -168,7 +168,7 @@ namespace gameanalytics {
 	    void jni_initialize(const char *gameKey, const char *gameSecret)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo1;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo1, GAMEANALYTICS_CLASS_NAME, "initializeWithGameKey", "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo1, GAMEANALYTICS_CLASS_NAME, "initializeWithGameKey", "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V"))
 	        {
 	        	cocos2d::JniMethodInfo methodInfo2;
 	        	if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo2, COCOS2DXACTIVITY_CLASS_NAME, "getContext", "()Landroid/content/Context;"))
@@ -179,15 +179,15 @@ namespace gameanalytics {
 		            methodInfo1.env->CallStaticVoidMethod(methodInfo1.classID, methodInfo1.methodID, activity, j_gameKey, j_gameSecret);
 		            methodInfo1.env->DeleteLocalRef(j_gameKey);
 		            methodInfo1.env->DeleteLocalRef(j_gameSecret);
-	        	} 
+	        	}
 	        }
 	    }
-	    
+
 	    void jni_addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addBusinessEventWithCurrency", 
-	        	"(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addBusinessEventWithCurrency",
+	        	"(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"))
 	        {
 	            jstring j_currency = methodInfo.env->NewStringUTF(currency);
 	            jstring j_itemType = methodInfo.env->NewStringUTF(itemType);
@@ -201,12 +201,12 @@ namespace gameanalytics {
 	        }
 	    }
 
-	    void jni_addBusinessEventWithReceipt(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, 
+	    void jni_addBusinessEventWithReceipt(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType,
 	    	const char *receipt, const char *store, const char *signature)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addBusinessEventWithCurrency", 
-	        	"(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addBusinessEventWithCurrency",
+	        	"(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"))
 	        {
 	            jstring j_currency = methodInfo.env->NewStringUTF(currency);
 	            jstring j_itemType = methodInfo.env->NewStringUTF(itemType);
@@ -229,8 +229,8 @@ namespace gameanalytics {
 	    void jni_addResourceEvent(int flowType, const char *currency, float amount, const char *itemType, const char *itemId)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addResourceEventWithFlowType", 
-	        	"(ILjava/lang/String;FLjava/lang/String;Ljava/lang/String;)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addResourceEventWithFlowType",
+	        	"(ILjava/lang/String;FLjava/lang/String;Ljava/lang/String;)V"))
 	        {
 	            jstring j_currency = methodInfo.env->NewStringUTF(currency);
 	            jstring j_itemType = methodInfo.env->NewStringUTF(itemType);
@@ -245,8 +245,8 @@ namespace gameanalytics {
 	    void jni_addProgressionEvent(int progressionStatus, const char *progression01, const char *progression02, const char *progression03)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addProgressionEventWithProgressionStatus", 
-	        	"(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addProgressionEventWithProgressionStatus",
+	        	"(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"))
 	        {
 	            jstring j_progression01 = methodInfo.env->NewStringUTF(progression01);
 	            jstring j_progression02 = methodInfo.env->NewStringUTF(progression02);
@@ -261,13 +261,13 @@ namespace gameanalytics {
 	    void jni_addProgressionEventWithScore(int progressionStatus, const char *progression01, const char *progression02, const char *progression03, int score)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addProgressionEventWithProgressionStatus", 
-	        	"(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;D)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addProgressionEventWithProgressionStatus",
+	        	"(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;D)V"))
 	        {
 	            jstring j_progression01 = methodInfo.env->NewStringUTF(progression01);
 	            jstring j_progression02 = methodInfo.env->NewStringUTF(progression02);
 	            jstring j_progression03 = methodInfo.env->NewStringUTF(progression03);
-	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, progressionStatus, j_progression01, j_progression02, j_progression03);
+	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, progressionStatus, j_progression01, j_progression02, j_progression03, score);
 	            methodInfo.env->DeleteLocalRef(j_progression01);
 	            methodInfo.env->DeleteLocalRef(j_progression02);
 	            methodInfo.env->DeleteLocalRef(j_progression03);
@@ -277,8 +277,8 @@ namespace gameanalytics {
 	    void jni_addDesignEvent(const char *eventId)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addDesignEventWithEventId", 
-	        	"(Ljava/lang/String;)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addDesignEventWithEventId",
+	        	"(Ljava/lang/String;)V"))
 	        {
 	            jstring j_eventId = methodInfo.env->NewStringUTF(eventId);
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_eventId);
@@ -289,8 +289,8 @@ namespace gameanalytics {
 	    void jni_addDesignEventWithValue(const char *eventId, float value)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addDesignEventWithEventId", 
-	        	"(Ljava/lang/String;D)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addDesignEventWithEventId",
+	        	"(Ljava/lang/String;D)V"))
 	        {
 	            jstring j_eventId = methodInfo.env->NewStringUTF(eventId);
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_eventId, value);
@@ -301,20 +301,20 @@ namespace gameanalytics {
 	    void jni_addErrorEvent(int severity, const char *message)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addErrorEventWithSeverity", 
-	        	"(ILjava/lang/String;)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addErrorEventWithSeverity",
+	        	"(ILjava/lang/String;)V"))
 	        {
 	            jstring j_message = methodInfo.env->NewStringUTF(message);
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, severity, j_message);
 	            methodInfo.env->DeleteLocalRef(j_message);
 	        }
 	    }
-	    
+
 	    void jni_setEnabledInfoLog(bool flag)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setEnabledInfoLog", 
-	        	"(Z)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setEnabledInfoLog",
+	        	"(Z)V"))
 	        {
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, flag);
 	        }
@@ -323,8 +323,8 @@ namespace gameanalytics {
 	    void jni_setEnabledVerboseLog(bool flag)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setEnabledVerboseLog", 
-	        	"(Z)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setEnabledVerboseLog",
+	        	"(Z)V"))
 	        {
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, flag);
 	        }
@@ -333,8 +333,8 @@ namespace gameanalytics {
 	    void jni_setEnabledManualSessionHandling(bool flag)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setEnabledManualSessionHandling", 
-	        	"(Z)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setEnabledManualSessionHandling",
+	        	"(Z)V"))
 	        {
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, flag);
 	        }
@@ -343,8 +343,8 @@ namespace gameanalytics {
 	    void jni_setCustomDimension01(const char *customDimension)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setCustomDimension01", 
-	        	"(Ljava/lang/String;)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setCustomDimension01",
+	        	"(Ljava/lang/String;)V"))
 	        {
 	            jstring j_customDimension = methodInfo.env->NewStringUTF(customDimension);
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_customDimension);
@@ -355,8 +355,8 @@ namespace gameanalytics {
 	    void jni_setCustomDimension02(const char *customDimension)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setCustomDimension02", 
-	        	"(Ljava/lang/String;)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setCustomDimension02",
+	        	"(Ljava/lang/String;)V"))
 	        {
 	            jstring j_customDimension = methodInfo.env->NewStringUTF(customDimension);
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_customDimension);
@@ -367,8 +367,8 @@ namespace gameanalytics {
 	    void jni_setCustomDimension03(const char *customDimension)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setCustomDimension03", 
-	        	"(Ljava/lang/String;)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setCustomDimension03",
+	        	"(Ljava/lang/String;)V"))
 	        {
 	            jstring j_customDimension = methodInfo.env->NewStringUTF(customDimension);
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_customDimension);
@@ -379,8 +379,8 @@ namespace gameanalytics {
 	    void jni_setFacebookId(const char *facebookId)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setFacebookId", 
-	        	"(Ljava/lang/String;)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setFacebookId",
+	        	"(Ljava/lang/String;)V"))
 	        {
 	        	jstring j_facebookId = methodInfo.env->NewStringUTF(facebookId);
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_facebookId);
@@ -391,8 +391,8 @@ namespace gameanalytics {
 	    void jni_setGender(int gender)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setGender", 
-	        	"(I)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setGender",
+	        	"(I)V"))
 	        {
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, gender);
 	        }
@@ -401,8 +401,8 @@ namespace gameanalytics {
 	    void jni_setBirthYear(int birthYear)
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setBirthYear", 
-	        	"(I)V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setBirthYear",
+	        	"(I)V"))
 	        {
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, birthYear);
 	        }
@@ -411,8 +411,8 @@ namespace gameanalytics {
 	    void jni_startSession()
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "startSession", 
-	        	"()V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "startSession",
+	        	"()V"))
 	        {
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID);
 	        }
@@ -421,8 +421,8 @@ namespace gameanalytics {
 	    void jni_endSession()
 	    {
 	    	cocos2d::JniMethodInfo methodInfo;
-	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "endSession", 
-	        	"()V")) 
+	        if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "endSession",
+	        	"()V"))
 	        {
 	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID);
 	        }
