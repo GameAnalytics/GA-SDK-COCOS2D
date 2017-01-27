@@ -19,6 +19,9 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/w
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.5.0**
+* added tizen support
+
 **1.4.2**
 * bug fix for progression events with score in Android builds (android)
 
