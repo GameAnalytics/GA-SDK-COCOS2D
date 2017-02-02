@@ -5,7 +5,7 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/w
 
 > :information_source:<br>
 >
-> The Cocos2D SDK include support for **iOS**, **Android**, **Tizen**, **Windows**, **UWP** and **Mac** platforms
+> The Cocos2D SDK include support for **iOS**, **Android**, **HTML5**, **Tizen**, **Windows**, **UWP** and **Mac** platforms
 >
 > Supports **C++**, **JavaScript** and **Lua**
 >
