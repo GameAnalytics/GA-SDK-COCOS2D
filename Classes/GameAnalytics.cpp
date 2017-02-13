@@ -6,17 +6,11 @@
 #include "GameAnalyticsCpp.h"
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "GameAnalyticsJNI.h"
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #include "cpp/GameAnalytics.h"
 #endif
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
-#define PATH_SEPARATOR "/"
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
-#define PATH_SEPARATOR "\\"
-#endif
-
-#define GA_VERSION "cocos2d 1.5.0"
+#define GA_VERSION "cocos2d 1.6.0"
 
 namespace gameanalytics {
     namespace cocos2d
@@ -30,7 +24,7 @@ namespace gameanalytics {
     		GameAnalyticsCpp::configureAvailableCustomDimensions01(list);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     		jni_configureAvailableCustomDimensions01(list);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::configureAvailableCustomDimensions01(list);
 #endif
     	}
@@ -42,7 +36,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::configureAvailableCustomDimensions02(list);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_configureAvailableCustomDimensions02(list);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::configureAvailableCustomDimensions02(list);
 #endif
         }
@@ -54,11 +48,11 @@ namespace gameanalytics {
         	GameAnalyticsCpp::configureAvailableCustomDimensions03(list);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_configureAvailableCustomDimensions03(list);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::configureAvailableCustomDimensions03(list);
 #endif
         }
-        
+
         void GameAnalytics::configureAvailableResourceCurrencies(const std::vector<std::string>& list)
         {
             lazySetWritablePath();
@@ -66,7 +60,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::configureAvailableResourceCurrencies(list);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_configureAvailableResourceCurrencies(list);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::configureAvailableResourceCurrencies(list);
 #endif
         }
@@ -78,11 +72,11 @@ namespace gameanalytics {
         	GameAnalyticsCpp::configureAvailableResourceItemTypes(list);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_configureAvailableResourceItemTypes(list);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::configureAvailableResourceItemTypes(list);
 #endif
         }
-        
+
         void GameAnalytics::configureBuild(const char *build)
         {
             lazySetWritablePath();
@@ -90,7 +84,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::configureBuild(build);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_configureBuild(build);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::configureBuild(build);
 #endif
         }
@@ -102,7 +96,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::configureUserId(userId);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_configureUserId(userId);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::configureUserId(userId);
 #endif
         }
@@ -114,7 +108,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::configureSdkGameEngineVersion(gameEngineSdkVersion);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_configureSdkGameEngineVersion(gameEngineSdkVersion);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::configureSdkGameEngineVersion(gameEngineSdkVersion);
 #endif
         }
@@ -126,7 +120,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::configureGameEngineVersion(gameEngineVersion);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_configureGameEngineVersion(gameEngineVersion);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::configureGameEngineVersion(gameEngineVersion);
 #endif
         }
@@ -148,11 +142,11 @@ namespace gameanalytics {
         	GameAnalyticsCpp::initialize(gameKey, gameSecret);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_initialize(gameKey, gameSecret);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::initialize(gameKey, gameSecret);
 #endif
         }
-        
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         void GameAnalytics::addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt)
         {
@@ -176,7 +170,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::addBusinessEvent(currency, amount, itemType, itemId, cartType, "");
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_addBusinessEvent(currency, amount, itemType, itemId, cartType);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::addBusinessEvent(currency, amount, itemType, itemId, cartType);
 #endif
         }
@@ -187,7 +181,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::addResourceEvent((int)flowType, currency, amount, itemType, itemId);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_addResourceEvent((int)flowType, currency, amount, itemType, itemId);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::addResourceEvent((gameanalytics::EGAResourceFlowType)((int)flowType), currency, amount, itemType, itemId);
 #endif
         }
@@ -218,7 +212,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::addProgressionEvent((int)progressionStatus, progression01, progression02, progression03);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_addProgressionEvent((int)progressionStatus, progression01, progression02, progression03);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::addProgressionEvent((gameanalytics::EGAProgressionStatus)((int)progressionStatus), progression01, progression02, progression03);
 #endif
         }
@@ -229,7 +223,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::addProgressionEventWithScore((int)progressionStatus, progression01, progression02, progression03, score);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_addProgressionEventWithScore((int)progressionStatus, progression01, progression02, progression03, score);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::addProgressionEvent((gameanalytics::EGAProgressionStatus)((int)progressionStatus), progression01, progression02, progression03, score);
 #endif
         }
@@ -240,7 +234,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::addDesignEvent(eventId);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_addDesignEvent(eventId);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::addDesignEvent(eventId);
 #endif
         }
@@ -251,7 +245,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::addDesignEventWithValue(eventId, value);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_addDesignEventWithValue(eventId, value);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::addDesignEvent(eventId, value);
 #endif
         }
@@ -262,11 +256,11 @@ namespace gameanalytics {
         	GameAnalyticsCpp::addErrorEvent((int)severity, message);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_addErrorEvent((int)severity, message);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::addErrorEvent((gameanalytics::EGAErrorSeverity)((int)severity), message);
 #endif
         }
-        
+
         void GameAnalytics::setEnabledInfoLog(bool flag)
         {
             lazySetWritablePath();
@@ -274,7 +268,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::setEnabledInfoLog(flag);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_setEnabledInfoLog(flag);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setEnabledInfoLog(flag);
 #endif
         }
@@ -286,7 +280,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::setEnabledVerboseLog(flag);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_setEnabledVerboseLog(flag);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setEnabledVerboseLog(flag);
 #endif
         }
@@ -298,7 +292,7 @@ namespace gameanalytics {
             GameAnalyticsCpp::setEnabledManualSessionHandling(flag);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
             jni_setEnabledManualSessionHandling(flag);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setEnabledManualSessionHandling(flag);
 #endif
         }
@@ -310,7 +304,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::setCustomDimension01(customDimension);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_setCustomDimension01(customDimension);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setCustomDimension01(customDimension);
 #endif
         }
@@ -322,7 +316,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::setCustomDimension02(customDimension);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_setCustomDimension02(customDimension);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setCustomDimension02(customDimension);
 #endif
         }
@@ -334,7 +328,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::setCustomDimension03(customDimension);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_setCustomDimension03(customDimension);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setCustomDimension03(customDimension);
 #endif
         }
@@ -346,7 +340,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::setFacebookId(facebookId);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_setFacebookId(facebookId);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setFacebookId(facebookId);
 #endif
         }
@@ -362,7 +356,7 @@ namespace gameanalytics {
         			GameAnalyticsCpp::setGender("male");
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         			jni_setGender((int)gender);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
                     gameanalytics::GameAnalytics::setGender((gameanalytics::EGAGender)((int)gender));
 #endif
         		}
@@ -374,7 +368,7 @@ namespace gameanalytics {
         			GameAnalyticsCpp::setGender("female");
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         			jni_setGender((int)gender);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
                     gameanalytics::GameAnalytics::setGender((gameanalytics::EGAGender)((int)gender));
 #endif
         		}
@@ -389,7 +383,7 @@ namespace gameanalytics {
         	GameAnalyticsCpp::setBirthYear(birthYear);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         	jni_setBirthYear(birthYear);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
                     gameanalytics::GameAnalytics::setBirthYear(birthYear);
 #endif
         }
@@ -400,7 +394,7 @@ namespace gameanalytics {
             GameAnalyticsCpp::startSession();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
             jni_startSession();
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #endif
         }
 
@@ -410,7 +404,7 @@ namespace gameanalytics {
             GameAnalyticsCpp::endSession();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
             jni_endSession();
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #endif
         }
 
@@ -418,7 +412,7 @@ namespace gameanalytics {
         {
             if (!isWritablePathSet)
             {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
                 gameanalytics::GameAnalytics::configureWritablePath(::cocos2d::FileUtils::getInstance()->getWritablePath());
 #endif
                 isWritablePathSet = true;
