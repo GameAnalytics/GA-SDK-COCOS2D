@@ -19,6 +19,9 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/w
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.6.1**
+* added OS version, device model and device manufacturer to event (windows, mac)
+
 **1.6.0**
 * added linux support
 
