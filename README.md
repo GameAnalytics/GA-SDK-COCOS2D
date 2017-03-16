@@ -3,17 +3,17 @@ GameAnalytics Cocos2D SDK.
 
 Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/wiki).
 
-> :information_source:<br>
+> :information_source:
 >
 > The Cocos2D SDK include support for **iOS**, **Android**, **HTML5**, **Tizen**, **Windows**, **Linux**, **UWP** and **Mac** platforms
 >
 > Supports **C++**, **JavaScript** and **Lua**
 >
-> Requirements:<br/>
-> **Cocos2D-X:** 3.x+  
-> **iOS:** iOS 7+<br/>
-> **Android:** Android API Level 14<br>
-> **Tizen:** Tizen 2.4+
+> Requirements:
+> * **Cocos2D-X:** 3.x+  
+> * **iOS:** iOS 7+
+> * **Android:** Android API Level 14
+> * **Tizen:** Tizen 2.4+
 
 
 Changelog
