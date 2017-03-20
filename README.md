@@ -19,6 +19,9 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/w
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.6.3**
+* session length precision improvement
+
 **1.6.2**
 * custom user id bug fix
 
