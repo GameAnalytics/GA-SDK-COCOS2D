@@ -19,6 +19,9 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/w
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.6.4**
+* bug fix for end session when using manual session handling
+
 **1.6.3**
 * session length precision improvement
 
