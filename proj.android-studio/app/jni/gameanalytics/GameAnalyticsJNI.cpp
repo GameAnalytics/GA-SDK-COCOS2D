@@ -267,7 +267,7 @@ namespace gameanalytics {
 	            jstring j_progression01 = methodInfo.env->NewStringUTF(progression01);
 	            jstring j_progression02 = methodInfo.env->NewStringUTF(progression02);
 	            jstring j_progression03 = methodInfo.env->NewStringUTF(progression03);
-	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, progressionStatus, j_progression01, j_progression02, j_progression03, score);
+	            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, progressionStatus, j_progression01, j_progression02, j_progression03, (double)score);
 	            methodInfo.env->DeleteLocalRef(j_progression01);
 	            methodInfo.env->DeleteLocalRef(j_progression02);
 	            methodInfo.env->DeleteLocalRef(j_progression03);
