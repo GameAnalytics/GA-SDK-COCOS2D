@@ -13,7 +13,16 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/w
 > * **Cocos2D-X:** 3.x+  
 > * **iOS:** iOS 7+
 > * **Android:** Android API Level 14
-> * **Tizen:** Tizen 2.4+
+> * **Tizen:** Tizen 2.4+   
+>   
+> **Build size:**   
+> Note that download size differ from the actual build size.   
+>   
+> **Android:**   
+> The SDK build size in a native Android app is only around **49Kb** and the dependecies take up to **820Kb** depending if your app already uses some of the same dependencies.   
+>   
+> **iOS:**   
+> The SDK build size in a native iOS app is only around **242Kb** (armv7) / **259Kb** (armv8).
 
 
 Changelog
@@ -21,7 +30,8 @@ Changelog
 <!--(CHANGELOG_TOP)-->
 **1.7.2**
 * small correction to use int instead of double for session num
-
+**1.7.1**
+* jni bug fix for progression events with scores (android)
 **1.7.0**
 * changed the behaviour of using IMEI with the 'READ_PHONE_STATE' permission to guarantee precise analytics for certain regions (android)
 
