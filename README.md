@@ -19,6 +19,9 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/w
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.7.2**
+* small correction to use int instead of double for session num
+
 **1.7.0**
 * changed the behaviour of using IMEI with the 'READ_PHONE_STATE' permission to guarantee precise analytics for certain regions (android)
 
