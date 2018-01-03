@@ -28,6 +28,9 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/w
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.7.3**
+* jni memory leak fixes (android)
+
 **1.7.2**
 * small correction to use int instead of double for session num
 
