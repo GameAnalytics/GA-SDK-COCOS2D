@@ -10,7 +10,7 @@
 #include "cpp/GameAnalytics.h"
 #endif
 
-#define GA_VERSION "cocos2d 1.7.3"
+#define GA_VERSION "cocos2d 1.7.4"
 
 namespace gameanalytics {
     namespace cocos2d

@@ -28,6 +28,9 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/w
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.7.4**
+* fixed crash bug for closing down sdk for desktop platforms (windows, mac, linux)
+
 **1.7.3**
 * jni memory leak fixes (android)
 
