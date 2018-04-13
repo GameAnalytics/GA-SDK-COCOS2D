@@ -1,7 +1,7 @@
 # GA-SDK-COCOS2D
 GameAnalytics Cocos2D SDK.
 
-Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-COCOS2D/wiki).
+Documentation can be found [here](https://gameanalytics.com/docs/cocos2d-sdk).
 
 > :information_source:
 >
