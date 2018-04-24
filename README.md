@@ -28,6 +28,10 @@ Documentation can be found [here](https://gameanalytics.com/docs/cocos2d-sdk).
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.7.5**
+* fixed session length bug
+* fixed not allowing to add events when session is not started
+
 **1.7.4**
 * fixed crash bug for closing down sdk for desktop platforms (windows, mac, linux)
 
