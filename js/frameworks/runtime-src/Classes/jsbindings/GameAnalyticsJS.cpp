@@ -1,570 +1,198 @@
 #include "GameAnalyticsJS.hpp"
-#include "scripting/js-bindings/manual/cocos2d_specifics.hpp"
+#include "scripting/js-bindings/jswrapper/SeApi.h"
+#include "scripting/js-bindings/manual/jsb_conversions.hpp"
 #include "GameAnalytics.h"
 
-template<class T>
-static bool dummy_constructor(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS_ReportError(cx, "Constructor for the requested class is not available, please refer to the API reference.");
-    return false;
-}
+static se::Object* __jsb_gameanalytics_cocos2d_GameAnalytics_proto = nullptr;
+static se::Class* __jsb_gameanalytics_cocos2d_GameAnalytics_class = nullptr;
 
-static bool empty_constructor(JSContext *cx, uint32_t argc, jsval *vp) {
-    return false;
-}
-
-static bool js_is_native_obj(JSContext *cx, uint32_t argc, jsval *vp)
+static bool js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions01(se::State& s)
 {
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    args.rval().setBoolean(true);
-    return true;
-}
-JSClass  *jsb_gameanalytics_cocos2d_GameAnalytics_class;
-JSObject *jsb_gameanalytics_cocos2d_GameAnalytics_prototype;
-
-void js_GameAnalyticsJS_GameAnalytics_finalize(JSFreeOp *fop, JSObject *obj)
-{
-    CCLOGINFO("jsbindings: finalizing JS object %p (JSBRelation)", obj);
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions03(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+    const auto& args = s.args();
+    int argc = (int)args.size();
     bool ok = true;
     if (argc == 1) {
         std::vector<std::string> arg0;
-        ok &= jsval_to_std_vector_string(cx, args.get(0), &arg0);
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions03 : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::configureAvailableCustomDimensions03(arg0);
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions03 : wrong number of arguments");
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions02(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-    if (argc == 1) {
-        std::vector<std::string> arg0;
-        ok &= jsval_to_std_vector_string(cx, args.get(0), &arg0);
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions02 : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::configureAvailableCustomDimensions02(arg0);
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions02 : wrong number of arguments");
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions01(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-    if (argc == 1) {
-        std::vector<std::string> arg0;
-        ok &= jsval_to_std_vector_string(cx, args.get(0), &arg0);
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions01 : Error processing arguments");
+        ok &= seval_to_std_vector_string(args[0], &arg0);
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions01 : Error processing arguments");
         gameanalytics::cocos2d::GameAnalytics::configureAvailableCustomDimensions01(arg0);
-        args.rval().setUndefined();
         return true;
     }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions01 : wrong number of arguments");
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions01 : wrong number of arguments");
     return false;
 }
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions01)
 
-bool js_GameAnalyticsJS_GameAnalytics_endSession(JSContext *cx, uint32_t argc, jsval *vp)
+static bool js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions02(se::State& s)
 {
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    if (argc == 0) {
-        gameanalytics::cocos2d::GameAnalytics::endSession();
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_endSession : wrong number of arguments");
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_setEnabledManualSessionHandling(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-    if (argc == 1) {
-        bool arg0;
-        arg0 = JS::ToBoolean(args.get(0));
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_setEnabledManualSessionHandling : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::setEnabledManualSessionHandling(arg0);
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_setEnabledManualSessionHandling : wrong number of arguments");
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_setCustomDimension03(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-    if (argc == 1) {
-        const char* arg0 = nullptr;
-        std::string arg0_tmp; ok &= jsval_to_std_string(cx, args.get(0), &arg0_tmp); arg0 = arg0_tmp.c_str();
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_setCustomDimension03 : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::setCustomDimension03(arg0);
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_setCustomDimension03 : wrong number of arguments");
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_setCustomDimension02(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-    if (argc == 1) {
-        const char* arg0 = nullptr;
-        std::string arg0_tmp; ok &= jsval_to_std_string(cx, args.get(0), &arg0_tmp); arg0 = arg0_tmp.c_str();
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_setCustomDimension02 : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::setCustomDimension02(arg0);
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_setCustomDimension02 : wrong number of arguments");
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_setCustomDimension01(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-    if (argc == 1) {
-        const char* arg0 = nullptr;
-        std::string arg0_tmp; ok &= jsval_to_std_string(cx, args.get(0), &arg0_tmp); arg0 = arg0_tmp.c_str();
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_setCustomDimension01 : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::setCustomDimension01(arg0);
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_setCustomDimension01 : wrong number of arguments");
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_startSession(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    if (argc == 0) {
-        gameanalytics::cocos2d::GameAnalytics::startSession();
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_startSession : wrong number of arguments");
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_addBusinessEventAndAutoFetchReceipt(JSContext *cx, uint32_t argc, jsval *vp)
-{
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-    if (argc == 5) {
-        const char* arg0 = nullptr;
-        int arg1 = 0;
-        const char* arg2 = nullptr;
-        const char* arg3 = nullptr;
-        const char* arg4 = nullptr;
-        std::string arg0_tmp; ok &= jsval_to_std_string(cx, args.get(0), &arg0_tmp); arg0 = arg0_tmp.c_str();
-        ok &= jsval_to_int32(cx, args.get(1), (int32_t *)&arg1);
-        std::string arg2_tmp; ok &= jsval_to_std_string(cx, args.get(2), &arg2_tmp); arg2 = arg2_tmp.c_str();
-        std::string arg3_tmp; ok &= jsval_to_std_string(cx, args.get(3), &arg3_tmp); arg3 = arg3_tmp.c_str();
-        std::string arg4_tmp; ok &= jsval_to_std_string(cx, args.get(4), &arg4_tmp); arg4 = arg4_tmp.c_str();
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_addBusinessEventAndAutoFetchReceipt : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::addBusinessEventAndAutoFetchReceipt(arg0, arg1, arg2, arg3, arg4);
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_addBusinessEventAndAutoFetchReceipt : wrong number of arguments");
-#else
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_addBusinessEventAndAutoFetchReceipt : only works on iOS");
-#endif
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_addProgressionEvent(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-
-    do {
-        if (argc == 3) {
-            gameanalytics::cocos2d::EGAProgressionStatus arg0;
-            ok &= jsval_to_int32(cx, args.get(0), (int32_t *)&arg0);
-            if (!ok) { ok = true; break; }
-            const char* arg1 = nullptr;
-            std::string arg1_tmp; ok &= jsval_to_std_string(cx, args.get(1), &arg1_tmp); arg1 = arg1_tmp.c_str();
-            if (!ok) { ok = true; break; }
-            int arg2 = 0;
-            ok &= jsval_to_int32(cx, args.get(2), (int32_t *)&arg2);
-            if (!ok) { ok = true; break; }
-            gameanalytics::cocos2d::GameAnalytics::addProgressionEvent(arg0, arg1, arg2);
-            return true;
-        }
-    } while (0);
-
-    do {
-        if (argc == 2) {
-            gameanalytics::cocos2d::EGAProgressionStatus arg0;
-            ok &= jsval_to_int32(cx, args.get(0), (int32_t *)&arg0);
-            if (!ok) { ok = true; break; }
-            const char* arg1 = nullptr;
-            std::string arg1_tmp; ok &= jsval_to_std_string(cx, args.get(1), &arg1_tmp); arg1 = arg1_tmp.c_str();
-            if (!ok) { ok = true; break; }
-            gameanalytics::cocos2d::GameAnalytics::addProgressionEvent(arg0, arg1);
-            return true;
-        }
-    } while (0);
-
-    do {
-        if (argc == 3) {
-            gameanalytics::cocos2d::EGAProgressionStatus arg0;
-            ok &= jsval_to_int32(cx, args.get(0), (int32_t *)&arg0);
-            if (!ok) { ok = true; break; }
-            const char* arg1 = nullptr;
-            std::string arg1_tmp; ok &= jsval_to_std_string(cx, args.get(1), &arg1_tmp); arg1 = arg1_tmp.c_str();
-            if (!ok) { ok = true; break; }
-            const char* arg2 = nullptr;
-            std::string arg2_tmp; ok &= jsval_to_std_string(cx, args.get(2), &arg2_tmp); arg2 = arg2_tmp.c_str();
-            if (!ok) { ok = true; break; }
-            gameanalytics::cocos2d::GameAnalytics::addProgressionEvent(arg0, arg1, arg2);
-            return true;
-        }
-    } while (0);
-
-    do {
-        if (argc == 4) {
-            gameanalytics::cocos2d::EGAProgressionStatus arg0;
-            ok &= jsval_to_int32(cx, args.get(0), (int32_t *)&arg0);
-            if (!ok) { ok = true; break; }
-            const char* arg1 = nullptr;
-            std::string arg1_tmp; ok &= jsval_to_std_string(cx, args.get(1), &arg1_tmp); arg1 = arg1_tmp.c_str();
-            if (!ok) { ok = true; break; }
-            const char* arg2 = nullptr;
-            std::string arg2_tmp; ok &= jsval_to_std_string(cx, args.get(2), &arg2_tmp); arg2 = arg2_tmp.c_str();
-            if (!ok) { ok = true; break; }
-            int arg3 = 0;
-            ok &= jsval_to_int32(cx, args.get(3), (int32_t *)&arg3);
-            if (!ok) { ok = true; break; }
-            gameanalytics::cocos2d::GameAnalytics::addProgressionEvent(arg0, arg1, arg2, arg3);
-            return true;
-        }
-    } while (0);
-
-    do {
-        if (argc == 4) {
-            gameanalytics::cocos2d::EGAProgressionStatus arg0;
-            ok &= jsval_to_int32(cx, args.get(0), (int32_t *)&arg0);
-            if (!ok) { ok = true; break; }
-            const char* arg1 = nullptr;
-            std::string arg1_tmp; ok &= jsval_to_std_string(cx, args.get(1), &arg1_tmp); arg1 = arg1_tmp.c_str();
-            if (!ok) { ok = true; break; }
-            const char* arg2 = nullptr;
-            std::string arg2_tmp; ok &= jsval_to_std_string(cx, args.get(2), &arg2_tmp); arg2 = arg2_tmp.c_str();
-            if (!ok) { ok = true; break; }
-            const char* arg3 = nullptr;
-            std::string arg3_tmp; ok &= jsval_to_std_string(cx, args.get(3), &arg3_tmp); arg3 = arg3_tmp.c_str();
-            if (!ok) { ok = true; break; }
-            gameanalytics::cocos2d::GameAnalytics::addProgressionEvent(arg0, arg1, arg2, arg3);
-            return true;
-        }
-    } while (0);
-
-    do {
-        if (argc == 5) {
-            gameanalytics::cocos2d::EGAProgressionStatus arg0;
-            ok &= jsval_to_int32(cx, args.get(0), (int32_t *)&arg0);
-            if (!ok) { ok = true; break; }
-            const char* arg1 = nullptr;
-            std::string arg1_tmp; ok &= jsval_to_std_string(cx, args.get(1), &arg1_tmp); arg1 = arg1_tmp.c_str();
-            if (!ok) { ok = true; break; }
-            const char* arg2 = nullptr;
-            std::string arg2_tmp; ok &= jsval_to_std_string(cx, args.get(2), &arg2_tmp); arg2 = arg2_tmp.c_str();
-            if (!ok) { ok = true; break; }
-            const char* arg3 = nullptr;
-            std::string arg3_tmp; ok &= jsval_to_std_string(cx, args.get(3), &arg3_tmp); arg3 = arg3_tmp.c_str();
-            if (!ok) { ok = true; break; }
-            int arg4 = 0;
-            ok &= jsval_to_int32(cx, args.get(4), (int32_t *)&arg4);
-            if (!ok) { ok = true; break; }
-            gameanalytics::cocos2d::GameAnalytics::addProgressionEvent(arg0, arg1, arg2, arg3, arg4);
-            return true;
-        }
-    } while (0);
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_addProgressionEvent : wrong number of arguments");
-    return false;
-}
-bool js_GameAnalyticsJS_GameAnalytics_addResourceEvent(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-    if (argc == 5) {
-        gameanalytics::cocos2d::EGAResourceFlowType arg0;
-        const char* arg1 = nullptr;
-        double arg2 = 0;
-        const char* arg3 = nullptr;
-        const char* arg4 = nullptr;
-        ok &= jsval_to_int32(cx, args.get(0), (int32_t *)&arg0);
-        std::string arg1_tmp; ok &= jsval_to_std_string(cx, args.get(1), &arg1_tmp); arg1 = arg1_tmp.c_str();
-        ok &= JS::ToNumber( cx, args.get(2), &arg2) && !isnan(arg2);
-        std::string arg3_tmp; ok &= jsval_to_std_string(cx, args.get(3), &arg3_tmp); arg3 = arg3_tmp.c_str();
-        std::string arg4_tmp; ok &= jsval_to_std_string(cx, args.get(4), &arg4_tmp); arg4 = arg4_tmp.c_str();
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_addResourceEvent : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::addResourceEvent(arg0, arg1, arg2, arg3, arg4);
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_addResourceEvent : wrong number of arguments");
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_addErrorEvent(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-    if (argc == 2) {
-        gameanalytics::cocos2d::EGAErrorSeverity arg0;
-        const char* arg1 = nullptr;
-        ok &= jsval_to_int32(cx, args.get(0), (int32_t *)&arg0);
-        std::string arg1_tmp; ok &= jsval_to_std_string(cx, args.get(1), &arg1_tmp); arg1 = arg1_tmp.c_str();
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_addErrorEvent : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::addErrorEvent(arg0, arg1);
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_addErrorEvent : wrong number of arguments");
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_setGender(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-    if (argc == 1) {
-        gameanalytics::cocos2d::EGAGender arg0;
-        ok &= jsval_to_int32(cx, args.get(0), (int32_t *)&arg0);
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_setGender : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::setGender(arg0);
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_setGender : wrong number of arguments");
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceCurrencies(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+    const auto& args = s.args();
+    int argc = (int)args.size();
     bool ok = true;
     if (argc == 1) {
         std::vector<std::string> arg0;
-        ok &= jsval_to_std_vector_string(cx, args.get(0), &arg0);
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceCurrencies : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::configureAvailableResourceCurrencies(arg0);
-        args.rval().setUndefined();
+        ok &= seval_to_std_vector_string(args[0], &arg0);
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions02 : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::configureAvailableCustomDimensions02(arg0);
         return true;
     }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceCurrencies : wrong number of arguments");
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions02 : wrong number of arguments");
     return false;
 }
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions02)
 
-bool js_GameAnalyticsJS_GameAnalytics_configureUserId(JSContext *cx, uint32_t argc, jsval *vp)
+static bool js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions03(se::State& s)
 {
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+    if (argc == 1) {
+        std::vector<std::string> arg0;
+        ok &= seval_to_std_vector_string(args[0], &arg0);
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions03 : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::configureAvailableCustomDimensions03(arg0);
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions03 : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions03)
+
+static bool js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceCurrencies(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+    if (argc == 1) {
+        std::vector<std::string> arg0;
+        ok &= seval_to_std_vector_string(args[0], &arg0);
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceCurrencies : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::configureAvailableResourceCurrencies(arg0);
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceCurrencies : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceCurrencies)
+
+static bool js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceItemTypes(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+    if (argc == 1) {
+        std::vector<std::string> arg0;
+        ok &= seval_to_std_vector_string(args[0], &arg0);
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceItemTypes : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::configureAvailableResourceItemTypes(arg0);
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceItemTypes : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceItemTypes)
+
+static bool js_GameAnalyticsJS_GameAnalytics_configureBuild(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
     bool ok = true;
     if (argc == 1) {
         const char* arg0 = nullptr;
-        std::string arg0_tmp; ok &= jsval_to_std_string(cx, args.get(0), &arg0_tmp); arg0 = arg0_tmp.c_str();
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_configureUserId : Error processing arguments");
+        std::string arg0_tmp;
+        ok &= seval_to_std_string(args[0], &arg0_tmp);
+        arg0 = arg0_tmp.c_str();
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_configureBuild : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::configureBuild(arg0);
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_configureBuild : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_configureBuild)
+
+static bool js_GameAnalyticsJS_GameAnalytics_configureUserId(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+    if (argc == 1) {
+        const char* arg0 = nullptr;
+        std::string arg0_tmp;
+        ok &= seval_to_std_string(args[0], &arg0_tmp);
+        arg0 = arg0_tmp.c_str();
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_configureUserId : Error processing arguments");
         gameanalytics::cocos2d::GameAnalytics::configureUserId(arg0);
-        args.rval().setUndefined();
         return true;
     }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_configureUserId : wrong number of arguments");
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_configureUserId : wrong number of arguments");
     return false;
 }
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_configureUserId)
 
-bool js_GameAnalyticsJS_GameAnalytics_setBirthYear(JSContext *cx, uint32_t argc, jsval *vp)
+static bool js_GameAnalyticsJS_GameAnalytics_initialize(se::State& s)
 {
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-    if (argc == 1) {
-        int arg0 = 0;
-        ok &= jsval_to_int32(cx, args.get(0), (int32_t *)&arg0);
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_setBirthYear : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::setBirthYear(arg0);
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_setBirthYear : wrong number of arguments");
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_setEnabledInfoLog(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-    if (argc == 1) {
-        bool arg0;
-        arg0 = JS::ToBoolean(args.get(0));
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_setEnabledInfoLog : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::setEnabledInfoLog(arg0);
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_setEnabledInfoLog : wrong number of arguments");
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_addDesignEvent(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-
-    do {
-        if (argc == 2) {
-            const char* arg0 = nullptr;
-            std::string arg0_tmp; ok &= jsval_to_std_string(cx, args.get(0), &arg0_tmp); arg0 = arg0_tmp.c_str();
-            if (!ok) { ok = true; break; }
-            double arg1 = 0;
-            ok &= JS::ToNumber( cx, args.get(1), &arg1) && !isnan(arg1);
-            if (!ok) { ok = true; break; }
-            gameanalytics::cocos2d::GameAnalytics::addDesignEvent(arg0, arg1);
-            return true;
-        }
-    } while (0);
-
-    do {
-        if (argc == 1) {
-            const char* arg0 = nullptr;
-            std::string arg0_tmp; ok &= jsval_to_std_string(cx, args.get(0), &arg0_tmp); arg0 = arg0_tmp.c_str();
-            if (!ok) { ok = true; break; }
-            gameanalytics::cocos2d::GameAnalytics::addDesignEvent(arg0);
-            return true;
-        }
-    } while (0);
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_addDesignEvent : wrong number of arguments");
-    return false;
-}
-bool js_GameAnalyticsJS_GameAnalytics_initialize(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+    const auto& args = s.args();
+    int argc = (int)args.size();
     bool ok = true;
     if (argc == 2) {
         const char* arg0 = nullptr;
         const char* arg1 = nullptr;
-        std::string arg0_tmp; ok &= jsval_to_std_string(cx, args.get(0), &arg0_tmp); arg0 = arg0_tmp.c_str();
-        std::string arg1_tmp; ok &= jsval_to_std_string(cx, args.get(1), &arg1_tmp); arg1 = arg1_tmp.c_str();
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_initialize : Error processing arguments");
+        std::string arg0_tmp;
+        ok &= seval_to_std_string(args[0], &arg0_tmp);
+        arg0 = arg0_tmp.c_str();
+        std::string arg1_tmp;
+        ok &= seval_to_std_string(args[1], &arg1_tmp);
+        arg1 = arg1_tmp.c_str();
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_initialize : Error processing arguments");
         gameanalytics::cocos2d::GameAnalytics::initialize(arg0, arg1);
-        args.rval().setUndefined();
         return true;
     }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_initialize : wrong number of arguments");
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_initialize : wrong number of arguments");
     return false;
 }
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_initialize)
 
-bool js_GameAnalyticsJS_GameAnalytics_setEnabledVerboseLog(JSContext *cx, uint32_t argc, jsval *vp)
+static bool js_GameAnalyticsJS_GameAnalytics_addBusinessEvent(se::State& s)
 {
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-    if (argc == 1) {
-        bool arg0;
-        arg0 = JS::ToBoolean(args.get(0));
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_setEnabledVerboseLog : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::setEnabledVerboseLog(arg0);
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_setEnabledVerboseLog : wrong number of arguments");
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_setFacebookId(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-    if (argc == 1) {
-        const char* arg0 = nullptr;
-        std::string arg0_tmp; ok &= jsval_to_std_string(cx, args.get(0), &arg0_tmp); arg0 = arg0_tmp.c_str();
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_setFacebookId : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::setFacebookId(arg0);
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_setFacebookId : wrong number of arguments");
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_configureBuild(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-    if (argc == 1) {
-        const char* arg0 = nullptr;
-        std::string arg0_tmp; ok &= jsval_to_std_string(cx, args.get(0), &arg0_tmp); arg0 = arg0_tmp.c_str();
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_configureBuild : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::configureBuild(arg0);
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_configureBuild : wrong number of arguments");
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_configureGameEngineVersion(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-    if (argc == 1) {
-        const char* arg0 = nullptr;
-        std::string arg0_tmp; ok &= jsval_to_std_string(cx, args.get(0), &arg0_tmp); arg0 = arg0_tmp.c_str();
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_configureGameEngineVersion : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::configureGameEngineVersion(arg0);
-        args.rval().setUndefined();
-        return true;
-    }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_configureGameEngineVersion : wrong number of arguments");
-    return false;
-}
-
-bool js_GameAnalyticsJS_GameAnalytics_addBusinessEvent(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+    const auto& args = s.args();
+    int argc = (int)args.size();
     bool ok = true;
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     do {
         if (argc == 7) {
             const char* arg0 = nullptr;
-            std::string arg0_tmp; ok &= jsval_to_std_string(cx, args.get(0), &arg0_tmp); arg0 = arg0_tmp.c_str();
+            std::string arg0_tmp;
+            ok &= seval_to_std_string(args[0], &arg0_tmp);
+            arg0 = arg0_tmp.c_str();
             if (!ok) { ok = true; break; }
             int arg1 = 0;
-            ok &= jsval_to_int32(cx, args.get(1), (int32_t *)&arg1);
+            ok &= seval_to_int32(args[1], (int32_t *)&arg1);
             if (!ok) { ok = true; break; }
             const char* arg2 = nullptr;
-            std::string arg2_tmp; ok &= jsval_to_std_string(cx, args.get(2), &arg2_tmp); arg2 = arg2_tmp.c_str();
+            std::string arg2_tmp;
+            ok &= seval_to_std_string(args[2], &arg2_tmp);
+            arg2 = arg2_tmp.c_str();
             if (!ok) { ok = true; break; }
             const char* arg3 = nullptr;
-            std::string arg3_tmp; ok &= jsval_to_std_string(cx, args.get(3), &arg3_tmp); arg3 = arg3_tmp.c_str();
+            std::string arg3_tmp;
+            ok &= seval_to_std_string(args[3], &arg3_tmp);
+            arg3 = arg3_tmp.c_str();
             if (!ok) { ok = true; break; }
             const char* arg4 = nullptr;
-            std::string arg4_tmp; ok &= jsval_to_std_string(cx, args.get(4), &arg4_tmp); arg4 = arg4_tmp.c_str();
+            std::string arg4_tmp;
+            ok &= seval_to_std_string(args[4], &arg4_tmp);
+            arg4 = arg4_tmp.c_str();
             if (!ok) { ok = true; break; }
             const char* arg5 = nullptr;
-            std::string arg5_tmp; ok &= jsval_to_std_string(cx, args.get(5), &arg5_tmp); arg5 = arg5_tmp.c_str();
+            std::string arg5_tmp;
+            ok &= seval_to_std_string(args[5], &arg5_tmp);
+            arg5 = arg5_tmp.c_str();
             if (!ok) { ok = true; break; }
             const char* arg6 = nullptr;
-            std::string arg6_tmp; ok &= jsval_to_std_string(cx, args.get(6), &arg6_tmp); arg6 = arg6_tmp.c_str();
+            std::string arg6_tmp;
+            ok &= seval_to_std_string(args[6], &arg6_tmp);
+            arg6 = arg6_tmp.c_str();
             if (!ok) { ok = true; break; }
             gameanalytics::cocos2d::GameAnalytics::addBusinessEvent(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
             return true;
@@ -574,24 +202,52 @@ bool js_GameAnalyticsJS_GameAnalytics_addBusinessEvent(JSContext *cx, uint32_t a
     do {
         if (argc == 6) {
             const char* arg0 = nullptr;
-            std::string arg0_tmp; ok &= jsval_to_std_string(cx, args.get(0), &arg0_tmp); arg0 = arg0_tmp.c_str();
+            std::string arg0_tmp;
+            ok &= seval_to_std_string(args[0], &arg0_tmp);
+            arg0 = arg0_tmp.c_str();
             if (!ok) { ok = true; break; }
             int arg1 = 0;
-            ok &= jsval_to_int32(cx, args.get(1), (int32_t *)&arg1);
+            ok &= seval_to_int32(args[1], (int32_t *)&arg1);
             if (!ok) { ok = true; break; }
             const char* arg2 = nullptr;
-            std::string arg2_tmp; ok &= jsval_to_std_string(cx, args.get(2), &arg2_tmp); arg2 = arg2_tmp.c_str();
+            std::string arg2_tmp;
+            ok &= seval_to_std_string(args[2], &arg2_tmp);
+            arg2 = arg2_tmp.c_str();
             if (!ok) { ok = true; break; }
             const char* arg3 = nullptr;
-            std::string arg3_tmp; ok &= jsval_to_std_string(cx, args.get(3), &arg3_tmp); arg3 = arg3_tmp.c_str();
+            std::string arg3_tmp;
+            ok &= seval_to_std_string(args[3], &arg3_tmp);
+            arg3 = arg3_tmp.c_str();
             if (!ok) { ok = true; break; }
             const char* arg4 = nullptr;
-            std::string arg4_tmp; ok &= jsval_to_std_string(cx, args.get(4), &arg4_tmp); arg4 = arg4_tmp.c_str();
+            std::string arg4_tmp;
+            ok &= seval_to_std_string(args[4], &arg4_tmp);
+            arg4 = arg4_tmp.c_str();
             if (!ok) { ok = true; break; }
-            const char* arg5 = nullptr;
-            std::string arg5_tmp; ok &= jsval_to_std_string(cx, args.get(5), &arg5_tmp); arg5 = arg5_tmp.c_str();
-            if (!ok) { ok = true; break; }
-            gameanalytics::cocos2d::GameAnalytics::addBusinessEvent(arg0, arg1, arg2, arg3, arg4, arg5);
+            bool arg5_bool;
+            ok &= seval_to_boolean(args[5], &arg5_bool);
+            if (!ok)
+            {
+                ok = true;
+                const char* arg5_string = nullptr;
+                std::string arg5_tmp;
+                ok &= seval_to_std_string(args[5], &arg5_tmp);
+                arg5 = arg5_tmp.c_str();
+                if (!ok) { ok = true; break; }
+                gameanalytics::cocos2d::GameAnalytics::addBusinessEvent(arg0, arg1, arg2, arg3, arg4, arg5_string);
+            }
+            else
+            {
+                if(arg5_bool)
+                {
+                    gameanalytics::cocos2d::GameAnalytics::addBusinessEventAndAutoFetchReceipt(arg0, arg1, arg2, arg3, arg4);
+                }
+                else
+                {
+                    gameanalytics::cocos2d::GameAnalytics::addBusinessEvent(arg0, arg1, arg2, arg3, arg4);
+                }
+            }
+
             return true;
         }
     } while (0);
@@ -599,132 +255,525 @@ bool js_GameAnalyticsJS_GameAnalytics_addBusinessEvent(JSContext *cx, uint32_t a
     do {
         if (argc == 5) {
             const char* arg0 = nullptr;
-            std::string arg0_tmp; ok &= jsval_to_std_string(cx, args.get(0), &arg0_tmp); arg0 = arg0_tmp.c_str();
+            std::string arg0_tmp;
+            ok &= seval_to_std_string(args[0], &arg0_tmp);
+            arg0 = arg0_tmp.c_str();
             if (!ok) { ok = true; break; }
             int arg1 = 0;
-            ok &= jsval_to_int32(cx, args.get(1), (int32_t *)&arg1);
+            ok &= seval_to_int32(args[1], (int32_t *)&arg1);
             if (!ok) { ok = true; break; }
             const char* arg2 = nullptr;
-            std::string arg2_tmp; ok &= jsval_to_std_string(cx, args.get(2), &arg2_tmp); arg2 = arg2_tmp.c_str();
+            std::string arg2_tmp;
+            ok &= seval_to_std_string(args[2], &arg2_tmp);
+            arg2 = arg2_tmp.c_str();
             if (!ok) { ok = true; break; }
             const char* arg3 = nullptr;
-            std::string arg3_tmp; ok &= jsval_to_std_string(cx, args.get(3), &arg3_tmp); arg3 = arg3_tmp.c_str();
+            std::string arg3_tmp;
+            ok &= seval_to_std_string(args[3], &arg3_tmp);
+            arg3 = arg3_tmp.c_str();
             if (!ok) { ok = true; break; }
             const char* arg4 = nullptr;
-            std::string arg4_tmp; ok &= jsval_to_std_string(cx, args.get(4), &arg4_tmp); arg4 = arg4_tmp.c_str();
+            std::string arg4_tmp;
+            ok &= seval_to_std_string(args[4], &arg4_tmp);
+            arg4 = arg4_tmp.c_str();
             if (!ok) { ok = true; break; }
             gameanalytics::cocos2d::GameAnalytics::addBusinessEvent(arg0, arg1, arg2, arg3, arg4);
             return true;
         }
     } while (0);
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_addBusinessEvent : wrong number of arguments");
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_addBusinessEvent : wrong number of arguments");
     return false;
 }
-bool js_GameAnalyticsJS_GameAnalytics_configureSdkGameEngineVersion(JSContext *cx, uint32_t argc, jsval *vp)
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_addBusinessEvent)
+
+static bool js_GameAnalyticsJS_GameAnalytics_addResourceEvent(se::State& s)
 {
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+    if (argc == 5) {
+        gameanalytics::cocos2d::EGAResourceFlowType arg0;
+        const char* arg1 = nullptr;
+        double arg2 = 0;
+        const char* arg3 = nullptr;
+        const char* arg4 = nullptr;
+        ok &= seval_to_int32(args[0], (int32_t *)&arg0);
+        std::string arg1_tmp;
+        ok &= seval_to_std_string(args[1], &arg1_tmp);
+        arg1 = arg1_tmp.c_str();
+        ok &= seval_to_double(args[2], &arg2) && !isnan(arg2);
+        std::string arg3_tmp;
+        ok &= seval_to_std_string(args[3], &arg3_tmp);
+        arg3 = arg3_tmp.c_str();
+        std::string arg4_tmp;
+        ok &= seval_to_std_string(args[4], &arg4_tmp);
+        arg4 = arg4_tmp.c_str();
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_addResourceEvent : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::addResourceEvent(arg0, arg1, arg2, arg3, arg4);
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_addResourceEvent : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_addResourceEvent)
+
+static bool js_GameAnalyticsJS_GameAnalytics_addProgressionEvent(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+
+    do {
+        if (argc == 3) {
+            gameanalytics::cocos2d::EGAProgressionStatus arg0;
+            ok &= seval_to_int32(args[0], (int32_t *)&arg0);
+            if (!ok) { ok = true; break; }
+            const char* arg1 = nullptr;
+            std::string arg1_tmp;
+            ok &= seval_to_std_string(args[1], &arg1_tmp);
+            arg1 = arg1_tmp.c_str();
+            if (!ok) { ok = true; break; }
+            int arg2 = 0;
+            ok &= seval_to_int32(args[2], (int32_t *)&arg2);
+            if (!ok) { ok = true; break; }
+            gameanalytics::cocos2d::GameAnalytics::addProgressionEvent(arg0, arg1, arg2);
+            return true;
+        }
+    } while (0);
+
+    do {
+        if (argc == 2) {
+            gameanalytics::cocos2d::EGAProgressionStatus arg0;
+            ok &= seval_to_int32(args[0], (int32_t *)&arg0);
+            if (!ok) { ok = true; break; }
+            const char* arg1 = nullptr;
+            std::string arg1_tmp;
+            ok &= seval_to_std_string(args[1], &arg1_tmp);
+            arg1 = arg1_tmp.c_str();
+            if (!ok) { ok = true; break; }
+            gameanalytics::cocos2d::GameAnalytics::addProgressionEvent(arg0, arg1);
+            return true;
+        }
+    } while (0);
+
+    do {
+        if (argc == 3) {
+            gameanalytics::cocos2d::EGAProgressionStatus arg0;
+            ok &= seval_to_int32(args[0], (int32_t *)&arg0);
+            if (!ok) { ok = true; break; }
+            const char* arg1 = nullptr;
+            std::string arg1_tmp;
+            ok &= seval_to_std_string(args[1], &arg1_tmp);
+            arg1 = arg1_tmp.c_str();
+            if (!ok) { ok = true; break; }
+            const char* arg2 = nullptr;
+            std::string arg2_tmp;
+            ok &= seval_to_std_string(args[2], &arg2_tmp);
+            arg2 = arg2_tmp.c_str();
+            if (!ok) { ok = true; break; }
+            gameanalytics::cocos2d::GameAnalytics::addProgressionEvent(arg0, arg1, arg2);
+            return true;
+        }
+    } while (0);
+
+    do {
+        if (argc == 4) {
+            gameanalytics::cocos2d::EGAProgressionStatus arg0;
+            ok &= seval_to_int32(args[0], (int32_t *)&arg0);
+            if (!ok) { ok = true; break; }
+            const char* arg1 = nullptr;
+            std::string arg1_tmp;
+            ok &= seval_to_std_string(args[1], &arg1_tmp);
+            arg1 = arg1_tmp.c_str();
+            if (!ok) { ok = true; break; }
+            const char* arg2 = nullptr;
+            std::string arg2_tmp;
+            ok &= seval_to_std_string(args[2], &arg2_tmp);
+            arg2 = arg2_tmp.c_str();
+            if (!ok) { ok = true; break; }
+            int arg3 = 0;
+            ok &= seval_to_int32(args[3], (int32_t *)&arg3);
+            if (!ok) { ok = true; break; }
+            gameanalytics::cocos2d::GameAnalytics::addProgressionEvent(arg0, arg1, arg2, arg3);
+            return true;
+        }
+    } while (0);
+
+    do {
+        if (argc == 4) {
+            gameanalytics::cocos2d::EGAProgressionStatus arg0;
+            ok &= seval_to_int32(args[0], (int32_t *)&arg0);
+            if (!ok) { ok = true; break; }
+            const char* arg1 = nullptr;
+            std::string arg1_tmp;
+            ok &= seval_to_std_string(args[1], &arg1_tmp);
+            arg1 = arg1_tmp.c_str();
+            if (!ok) { ok = true; break; }
+            const char* arg2 = nullptr;
+            std::string arg2_tmp;
+            ok &= seval_to_std_string(args[2], &arg2_tmp);
+            arg2 = arg2_tmp.c_str();
+            if (!ok) { ok = true; break; }
+            const char* arg3 = nullptr;
+            std::string arg3_tmp;
+            ok &= seval_to_std_string(args[3], &arg3_tmp);
+            arg3 = arg3_tmp.c_str();
+            if (!ok) { ok = true; break; }
+            gameanalytics::cocos2d::GameAnalytics::addProgressionEvent(arg0, arg1, arg2, arg3);
+            return true;
+        }
+    } while (0);
+
+    do {
+        if (argc == 5) {
+            gameanalytics::cocos2d::EGAProgressionStatus arg0;
+            ok &= seval_to_int32(args[0], (int32_t *)&arg0);
+            if (!ok) { ok = true; break; }
+            const char* arg1 = nullptr;
+            std::string arg1_tmp;
+            ok &= seval_to_std_string(args[1], &arg1_tmp);
+            arg1 = arg1_tmp.c_str();
+            if (!ok) { ok = true; break; }
+            const char* arg2 = nullptr;
+            std::string arg2_tmp;
+            ok &= seval_to_std_string(args[2], &arg2_tmp);
+            arg2 = arg2_tmp.c_str();
+            if (!ok) { ok = true; break; }
+            const char* arg3 = nullptr;
+            std::string arg3_tmp;
+            ok &= seval_to_std_string(args[3], &arg3_tmp);
+            arg3 = arg3_tmp.c_str();
+            if (!ok) { ok = true; break; }
+            int arg4 = 0;
+            ok &= seval_to_int32(args[4], (int32_t *)&arg4);
+            if (!ok) { ok = true; break; }
+            gameanalytics::cocos2d::GameAnalytics::addProgressionEvent(arg0, arg1, arg2, arg3, arg4);
+            return true;
+        }
+    } while (0);
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_addProgressionEvent : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_addProgressionEvent)
+
+static bool js_GameAnalyticsJS_GameAnalytics_addDesignEvent(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+
+    do {
+        if (argc == 2) {
+            const char* arg0 = nullptr;
+            std::string arg0_tmp;
+            ok &= seval_to_std_string(args[0], &arg0_tmp);
+            arg0 = arg0_tmp.c_str();
+            if (!ok) { ok = true; break; }
+            double arg1 = 0;
+            ok &= seval_to_double(args[1], &arg1) && !isnan(arg1);
+            if (!ok) { ok = true; break; }
+            gameanalytics::cocos2d::GameAnalytics::addDesignEvent(arg0, arg1);
+            return true;
+        }
+    } while (0);
+
+    do {
+        if (argc == 1) {
+            const char* arg0 = nullptr;
+            std::string arg0_tmp;
+            ok &= seval_to_std_string(args[0], &arg0_tmp);
+            arg0 = arg0_tmp.c_str();
+            if (!ok) { ok = true; break; }
+            gameanalytics::cocos2d::GameAnalytics::addDesignEvent(arg0);
+            return true;
+        }
+    } while (0);
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_addDesignEvent : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_addDesignEvent)
+
+static bool js_GameAnalyticsJS_GameAnalytics_addErrorEvent(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+    if (argc == 2) {
+        gameanalytics::cocos2d::EGAErrorSeverity arg0;
+        const char* arg1 = nullptr;
+        ok &= seval_to_int32(args[0], (int32_t *)&arg0);
+        std::string arg1_tmp;
+        ok &= seval_to_std_string(args[1], &arg1_tmp);
+        arg1 = arg1_tmp.c_str();
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_addErrorEvent : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::addErrorEvent(arg0, arg1);
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_addErrorEvent : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_addErrorEvent)
+
+static bool js_GameAnalyticsJS_GameAnalytics_setEnabledInfoLog(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+    if (argc == 1) {
+        bool arg0;
+        ok &= seval_to_boolean(args[0], &arg0);
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_setEnabledInfoLog : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::setEnabledInfoLog(arg0);
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_setEnabledInfoLog : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_setEnabledInfoLog)
+
+static bool js_GameAnalyticsJS_GameAnalytics_setEnabledVerboseLog(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+    if (argc == 1) {
+        bool arg0;
+        ok &= seval_to_boolean(args[0], &arg0);
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_setEnabledVerboseLog : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::setEnabledVerboseLog(arg0);
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_setEnabledVerboseLog : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_setEnabledVerboseLog)
+
+static bool js_GameAnalyticsJS_GameAnalytics_setEnabledManualSessionHandling(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+    if (argc == 1) {
+        bool arg0;
+        ok &= seval_to_boolean(args[0], &arg0);
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_setEnabledManualSessionHandling : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::setEnabledManualSessionHandling(arg0);
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_setEnabledManualSessionHandling : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_setEnabledManualSessionHandling)
+
+static bool js_GameAnalyticsJS_GameAnalytics_setCustomDimension01(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
     bool ok = true;
     if (argc == 1) {
         const char* arg0 = nullptr;
-        std::string arg0_tmp; ok &= jsval_to_std_string(cx, args.get(0), &arg0_tmp); arg0 = arg0_tmp.c_str();
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_configureSdkGameEngineVersion : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::configureSdkGameEngineVersion(arg0);
-        args.rval().setUndefined();
+        std::string arg0_tmp;
+        ok &= seval_to_std_string(args[0], &arg0_tmp);
+        arg0 = arg0_tmp.c_str();
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_setCustomDimension01 : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::setCustomDimension01(arg0);
         return true;
     }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_configureSdkGameEngineVersion : wrong number of arguments");
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_setCustomDimension01 : wrong number of arguments");
     return false;
 }
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_setCustomDimension01)
 
-bool js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceItemTypes(JSContext *cx, uint32_t argc, jsval *vp)
+static bool js_GameAnalyticsJS_GameAnalytics_setCustomDimension02(se::State& s)
 {
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+    const auto& args = s.args();
+    int argc = (int)args.size();
     bool ok = true;
     if (argc == 1) {
-        std::vector<std::string> arg0;
-        ok &= jsval_to_std_vector_string(cx, args.get(0), &arg0);
-        JSB_PRECONDITION2(ok, cx, false, "js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceItemTypes : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::configureAvailableResourceItemTypes(arg0);
-        args.rval().setUndefined();
+        const char* arg0 = nullptr;
+        std::string arg0_tmp;
+        ok &= seval_to_std_string(args[0], &arg0_tmp);
+        arg0 = arg0_tmp.c_str();
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_setCustomDimension02 : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::setCustomDimension02(arg0);
         return true;
     }
-    JS_ReportError(cx, "js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceItemTypes : wrong number of arguments");
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_setCustomDimension02 : wrong number of arguments");
     return false;
 }
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_setCustomDimension02)
 
+static bool js_GameAnalyticsJS_GameAnalytics_setCustomDimension03(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+    if (argc == 1) {
+        const char* arg0 = nullptr;
+        std::string arg0_tmp;
+        ok &= seval_to_std_string(args[0], &arg0_tmp);
+        arg0 = arg0_tmp.c_str();
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_setCustomDimension03 : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::setCustomDimension03(arg0);
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_setCustomDimension03 : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_setCustomDimension03)
 
-void js_register_GameAnalyticsJS_GameAnalytics(JSContext *cx, JS::HandleObject global) {
-    jsb_gameanalytics_cocos2d_GameAnalytics_class = (JSClass *)calloc(1, sizeof(JSClass));
-    jsb_gameanalytics_cocos2d_GameAnalytics_class->name = "GameAnalytics";
-    jsb_gameanalytics_cocos2d_GameAnalytics_class->addProperty = JS_PropertyStub;
-    jsb_gameanalytics_cocos2d_GameAnalytics_class->delProperty = JS_DeletePropertyStub;
-    jsb_gameanalytics_cocos2d_GameAnalytics_class->getProperty = JS_PropertyStub;
-    jsb_gameanalytics_cocos2d_GameAnalytics_class->setProperty = JS_StrictPropertyStub;
-    jsb_gameanalytics_cocos2d_GameAnalytics_class->enumerate = JS_EnumerateStub;
-    jsb_gameanalytics_cocos2d_GameAnalytics_class->resolve = JS_ResolveStub;
-    jsb_gameanalytics_cocos2d_GameAnalytics_class->convert = JS_ConvertStub;
-    jsb_gameanalytics_cocos2d_GameAnalytics_class->finalize = js_GameAnalyticsJS_GameAnalytics_finalize;
-    jsb_gameanalytics_cocos2d_GameAnalytics_class->flags = JSCLASS_HAS_RESERVED_SLOTS(2);
+static bool js_GameAnalyticsJS_GameAnalytics_setFacebookId(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+    if (argc == 1) {
+        const char* arg0 = nullptr;
+        std::string arg0_tmp;
+        ok &= seval_to_std_string(args[0], &arg0_tmp);
+        arg0 = arg0_tmp.c_str();
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_setFacebookId : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::setFacebookId(arg0);
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_setFacebookId : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_setFacebookId)
 
-    static JSPropertySpec properties[] = {
-        JS_PSG("__nativeObj", js_is_native_obj, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_PS_END
-    };
+static bool js_GameAnalyticsJS_GameAnalytics_setGender(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+    if (argc == 1) {
+        gameanalytics::cocos2d::EGAGender arg0;
+        ok &= seval_to_int32(args[0], (int32_t *)&arg0);
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_setGender : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::setGender(arg0);
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_setGender : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_setGender)
 
-    static JSFunctionSpec funcs[] = {
-        JS_FS_END
-    };
+static bool js_GameAnalyticsJS_GameAnalytics_setBirthYear(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+    if (argc == 1) {
+        int arg0 = 0;
+        ok &= seval_to_int32(args[0], (int32_t *)&arg0);
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_setBirthYear : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::setBirthYear(arg0);
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_setBirthYear : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_setBirthYear)
 
-    static JSFunctionSpec st_funcs[] = {
-        JS_FN("configureAvailableCustomDimensions03", js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions03, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("configureAvailableCustomDimensions02", js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions02, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("configureAvailableCustomDimensions01", js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions01, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("endSession", js_GameAnalyticsJS_GameAnalytics_endSession, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("setEnabledManualSessionHandling", js_GameAnalyticsJS_GameAnalytics_setEnabledManualSessionHandling, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("setCustomDimension03", js_GameAnalyticsJS_GameAnalytics_setCustomDimension03, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("setCustomDimension02", js_GameAnalyticsJS_GameAnalytics_setCustomDimension02, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("setCustomDimension01", js_GameAnalyticsJS_GameAnalytics_setCustomDimension01, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("startSession", js_GameAnalyticsJS_GameAnalytics_startSession, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("addBusinessEventAndAutoFetchReceipt", js_GameAnalyticsJS_GameAnalytics_addBusinessEventAndAutoFetchReceipt, 5, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("addProgressionEvent", js_GameAnalyticsJS_GameAnalytics_addProgressionEvent, 2, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("addResourceEvent", js_GameAnalyticsJS_GameAnalytics_addResourceEvent, 5, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("addErrorEvent", js_GameAnalyticsJS_GameAnalytics_addErrorEvent, 2, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("setGender", js_GameAnalyticsJS_GameAnalytics_setGender, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("configureAvailableResourceCurrencies", js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceCurrencies, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("configureUserId", js_GameAnalyticsJS_GameAnalytics_configureUserId, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("setBirthYear", js_GameAnalyticsJS_GameAnalytics_setBirthYear, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("setEnabledInfoLog", js_GameAnalyticsJS_GameAnalytics_setEnabledInfoLog, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("addDesignEvent", js_GameAnalyticsJS_GameAnalytics_addDesignEvent, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("initialize", js_GameAnalyticsJS_GameAnalytics_initialize, 2, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("setEnabledVerboseLog", js_GameAnalyticsJS_GameAnalytics_setEnabledVerboseLog, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("setFacebookId", js_GameAnalyticsJS_GameAnalytics_setFacebookId, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("configureBuild", js_GameAnalyticsJS_GameAnalytics_configureBuild, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("configureGameEngineVersion", js_GameAnalyticsJS_GameAnalytics_configureGameEngineVersion, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("addBusinessEvent", js_GameAnalyticsJS_GameAnalytics_addBusinessEvent, 5, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("configureSdkGameEngineVersion", js_GameAnalyticsJS_GameAnalytics_configureSdkGameEngineVersion, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("configureAvailableResourceItemTypes", js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceItemTypes, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FS_END
-    };
+static bool js_GameAnalyticsJS_GameAnalytics_startSession(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    if (argc == 0) {
+        gameanalytics::cocos2d::GameAnalytics::startSession();
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_startSession : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_startSession)
 
-    jsb_gameanalytics_cocos2d_GameAnalytics_prototype = JS_InitClass(
-        cx, global,
-        JS::NullPtr(),
-        jsb_gameanalytics_cocos2d_GameAnalytics_class,
-        dummy_constructor<gameanalytics::cocos2d::GameAnalytics>, 0, // no constructor
-        properties,
-        funcs,
-        NULL, // no static properties
-        st_funcs);
+static bool js_GameAnalyticsJS_GameAnalytics_endSession(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    if (argc == 0) {
+        gameanalytics::cocos2d::GameAnalytics::endSession();
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_endSession : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_endSession)
 
-    // add the proto and JSClass to the type->js info hash table
-    JS::RootedObject proto(cx, jsb_gameanalytics_cocos2d_GameAnalytics_prototype);
-    jsb_register_class<gameanalytics::cocos2d::GameAnalytics>(cx, jsb_gameanalytics_cocos2d_GameAnalytics_class, proto, JS::NullPtr());
+static bool js_GameAnalyticsJS_GameAnalytics_finalize(se::State& s)
+{
+    CCLOG("jsbindings: finalizing JS object %p (gameanalytics::GameAnalytics)", s.nativeThisObject());
+    return true;
+}
+SE_BIND_FINALIZE_FUNC(js_GameAnalyticsJS_GameAnalytics_finalize)
+
+bool js_register_GameAnalyticsJS_GameAnalytics(se::Object* global) {
+    // Make sure the namespace exists
+    se::Value nsVal;
+    if (!global->getProperty("ga", &nsVal))
+    {
+        // If it doesn't exist, create one. Similar as `var ns = {};` in JS.
+        se::HandleObject jsobj(se::Object::createPlainObject());
+        nsVal.setObject(jsobj);
+
+        // Set the object to the global object with the property name `ns`.
+        global->setProperty("ga", nsVal);
+    }
+    se::Object* ns = nsVal.toObject();
+    // Create a se::Class object, developers do not need to consider the release of the se::Class object, which is automatically handled by the ScriptEngine.
+    auto cls = se::Class::create("GameAnalytics", ns, nullptr, nullptr); // If the registered class doesn't need a  constructor, the last argument can be passed in with nullptr, it will make  `new SomeClass();` illegal.
+
+    // Define finalize callback function
+    cls->defineFinalizeFunction(_SE(js_GameAnalyticsJS_GameAnalytics_finalize));
+
+    // Install the class to JS virtual machine
+    cls->install();
+
+    // JSBClassType::registerClass is a helper function in the Cocos2D-X native binding code, which is not a part of the ScriptEngine.
+    JSBClassType::registerClass<gameanalytics::cocos2d::GameAnalytics>(cls);
+
+    // Save the result to global variable for easily use in other places, for example class inheritence.
+    __jsb_gameanalytics_cocos2d_GameAnalytics_proto = cls->getProto();
+    __jsb_gameanalytics_cocos2d_GameAnalytics_class = cls;
+
+    // Register static member variables and static member functions
+    se::Value ctorVal;
+    if (ns->getProperty("GameAnalytics", &ctorVal) && ctorVal.isObject())
+    {
+        ctorVal.toObject()->defineFunction("configureAvailableCustomDimensions01", _SE(js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions01));
+        ctorVal.toObject()->defineFunction("configureAvailableCustomDimensions02", _SE(js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions02));
+        ctorVal.toObject()->defineFunction("configureAvailableCustomDimensions03", _SE(js_GameAnalyticsJS_GameAnalytics_configureAvailableCustomDimensions03));
+        ctorVal.toObject()->defineFunction("configureAvailableResourceCurrencies", _SE(js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceCurrencies));
+        ctorVal.toObject()->defineFunction("configureAvailableResourceItemTypes", _SE(js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceItemTypes));
+        ctorVal.toObject()->defineFunction("configureBuild", _SE(js_GameAnalyticsJS_GameAnalytics_configureBuild));
+        ctorVal.toObject()->defineFunction("configureUserId", _SE(js_GameAnalyticsJS_GameAnalytics_configureUserId));
+        ctorVal.toObject()->defineFunction("initialize", _SE(js_GameAnalyticsJS_GameAnalytics_initialize));
+        ctorVal.toObject()->defineFunction("addBusinessEvent", _SE(js_GameAnalyticsJS_GameAnalytics_addBusinessEvent));
+        ctorVal.toObject()->defineFunction("addResourceEvent", _SE(js_GameAnalyticsJS_GameAnalytics_addResourceEvent));
+        ctorVal.toObject()->defineFunction("addProgressionEvent", _SE(js_GameAnalyticsJS_GameAnalytics_addProgressionEvent));
+        ctorVal.toObject()->defineFunction("addDesignEvent", _SE(js_GameAnalyticsJS_GameAnalytics_addDesignEvent));
+        ctorVal.toObject()->defineFunction("addErrorEvent", _SE(js_GameAnalyticsJS_GameAnalytics_addErrorEvent));
+        ctorVal.toObject()->defineFunction("setEnabledInfoLog", _SE(js_GameAnalyticsJS_GameAnalytics_setEnabledInfoLog));
+        ctorVal.toObject()->defineFunction("setEnabledVerboseLog", _SE(js_GameAnalyticsJS_GameAnalytics_setEnabledVerboseLog));
+        ctorVal.toObject()->defineFunction("setEnabledManualSessionHandling", _SE(js_GameAnalyticsJS_GameAnalytics_setEnabledManualSessionHandling));
+        ctorVal.toObject()->defineFunction("setCustomDimension01", _SE(js_GameAnalyticsJS_GameAnalytics_setCustomDimension01));
+        ctorVal.toObject()->defineFunction("setCustomDimension02", _SE(js_GameAnalyticsJS_GameAnalytics_setCustomDimension02));
+        ctorVal.toObject()->defineFunction("setCustomDimension03", _SE(js_GameAnalyticsJS_GameAnalytics_setCustomDimension03));
+        ctorVal.toObject()->defineFunction("setFacebookId", _SE(js_GameAnalyticsJS_GameAnalytics_setFacebookId));
+        ctorVal.toObject()->defineFunction("setGender", _SE(js_GameAnalyticsJS_GameAnalytics_setGender));
+        ctorVal.toObject()->defineFunction("setBirthYear", _SE(js_GameAnalyticsJS_GameAnalytics_setBirthYear));
+        ctorVal.toObject()->defineFunction("startSession", _SE(js_GameAnalyticsJS_GameAnalytics_startSession));
+        ctorVal.toObject()->defineFunction("endSession", _SE(js_GameAnalyticsJS_GameAnalytics_endSession));
+    }
+
+    // Clear JS exceptions
+    se::ScriptEngine::getInstance()->clearException();
+    return true;
 }
 
-void register_all_GameAnalyticsJS(JSContext* cx, JS::HandleObject obj) {
-    // Get the ns
-    JS::RootedObject ns(cx);
-    get_or_create_js_obj(cx, obj, "ga", &ns);
+bool register_all_GameAnalyticsJS(se::Object* obj) {
+    js_register_GameAnalyticsJS_GameAnalytics(obj);
 
-    js_register_GameAnalyticsJS_GameAnalytics(cx, ns);
+    return true;
 }

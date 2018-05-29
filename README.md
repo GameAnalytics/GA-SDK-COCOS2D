@@ -28,6 +28,9 @@ Documentation can be found [here](https://gameanalytics.com/docs/cocos2d-sdk).
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.8.0**
+* updated jsbindings to work with latest API
+
 **1.7.7**
 * bug fix for events thread stopping and not starting again (desktop platforms)
 
