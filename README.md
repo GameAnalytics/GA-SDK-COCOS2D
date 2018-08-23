@@ -28,6 +28,10 @@ Documentation can be found [here](https://gameanalytics.com/docs/cocos2d-sdk).
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**2.0.0**
+* added command center functionality
+* fixed various bugs
+
 **1.8.0**
 * updated jsbindings to work with latest API
 

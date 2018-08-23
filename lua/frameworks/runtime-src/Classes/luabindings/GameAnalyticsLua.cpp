@@ -1191,6 +1191,129 @@ int lua_GameAnalyticsLua_GameAnalytics_configureAvailableResourceItemTypes(lua_S
 #endif
     return 0;
 }
+
+int lua_GameAnalyticsLua_GameAnalytics_getCommandCenterValueAsString(lua_State* tolua_S)
+{
+    int argc = 0;
+    bool ok  = true;
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertable(tolua_S,1,"ga.GameAnalytics",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+    argc = lua_gettop(tolua_S)-1;
+
+    do
+    {
+        if (argc == 2)
+        {
+            const char* arg0;
+            std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp, "ga.GameAnalytics:getCommandCenterValueAsString"); arg0 = arg0_tmp.c_str();
+            if (!ok) { break; }
+            const char* arg1;
+            std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg1_tmp, "ga.GameAnalytics:getCommandCenterValueAsString"); arg1 = arg1_tmp.c_str();
+            if (!ok) { break; }
+            std::string result = gameanalytics::cocos2d::GameAnalytics::getCommandCenterValueAsString(arg0, arg1);
+            tolua_pushstring(tolua_S,(const char*)result.c_str());
+            return 1;
+        }
+    } while (0);
+    ok  = true;
+    do
+    {
+        if (argc == 1)
+        {
+            const char* arg0;
+            std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp, "ga.GameAnalytics:getCommandCenterValueAsString"); arg0 = arg0_tmp.c_str();
+            if (!ok) { break; }
+            std::string result = gameanalytics::cocos2d::GameAnalytics::getCommandCenterValueAsString(arg0);
+            tolua_pushstring(tolua_S,(const char*)result.c_str());
+            return 1;
+        }
+    } while (0);
+    ok  = true;
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d", "ga.GameAnalytics:getCommandCenterValueAsString",argc, 1);
+    return 0;
+#if COCOS2D_DEBUG >= 1
+    tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_GameAnalyticsLua_GameAnalytics_getCommandCenterValueAsString'.",&tolua_err);
+#endif
+    return 0;
+}
+
+int lua_GameAnalyticsLua_GameAnalytics_isCommandCenterReady(lua_State* tolua_S)
+{
+    int argc = 0;
+    bool ok  = true;
+
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertable(tolua_S,1,"ga.GameAnalytics",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+    argc = lua_gettop(tolua_S) - 1;
+
+    if (argc == 0)
+    {
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_GameAnalyticsLua_GameAnalytics_isCommandCenterReady'", nullptr);
+            return 0;
+        }
+        bool result = gameanalytics::cocos2d::GameAnalytics::isCommandCenterReady();
+        tolua_pushboolean(tolua_S,(bool)result);
+        return 1;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ga.GameAnalytics:isCommandCenterReady",argc, 0);
+    return 0;
+#if COCOS2D_DEBUG >= 1
+    tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_GameAnalyticsLua_GameAnalytics_isCommandCenterReady'.",&tolua_err);
+#endif
+    return 0;
+}
+
+int lua_GameAnalyticsLua_GameAnalytics_getConfigurationsContentAsString(lua_State* tolua_S)
+{
+    int argc = 0;
+    bool ok  = true;
+
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertable(tolua_S,1,"ga.GameAnalytics",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+    argc = lua_gettop(tolua_S) - 1;
+
+    if (argc == 0)
+    {
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_GameAnalyticsLua_GameAnalytics_getConfigurationsContentAsString'", nullptr);
+            return 0;
+        }
+        std::string result = gameanalytics::cocos2d::GameAnalytics::getConfigurationsContentAsString();
+        tolua_pushstring(tolua_S,(const char*)result.c_str());
+        return 1;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ga.GameAnalytics:isCommandCenterReady",argc, 0);
+    return 0;
+#if COCOS2D_DEBUG >= 1
+    tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_GameAnalyticsLua_GameAnalytics_getConfigurationsContentAsString'.",&tolua_err);
+#endif
+    return 0;
+}
+
 static int lua_GameAnalyticsLua_GameAnalytics_finalize(lua_State* tolua_S)
 {
     printf("luabindings: finalizing LUA object (GameAnalytics)");
@@ -1230,6 +1353,9 @@ int lua_register_GameAnalyticsLua_GameAnalytics(lua_State* tolua_S)
         tolua_function(tolua_S,"addBusinessEvent", lua_GameAnalyticsLua_GameAnalytics_addBusinessEvent);
         tolua_function(tolua_S,"configureSdkGameEngineVersion", lua_GameAnalyticsLua_GameAnalytics_configureSdkGameEngineVersion);
         tolua_function(tolua_S,"configureAvailableResourceItemTypes", lua_GameAnalyticsLua_GameAnalytics_configureAvailableResourceItemTypes);
+        tolua_function(tolua_S,"getCommandCenterValueAsString", lua_GameAnalyticsLua_GameAnalytics_getCommandCenterValueAsString);
+        tolua_function(tolua_S,"isCommandCenterReady", lua_GameAnalyticsLua_GameAnalytics_isCommandCenterReady);
+        tolua_function(tolua_S,"getConfigurationsContentAsString", lua_GameAnalyticsLua_GameAnalytics_getConfigurationsContentAsString);
     tolua_endmodule(tolua_S);
     std::string typeName = typeid(gameanalytics::cocos2d::GameAnalytics).name();
     g_luaType[typeName] = "ga.GameAnalytics";

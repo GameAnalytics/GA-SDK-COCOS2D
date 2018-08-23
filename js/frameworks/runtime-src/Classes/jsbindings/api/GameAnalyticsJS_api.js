@@ -278,4 +278,35 @@ ga.GameAnalytics = {
     {
     },
 
+    /**
+     * @method getCommandCenterValueAsString
+     * @param {char} arg0
+     * @param {char} arg1
+     */
+    endSession : function (
+    char,
+    char,
+    )
+    {
+        return "";
+    },
+
+    /**
+     * @method isCommandCenterReady
+     */
+    isCommandCenterReady : function (
+    )
+    {
+        return false;
+    },
+
+    /**
+     * @method getConfigurationsContentAsString
+     */
+    getConfigurationsContentAsString : function (
+    )
+    {
+        return "";
+    },
+
 };

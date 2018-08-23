@@ -218,7 +218,7 @@ namespace gameanalytics {
             }
         }
 
-        void jni_addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType)
+        void jni_addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *fields)
         {
             cocos2d::JniMethodInfo methodInfo;
             if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addBusinessEventWithCurrency",
@@ -228,17 +228,19 @@ namespace gameanalytics {
                 jstring j_itemType = methodInfo.env->NewStringUTF(itemType);
                 jstring j_itemId = methodInfo.env->NewStringUTF(itemId);
                 jstring j_cartType = methodInfo.env->NewStringUTF(cartType);
-                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_currency, amount, j_itemType, j_itemId, j_cartType);
+                jstring j_fields = methodInfo.env->NewStringUTF(fields);
+                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_currency, amount, j_itemType, j_itemId, j_cartType/*, j_fields*/);
                 methodInfo.env->DeleteLocalRef(j_currency);
                 methodInfo.env->DeleteLocalRef(j_itemType);
                 methodInfo.env->DeleteLocalRef(j_itemId);
                 methodInfo.env->DeleteLocalRef(j_cartType);
+                methodInfo.env->DeleteLocalRef(j_fields);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }
         }
 
         void jni_addBusinessEventWithReceipt(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType,
-            const char *receipt, const char *store, const char *signature)
+            const char *receipt, const char *store, const char *signature, const char *fields)
         {
             cocos2d::JniMethodInfo methodInfo;
             if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addBusinessEventWithCurrency",
@@ -251,7 +253,8 @@ namespace gameanalytics {
                 jstring j_receipt = methodInfo.env->NewStringUTF(receipt);
                 jstring j_store = methodInfo.env->NewStringUTF(store);
                 jstring j_signature = methodInfo.env->NewStringUTF(signature);
-                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_currency, amount, j_itemType, j_itemId, j_cartType, j_receipt, j_store, j_signature);
+                jstring j_fields = methodInfo.env->NewStringUTF(fields);
+                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_currency, amount, j_itemType, j_itemId, j_cartType, j_receipt, j_store, j_signature/*, j_fields*/);
                 methodInfo.env->DeleteLocalRef(j_currency);
                 methodInfo.env->DeleteLocalRef(j_itemType);
                 methodInfo.env->DeleteLocalRef(j_itemId);
@@ -259,11 +262,12 @@ namespace gameanalytics {
                 methodInfo.env->DeleteLocalRef(j_receipt);
                 methodInfo.env->DeleteLocalRef(j_store);
                 methodInfo.env->DeleteLocalRef(j_signature);
+                methodInfo.env->DeleteLocalRef(j_fields);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }
         }
 
-        void jni_addResourceEvent(int flowType, const char *currency, float amount, const char *itemType, const char *itemId)
+        void jni_addResourceEvent(int flowType, const char *currency, float amount, const char *itemType, const char *itemId, const char *fields)
         {
             cocos2d::JniMethodInfo methodInfo;
             if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addResourceEventWithFlowType",
@@ -272,15 +276,17 @@ namespace gameanalytics {
                 jstring j_currency = methodInfo.env->NewStringUTF(currency);
                 jstring j_itemType = methodInfo.env->NewStringUTF(itemType);
                 jstring j_itemId = methodInfo.env->NewStringUTF(itemId);
-                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, flowType, j_currency, amount, j_itemType, j_itemId);
+                jstring j_fields = methodInfo.env->NewStringUTF(fields);
+                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, flowType, j_currency, amount, j_itemType, j_itemId/*, j_fields*/);
                 methodInfo.env->DeleteLocalRef(j_currency);
                 methodInfo.env->DeleteLocalRef(j_itemType);
                 methodInfo.env->DeleteLocalRef(j_itemId);
+                methodInfo.env->DeleteLocalRef(j_fields);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }
         }
 
-        void jni_addProgressionEvent(int progressionStatus, const char *progression01, const char *progression02, const char *progression03)
+        void jni_addProgressionEvent(int progressionStatus, const char *progression01, const char *progression02, const char *progression03, const char *fields)
         {
             cocos2d::JniMethodInfo methodInfo;
             if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addProgressionEventWithProgressionStatus",
@@ -289,15 +295,17 @@ namespace gameanalytics {
                 jstring j_progression01 = methodInfo.env->NewStringUTF(progression01);
                 jstring j_progression02 = methodInfo.env->NewStringUTF(progression02);
                 jstring j_progression03 = methodInfo.env->NewStringUTF(progression03);
-                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, progressionStatus, j_progression01, j_progression02, j_progression03);
+                jstring j_fields = methodInfo.env->NewStringUTF(fields);
+                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, progressionStatus, j_progression01, j_progression02, j_progression03/*, j_fields*/);
                 methodInfo.env->DeleteLocalRef(j_progression01);
                 methodInfo.env->DeleteLocalRef(j_progression02);
                 methodInfo.env->DeleteLocalRef(j_progression03);
+                methodInfo.env->DeleteLocalRef(j_fields);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }
         }
 
-        void jni_addProgressionEventWithScore(int progressionStatus, const char *progression01, const char *progression02, const char *progression03, int score)
+        void jni_addProgressionEventWithScore(int progressionStatus, const char *progression01, const char *progression02, const char *progression03, int score, const char *fields)
         {
             cocos2d::JniMethodInfo methodInfo;
             if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addProgressionEventWithProgressionStatus",
@@ -306,49 +314,57 @@ namespace gameanalytics {
                 jstring j_progression01 = methodInfo.env->NewStringUTF(progression01);
                 jstring j_progression02 = methodInfo.env->NewStringUTF(progression02);
                 jstring j_progression03 = methodInfo.env->NewStringUTF(progression03);
-                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, progressionStatus, j_progression01, j_progression02, j_progression03, (double)score);
+                jstring j_fields = methodInfo.env->NewStringUTF(fields);
+                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, progressionStatus, j_progression01, j_progression02, j_progression03, (double)score/*, j_fields*/);
                 methodInfo.env->DeleteLocalRef(j_progression01);
                 methodInfo.env->DeleteLocalRef(j_progression02);
                 methodInfo.env->DeleteLocalRef(j_progression03);
+                methodInfo.env->DeleteLocalRef(j_fields);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }
         }
 
-        void jni_addDesignEvent(const char *eventId)
+        void jni_addDesignEvent(const char *eventId, const char *fields)
         {
             cocos2d::JniMethodInfo methodInfo;
             if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addDesignEventWithEventId",
                 "(Ljava/lang/String;)V"))
             {
                 jstring j_eventId = methodInfo.env->NewStringUTF(eventId);
-                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_eventId);
+                jstring j_fields = methodInfo.env->NewStringUTF(fields);
+                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_eventId/*, j_fields*/);
                 methodInfo.env->DeleteLocalRef(j_eventId);
+                methodInfo.env->DeleteLocalRef(j_fields);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }
         }
 
-        void jni_addDesignEventWithValue(const char *eventId, float value)
+        void jni_addDesignEventWithValue(const char *eventId, float value, const char *fields)
         {
             cocos2d::JniMethodInfo methodInfo;
             if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addDesignEventWithEventId",
                 "(Ljava/lang/String;D)V"))
             {
                 jstring j_eventId = methodInfo.env->NewStringUTF(eventId);
-                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_eventId, value);
+                jstring j_fields = methodInfo.env->NewStringUTF(fields);
+                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_eventId, value/*, j_fields*/);
                 methodInfo.env->DeleteLocalRef(j_eventId);
+                methodInfo.env->DeleteLocalRef(j_fields);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }
         }
 
-        void jni_addErrorEvent(int severity, const char *message)
+        void jni_addErrorEvent(int severity, const char *message, const char *fields)
         {
             cocos2d::JniMethodInfo methodInfo;
             if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addErrorEventWithSeverity",
                 "(ILjava/lang/String;)V"))
             {
                 jstring j_message = methodInfo.env->NewStringUTF(message);
-                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, severity, j_message);
+                jstring j_fields = methodInfo.env->NewStringUTF(fields);
+                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, severity, j_message/*, j_fields*/);
                 methodInfo.env->DeleteLocalRef(j_message);
+                methodInfo.env->DeleteLocalRef(j_fields);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }
         }
@@ -480,6 +496,72 @@ namespace gameanalytics {
                 methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }
+        }
+
+        const char* jni_getCommandCenterValueAsString(const char *key)
+        {
+            cocos2d::JniMethodInfo methodInfo;
+            std::string result;
+
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "getCommandCenterValueAsString",
+                "(Ljava/lang/String;)Ljava/lang/String;"))
+            {
+                jstring j_key = methodInfo.env->NewStringUTF(key);
+                result = methodInfo.env->CallStaticStringMethod(methodInfo.classID, methodInfo.methodID, j_key);
+                methodInfo.env->DeleteLocalRef(j_key);
+                methodInfo.env->DeleteLocalRef(methodInfo.classID);
+            }
+
+            return result.c_str();
+        }
+
+        const char* jni_getCommandCenterValueAsStringWithDefaultValue(const char *key, const char *defaultValue)
+        {
+            cocos2d::JniMethodInfo methodInfo;
+            std::string result;
+
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "getCommandCenterValueAsString",
+                "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"))
+            {
+                jstring j_key = methodInfo.env->NewStringUTF(key);
+                jstring j_defaultValue = methodInfo.env->NewStringUTF(defaultValue);
+                result = methodInfo.env->CallStaticStringMethod(methodInfo.classID, methodInfo.methodID, j_key, j_defaultValue);
+                methodInfo.env->DeleteLocalRef(j_key);
+                methodInfo.env->DeleteLocalRef(j_defaultValue);
+                methodInfo.env->DeleteLocalRef(methodInfo.classID);
+            }
+
+            return result.c_str();
+        }
+
+        bool jni_isCommandCenterReady()
+        {
+            cocos2d::JniMethodInfo methodInfo;
+            bool result = false;
+
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "isCommandCenterReady",
+                "()Z"))
+            {
+                result = methodInfo.env->CallStaticBooleanMethod(methodInfo.classID, methodInfo.methodID);
+                methodInfo.env->DeleteLocalRef(methodInfo.classID);
+            }
+
+            return false;
+        }
+
+        const char* jni_getConfigurationsContentAsString()
+        {
+            cocos2d::JniMethodInfo methodInfo;
+            std::string result;
+
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "getConfigurationsContentAsString",
+                "()Ljava/lang/String;"))
+            {
+                result = methodInfo.env->CallStaticStringMethod(methodInfo.classID, methodInfo.methodID);
+                methodInfo.env->DeleteLocalRef(methodInfo.classID);
+            }
+
+            return result.c_str();
         }
     }
 }

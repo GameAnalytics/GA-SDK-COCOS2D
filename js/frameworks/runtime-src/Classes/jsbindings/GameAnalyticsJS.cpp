@@ -701,6 +701,70 @@ static bool js_GameAnalyticsJS_GameAnalytics_endSession(se::State& s)
 }
 SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_endSession)
 
+static bool js_GameAnalyticsJS_GameAnalytics_getCommandCenterValueAsString(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+
+    do {
+        if (argc == 2) {
+            const char* arg0 = nullptr;
+            std::string arg0_tmp;
+            ok &= seval_to_std_string(args[0], &arg0_tmp);
+            arg0 = arg0_tmp.c_str();
+            if (!ok) { ok = true; break; }
+            const char* arg1 = nullptr;
+            std::string arg1_tmp;
+            ok &= seval_to_std_string(args[1], &arg1_tmp);
+            arg1 = arg1_tmp.c_str();
+            s.rval().setString(gameanalytics::cocos2d::GameAnalytics::getCommandCenterValueAsString(arg0, arg1));
+            return true;
+        }
+    } while (0);
+
+    do {
+        if (argc == 1) {
+            const char* arg0 = nullptr;
+            std::string arg0_tmp;
+            ok &= seval_to_std_string(args[0], &arg0_tmp);
+            arg0 = arg0_tmp.c_str();
+            if (!ok) { ok = true; break; }
+            s.rval().setString(gameanalytics::cocos2d::GameAnalytics::getCommandCenterValueAsString(arg0));
+            return true;
+        }
+    } while (0);
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_getCommandCenterValueAsString : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_getCommandCenterValueAsString)
+
+static bool js_GameAnalyticsJS_GameAnalytics_isCommandCenterReady(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    if (argc == 0) {
+        s.rval().setBoolean(gameanalytics::cocos2d::GameAnalytics::isCommandCenterReady());
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_isCommandCenterReady : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_isCommandCenterReady)
+
+static bool js_GameAnalyticsJS_GameAnalytics_getConfigurationsContentAsString(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    if (argc == 0) {
+        s.rval().setString(gameanalytics::cocos2d::GameAnalytics::getConfigurationsContentAsString());
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_getConfigurationsContentAsString : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_getConfigurationsContentAsString)
+
 static bool js_GameAnalyticsJS_GameAnalytics_finalize(se::State& s)
 {
     CCLOG("jsbindings: finalizing JS object %p (gameanalytics::GameAnalytics)", s.nativeThisObject());
@@ -765,6 +829,9 @@ bool js_register_GameAnalyticsJS_GameAnalytics(se::Object* global) {
         ctorVal.toObject()->defineFunction("setBirthYear", _SE(js_GameAnalyticsJS_GameAnalytics_setBirthYear));
         ctorVal.toObject()->defineFunction("startSession", _SE(js_GameAnalyticsJS_GameAnalytics_startSession));
         ctorVal.toObject()->defineFunction("endSession", _SE(js_GameAnalyticsJS_GameAnalytics_endSession));
+        ctorVal.toObject()->defineFunction("getCommandCenterValueAsString", _SE(js_GameAnalyticsJS_GameAnalytics_getCommandCenterValueAsString));
+        ctorVal.toObject()->defineFunction("isCommandCenterReady", _SE(js_GameAnalyticsJS_GameAnalytics_isCommandCenterReady));
+        ctorVal.toObject()->defineFunction("getConfigurationsContentAsString", _SE(js_GameAnalyticsJS_GameAnalytics_getConfigurationsContentAsString));
     }
 
     // Clear JS exceptions
