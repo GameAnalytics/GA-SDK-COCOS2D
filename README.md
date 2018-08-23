@@ -30,9 +30,6 @@ Changelog
 <!--(CHANGELOG_TOP)-->
 **2.0.0**
 * added command center functionality
-
-**2.0.0**
-* added command center functionality
 * fixed various bugs
 
 **1.8.0**
