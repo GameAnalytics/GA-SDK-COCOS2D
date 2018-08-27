@@ -507,7 +507,10 @@ namespace gameanalytics {
                 "(Ljava/lang/String;)Ljava/lang/String;"))
             {
                 jstring j_key = methodInfo.env->NewStringUTF(key);
-                result = methodInfo.env->CallStaticStringMethod(methodInfo.classID, methodInfo.methodID, j_key);
+                jstring j_s = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID, j_key);
+                const char* s = env->GetStringUTFChars(j_s, 0);
+                result = s;
+                env->ReleaseStringUTFChars(j_s, s);
                 methodInfo.env->DeleteLocalRef(j_key);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }
@@ -525,7 +528,10 @@ namespace gameanalytics {
             {
                 jstring j_key = methodInfo.env->NewStringUTF(key);
                 jstring j_defaultValue = methodInfo.env->NewStringUTF(defaultValue);
-                result = methodInfo.env->CallStaticStringMethod(methodInfo.classID, methodInfo.methodID, j_key, j_defaultValue);
+                jstring j_s = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID, j_key, j_defaultValue);
+                const char* s = env->GetStringUTFChars(j_s, 0);
+                result = s;
+                env->ReleaseStringUTFChars(j_s, s);
                 methodInfo.env->DeleteLocalRef(j_key);
                 methodInfo.env->DeleteLocalRef(j_defaultValue);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
@@ -557,7 +563,10 @@ namespace gameanalytics {
             if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "getConfigurationsContentAsString",
                 "()Ljava/lang/String;"))
             {
-                result = methodInfo.env->CallStaticStringMethod(methodInfo.classID, methodInfo.methodID);
+                jstring j_s = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
+                const char* s = env->GetStringUTFChars(j_s, 0);
+                result = s;
+                env->ReleaseStringUTFChars(j_s, s);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }
 
