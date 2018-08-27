@@ -28,6 +28,9 @@ Documentation can be found [here](https://gameanalytics.com/docs/cocos2d-sdk).
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**2.0.2**
+* fixed jni compile error (android)
+
 **2.0.1**
 * fixed jni compile error (android)
 
