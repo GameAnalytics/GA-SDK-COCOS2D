@@ -510,7 +510,7 @@ namespace gameanalytics {
                 jstring j_s = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID, j_key);
                 const char* s = methodInfo.env->GetStringUTFChars(j_s, 0);
                 result = s;
-                env->ReleaseStringUTFChars(j_s, s);
+                methodInfo.env->ReleaseStringUTFChars(j_s, s);
                 methodInfo.env->DeleteLocalRef(j_key);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }
@@ -531,7 +531,7 @@ namespace gameanalytics {
                 jstring j_s = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID, j_key, j_defaultValue);
                 const char* s = methodInfo.env->GetStringUTFChars(j_s, 0);
                 result = s;
-                env->ReleaseStringUTFChars(j_s, s);
+                methodInfo.env->ReleaseStringUTFChars(j_s, s);
                 methodInfo.env->DeleteLocalRef(j_key);
                 methodInfo.env->DeleteLocalRef(j_defaultValue);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
@@ -566,7 +566,7 @@ namespace gameanalytics {
                 jstring j_s = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
                 const char* s = methodInfo.env->GetStringUTFChars(j_s, 0);
                 result = s;
-                env->ReleaseStringUTFChars(j_s, s);
+                methodInfo.env->ReleaseStringUTFChars(j_s, s);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }
 
