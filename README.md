@@ -28,6 +28,9 @@ Documentation can be found [here](https://gameanalytics.com/docs/cocos2d-sdk).
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**2.0.4**
+* fixed thread hanging on shutdown for desktop platforms
+
 **2.0.3**
 * fixed android compile errors
 
