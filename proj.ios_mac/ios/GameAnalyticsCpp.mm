@@ -271,7 +271,7 @@ const char* GameAnalyticsCpp::getCommandCenterValueAsString(const char *key) {
 const char* GameAnalyticsCpp::getCommandCenterValueAsString(const char *key, const char *defaultValue) {
     NSString *keyString = key != NULL ? [NSString stringWithUTF8String:key] : nil;
     NSString *defaultValueString = key != NULL ? [NSString stringWithUTF8String:defaultValue] : nil;
-    NSString *result = [GameAnalytics getCommandCenterValueAsString:keyString defaultValue:defaultValue];
+    NSString *result = [GameAnalytics getCommandCenterValueAsString:keyString defaultValue:[NSString stringWithUTF8String:defaultValue]];
 
     return result != nil ? [result UTF8String] : NULL;
 }
