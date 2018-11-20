@@ -283,7 +283,7 @@ ga.GameAnalytics = {
      * @param {char} arg0
      * @param {char} arg1
      */
-    endSession : function (
+    getCommandCenterValueAsString : function (
     char,
     char,
     )
