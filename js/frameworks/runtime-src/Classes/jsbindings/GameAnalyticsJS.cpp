@@ -565,6 +565,23 @@ static bool js_GameAnalyticsJS_GameAnalytics_setEnabledManualSessionHandling(se:
 }
 SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_setEnabledManualSessionHandling)
 
+static bool js_GameAnalyticsJS_GameAnalytics_setEnabledEventSubmission(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+    if (argc == 1) {
+        bool arg0;
+        ok &= seval_to_boolean(args[0], &arg0);
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_setEnabledEventSubmission : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::setEnabledEventSubmission(arg0);
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_setEnabledEventSubmission : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_setEnabledEventSubmission)
+
 static bool js_GameAnalyticsJS_GameAnalytics_setCustomDimension01(se::State& s)
 {
     const auto& args = s.args();
@@ -821,6 +838,7 @@ bool js_register_GameAnalyticsJS_GameAnalytics(se::Object* global) {
         ctorVal.toObject()->defineFunction("setEnabledInfoLog", _SE(js_GameAnalyticsJS_GameAnalytics_setEnabledInfoLog));
         ctorVal.toObject()->defineFunction("setEnabledVerboseLog", _SE(js_GameAnalyticsJS_GameAnalytics_setEnabledVerboseLog));
         ctorVal.toObject()->defineFunction("setEnabledManualSessionHandling", _SE(js_GameAnalyticsJS_GameAnalytics_setEnabledManualSessionHandling));
+        ctorVal.toObject()->defineFunction("setEnabledEventSubmission", _SE(js_GameAnalyticsJS_GameAnalytics_setEnabledEventSubmission));
         ctorVal.toObject()->defineFunction("setCustomDimension01", _SE(js_GameAnalyticsJS_GameAnalytics_setCustomDimension01));
         ctorVal.toObject()->defineFunction("setCustomDimension02", _SE(js_GameAnalyticsJS_GameAnalytics_setCustomDimension02));
         ctorVal.toObject()->defineFunction("setCustomDimension03", _SE(js_GameAnalyticsJS_GameAnalytics_setCustomDimension03));

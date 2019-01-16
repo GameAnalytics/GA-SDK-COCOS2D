@@ -12,7 +12,7 @@
 #include "json/document.h"
 #include "json/writer.h"
 
-#define GA_VERSION "cocos2d 2.0.5"
+#define GA_VERSION "cocos2d 2.1.0"
 
 namespace gameanalytics {
     namespace cocos2d
@@ -497,6 +497,18 @@ namespace gameanalytics {
             jni_setEnabledManualSessionHandling(flag);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setEnabledManualSessionHandling(flag);
+#endif
+        }
+
+        void GameAnalytics::setEnabledEventSubmission(bool flag)
+        {
+            lazySetWritablePath();
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+            GameAnalyticsCpp::setEnabledEventSubmission(flag);
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+            jni_setEnabledEventSubmission(flag);
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+            gameanalytics::GameAnalytics::setEnabledEventSubmission(flag);
 #endif
         }
 

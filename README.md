@@ -28,6 +28,9 @@ Documentation can be found [here](https://gameanalytics.com/docs/cocos2d-sdk).
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**2.1.0**
+* added enable/disable submission function
+
 **2.0.5**
 * fixed business event validation
 

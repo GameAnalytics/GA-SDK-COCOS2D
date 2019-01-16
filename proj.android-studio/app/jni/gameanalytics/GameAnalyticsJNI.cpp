@@ -402,6 +402,17 @@ namespace gameanalytics {
             }
         }
 
+        void jni_setEnabledEventSubmission(bool flag)
+        {
+            cocos2d::JniMethodInfo methodInfo;
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setEnabledEventSubmission",
+                "(Z)V"))
+            {
+                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, flag);
+                methodInfo.env->DeleteLocalRef(methodInfo.classID);
+            }
+        }
+
         void jni_setCustomDimension01(const char *customDimension)
         {
             cocos2d::JniMethodInfo methodInfo;

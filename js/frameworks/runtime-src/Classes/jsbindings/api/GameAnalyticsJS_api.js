@@ -203,6 +203,16 @@ ga.GameAnalytics = {
     },
 
     /**
+     * @method setEnabledEventSubmission
+     * @param {bool} arg0
+     */
+    setEnabledEventSubmission : function (
+    bool
+    )
+    {
+    },
+
+    /**
      * @method setCustomDimension01
      * @param {char} arg0
      */
