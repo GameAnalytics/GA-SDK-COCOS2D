@@ -3,6 +3,8 @@ GameAnalytics Cocos2D SDK.
 
 Documentation can be found [here](https://gameanalytics.com/docs/cocos2d-sdk).
 
+If you have any issues or feedback regarding the SDK, please contact our friendly support team [here](https://gameanalytics.com/contact).
+
 > :information_source:
 >
 > The Cocos2D SDK include support for **iOS**, **Android**, **HTML5**, **Tizen**, **Windows**, **Linux**, **UWP** and **Mac** platforms
