@@ -30,6 +30,10 @@ If you have any issues or feedback regarding the SDK, please contact our friendl
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**2.1.1**
+* removed std string and replaced it with c-strings for desktop platforms
+* fixed hanging background thread when closing application for desktop platforms
+
 **2.1.0**
 * added enable/disable submission function
 

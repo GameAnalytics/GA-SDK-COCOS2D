@@ -12,7 +12,7 @@
 #include "json/document.h"
 #include "json/writer.h"
 
-#define GA_VERSION "cocos2d 2.1.0"
+#define GA_VERSION "cocos2d 2.1.1"
 
 namespace gameanalytics {
     namespace cocos2d
@@ -630,11 +630,7 @@ namespace gameanalytics {
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
             return jni_getCommandCenterValueAsString(key);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key);
-#else
-            return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key).c_str();
-#endif
+            return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key).data();
 #endif
         }
 
@@ -645,11 +641,7 @@ namespace gameanalytics {
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
             return jni_getCommandCenterValueAsStringWithDefaultValue(key, defaultValue);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key, defaultValue);
-#else
-            return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key, defaultValue).c_str();
-#endif
+            return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key, defaultValue).data();
 #endif
         }
 
@@ -671,11 +663,7 @@ namespace gameanalytics {
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
             return jni_getConfigurationsContentAsString();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            return gameanalytics::GameAnalytics::getConfigurationsContentAsString();
-#else
-            return gameanalytics::GameAnalytics::getConfigurationsContentAsString().c_str();
-#endif
+            return gameanalytics::GameAnalytics::getConfigurationsContentAsString().data();
 #endif
         }
 

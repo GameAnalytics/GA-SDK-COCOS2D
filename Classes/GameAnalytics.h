@@ -2,7 +2,6 @@
 #define  _GAMEANALYTICS_H_
 
 #include <vector>
-#include <string>
 #include "CCValue.h"
 
 namespace gameanalytics {
