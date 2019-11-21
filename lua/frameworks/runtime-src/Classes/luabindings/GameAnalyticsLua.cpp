@@ -1228,7 +1228,7 @@ int lua_GameAnalyticsLua_GameAnalytics_configureAvailableResourceItemTypes(lua_S
     return 0;
 }
 
-int lua_GameAnalyticsLua_GameAnalytics_getCommandCenterValueAsString(lua_State* tolua_S)
+int lua_GameAnalyticsLua_GameAnalytics_getRemoteConfigsValueAsString(lua_State* tolua_S)
 {
     int argc = 0;
     bool ok  = true;
@@ -1247,12 +1247,12 @@ int lua_GameAnalyticsLua_GameAnalytics_getCommandCenterValueAsString(lua_State* 
         if (argc == 2)
         {
             const char* arg0;
-            std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp, "ga.GameAnalytics:getCommandCenterValueAsString"); arg0 = arg0_tmp.c_str();
+            std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp, "ga.GameAnalytics:getRemoteConfigsValueAsString"); arg0 = arg0_tmp.c_str();
             if (!ok) { break; }
             const char* arg1;
-            std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg1_tmp, "ga.GameAnalytics:getCommandCenterValueAsString"); arg1 = arg1_tmp.c_str();
+            std::string arg1_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg1_tmp, "ga.GameAnalytics:getRemoteConfigsValueAsString"); arg1 = arg1_tmp.c_str();
             if (!ok) { break; }
-            std::string result = gameanalytics::cocos2d::GameAnalytics::getCommandCenterValueAsString(arg0, arg1);
+            std::string result = gameanalytics::cocos2d::GameAnalytics::getRemoteConfigsValueAsString(arg0, arg1).data();
             tolua_pushstring(tolua_S,(const char*)result.c_str());
             return 1;
         }
@@ -1263,24 +1263,24 @@ int lua_GameAnalyticsLua_GameAnalytics_getCommandCenterValueAsString(lua_State* 
         if (argc == 1)
         {
             const char* arg0;
-            std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp, "ga.GameAnalytics:getCommandCenterValueAsString"); arg0 = arg0_tmp.c_str();
+            std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp, "ga.GameAnalytics:getRemoteConfigsValueAsString"); arg0 = arg0_tmp.c_str();
             if (!ok) { break; }
-            std::string result = gameanalytics::cocos2d::GameAnalytics::getCommandCenterValueAsString(arg0);
+            std::string result = gameanalytics::cocos2d::GameAnalytics::getRemoteConfigsValueAsString(arg0).data();
             tolua_pushstring(tolua_S,(const char*)result.c_str());
             return 1;
         }
     } while (0);
     ok  = true;
-    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d", "ga.GameAnalytics:getCommandCenterValueAsString",argc, 1);
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d", "ga.GameAnalytics:getRemoteConfigsValueAsString",argc, 1);
     return 0;
 #if COCOS2D_DEBUG >= 1
     tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_GameAnalyticsLua_GameAnalytics_getCommandCenterValueAsString'.",&tolua_err);
+    tolua_error(tolua_S,"#ferror in function 'lua_GameAnalyticsLua_GameAnalytics_getRemoteConfigsValueAsString'.",&tolua_err);
 #endif
     return 0;
 }
 
-int lua_GameAnalyticsLua_GameAnalytics_isCommandCenterReady(lua_State* tolua_S)
+int lua_GameAnalyticsLua_GameAnalytics_isRemoteConfigsReady(lua_State* tolua_S)
 {
     int argc = 0;
     bool ok  = true;
@@ -1299,23 +1299,23 @@ int lua_GameAnalyticsLua_GameAnalytics_isCommandCenterReady(lua_State* tolua_S)
     {
         if(!ok)
         {
-            tolua_error(tolua_S,"invalid arguments in function 'lua_GameAnalyticsLua_GameAnalytics_isCommandCenterReady'", nullptr);
+            tolua_error(tolua_S,"invalid arguments in function 'lua_GameAnalyticsLua_GameAnalytics_isRemoteConfigsReady'", nullptr);
             return 0;
         }
-        bool result = gameanalytics::cocos2d::GameAnalytics::isCommandCenterReady();
+        bool result = gameanalytics::cocos2d::GameAnalytics::isRemoteConfigsReady();
         tolua_pushboolean(tolua_S,(bool)result);
         return 1;
     }
-    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ga.GameAnalytics:isCommandCenterReady",argc, 0);
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ga.GameAnalytics:isRemoteConfigsReady",argc, 0);
     return 0;
 #if COCOS2D_DEBUG >= 1
     tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_GameAnalyticsLua_GameAnalytics_isCommandCenterReady'.",&tolua_err);
+    tolua_error(tolua_S,"#ferror in function 'lua_GameAnalyticsLua_GameAnalytics_isRemoteConfigsReady'.",&tolua_err);
 #endif
     return 0;
 }
 
-int lua_GameAnalyticsLua_GameAnalytics_getConfigurationsContentAsString(lua_State* tolua_S)
+int lua_GameAnalyticsLua_GameAnalytics_getRemoteConfigsContentAsString(lua_State* tolua_S)
 {
     int argc = 0;
     bool ok  = true;
@@ -1334,18 +1334,18 @@ int lua_GameAnalyticsLua_GameAnalytics_getConfigurationsContentAsString(lua_Stat
     {
         if(!ok)
         {
-            tolua_error(tolua_S,"invalid arguments in function 'lua_GameAnalyticsLua_GameAnalytics_getConfigurationsContentAsString'", nullptr);
+            tolua_error(tolua_S,"invalid arguments in function 'lua_GameAnalyticsLua_GameAnalytics_getRemoteConfigsContentAsString'", nullptr);
             return 0;
         }
-        std::string result = gameanalytics::cocos2d::GameAnalytics::getConfigurationsContentAsString();
+        std::string result = gameanalytics::cocos2d::GameAnalytics::getRemoteConfigsContentAsString();
         tolua_pushstring(tolua_S,(const char*)result.c_str());
         return 1;
     }
-    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ga.GameAnalytics:isCommandCenterReady",argc, 0);
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ga.GameAnalytics:getRemoteConfigsContentAsString",argc, 0);
     return 0;
 #if COCOS2D_DEBUG >= 1
     tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_GameAnalyticsLua_GameAnalytics_getConfigurationsContentAsString'.",&tolua_err);
+    tolua_error(tolua_S,"#ferror in function 'lua_GameAnalyticsLua_GameAnalytics_getRemoteConfigsContentAsString'.",&tolua_err);
 #endif
     return 0;
 }
@@ -1390,9 +1390,9 @@ int lua_register_GameAnalyticsLua_GameAnalytics(lua_State* tolua_S)
         tolua_function(tolua_S,"addBusinessEvent", lua_GameAnalyticsLua_GameAnalytics_addBusinessEvent);
         tolua_function(tolua_S,"configureSdkGameEngineVersion", lua_GameAnalyticsLua_GameAnalytics_configureSdkGameEngineVersion);
         tolua_function(tolua_S,"configureAvailableResourceItemTypes", lua_GameAnalyticsLua_GameAnalytics_configureAvailableResourceItemTypes);
-        tolua_function(tolua_S,"getCommandCenterValueAsString", lua_GameAnalyticsLua_GameAnalytics_getCommandCenterValueAsString);
-        tolua_function(tolua_S,"isCommandCenterReady", lua_GameAnalyticsLua_GameAnalytics_isCommandCenterReady);
-        tolua_function(tolua_S,"getConfigurationsContentAsString", lua_GameAnalyticsLua_GameAnalytics_getConfigurationsContentAsString);
+        tolua_function(tolua_S,"getRemoteConfigsValueAsString", lua_GameAnalyticsLua_GameAnalytics_getRemoteConfigsValueAsString);
+        tolua_function(tolua_S,"isRemoteConfigsReady", lua_GameAnalyticsLua_GameAnalytics_isRemoteConfigsReady);
+        tolua_function(tolua_S,"getRemoteConfigsContentAsString", lua_GameAnalyticsLua_GameAnalytics_getRemoteConfigsContentAsString);
     tolua_endmodule(tolua_S);
     std::string typeName = typeid(gameanalytics::cocos2d::GameAnalytics).name();
     g_luaType[typeName] = "ga.GameAnalytics";

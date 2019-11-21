@@ -12,7 +12,7 @@
 #include "json/document.h"
 #include "json/writer.h"
 
-#define GA_VERSION "cocos2d 2.1.2"
+#define GA_VERSION "cocos2d 3.0.0"
 
 namespace gameanalytics {
     namespace cocos2d
@@ -623,47 +623,47 @@ namespace gameanalytics {
 #endif
         }
 
-        const char* GameAnalytics::getCommandCenterValueAsString(const char *key)
+        std::vector<char> GameAnalytics::getRemoteConfigsValueAsString(const char *key)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            return GameAnalyticsCpp::getCommandCenterValueAsString(key);
+            return GameAnalyticsCpp::getRemoteConfigsValueAsString(key);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            return jni_getCommandCenterValueAsString(key);
+            return jni_getRemoteConfigsValueAsString(key);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key).data();
+            return gameanalytics::GameAnalytics::getRemoteConfigsValueAsString(key);
 #endif
         }
 
-        const char* GameAnalytics::getCommandCenterValueAsString(const char *key, const char *defaultValue)
+        std::vector<char> GameAnalytics::getRemoteConfigsValueAsString(const char *key, const char *defaultValue)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            return GameAnalyticsCpp::getCommandCenterValueAsString(key, defaultValue);
+            return GameAnalyticsCpp::getRemoteConfigsValueAsString(key, defaultValue);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            return jni_getCommandCenterValueAsStringWithDefaultValue(key, defaultValue);
+            return jni_getRemoteConfigsValueAsStringWithDefaultValue(key, defaultValue);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key, defaultValue).data();
+            return gameanalytics::GameAnalytics::getRemoteConfigsValueAsString(key, defaultValue).data();
 #endif
         }
 
-        bool GameAnalytics::isCommandCenterReady()
+        bool GameAnalytics::isRemoteConfigsReady()
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            return GameAnalyticsCpp::isCommandCenterReady();
+            return GameAnalyticsCpp::isRemoteConfigsReady();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            return jni_isCommandCenterReady();
+            return jni_isRemoteConfigsReady();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            return gameanalytics::GameAnalytics::isCommandCenterReady();
+            return gameanalytics::GameAnalytics::isRemoteConfigsReady();
 #endif
         }
 
-        const char* GameAnalytics::getConfigurationsContentAsString()
+        std::vector<char> GameAnalytics::getRemoteConfigsContentAsString()
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            return GameAnalyticsCpp::getConfigurationsContentAsString();
+            return GameAnalyticsCpp::getRemoteConfigsContentAsString();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            return jni_getConfigurationsContentAsString();
+            return jni_getRemoteConfigsContentAsString();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            return gameanalytics::GameAnalytics::getConfigurationsContentAsString().data();
+            return gameanalytics::GameAnalytics::getRemoteConfigsContentAsString().data();
 #endif
         }
 

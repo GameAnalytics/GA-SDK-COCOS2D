@@ -509,54 +509,68 @@ namespace gameanalytics {
             }
         }
 
-        const char* jni_getCommandCenterValueAsString(const char *key)
+        std::vector<char> jni_getRemoteConfigsValueAsString(const char *key)
         {
             cocos2d::JniMethodInfo methodInfo;
-            std::string result;
+            std::string returnString;
+            std::vector<char> result;
 
-            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "getCommandCenterValueAsString",
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "getRemoteConfigsValueAsString",
                 "(Ljava/lang/String;)Ljava/lang/String;"))
             {
                 jstring j_key = methodInfo.env->NewStringUTF(key);
                 jstring j_s = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID, j_key);
                 const char* s = methodInfo.env->GetStringUTFChars(j_s, 0);
-                result = s;
+                returnString = s;
                 methodInfo.env->ReleaseStringUTFChars(j_s, s);
                 methodInfo.env->DeleteLocalRef(j_key);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }
 
-            return result.c_str();
+            for(size_t i = 0; i < returnString.size(); ++i)
+            {
+                result.push_back(returnString[i]);
+            }
+            result.push_back('\0');
+
+            return result;
         }
 
-        const char* jni_getCommandCenterValueAsStringWithDefaultValue(const char *key, const char *defaultValue)
+        std::vector<char> jni_getRemoteConfigsValueAsStringWithDefaultValue(const char *key, const char *defaultValue)
         {
             cocos2d::JniMethodInfo methodInfo;
-            std::string result;
+            std::string returnString;
+            std::vector<char> result;
 
-            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "getCommandCenterValueAsString",
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "getRemoteConfigsValueAsString",
                 "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"))
             {
                 jstring j_key = methodInfo.env->NewStringUTF(key);
                 jstring j_defaultValue = methodInfo.env->NewStringUTF(defaultValue);
                 jstring j_s = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID, j_key, j_defaultValue);
                 const char* s = methodInfo.env->GetStringUTFChars(j_s, 0);
-                result = s;
+                returnString = s;
                 methodInfo.env->ReleaseStringUTFChars(j_s, s);
                 methodInfo.env->DeleteLocalRef(j_key);
                 methodInfo.env->DeleteLocalRef(j_defaultValue);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }
 
-            return result.c_str();
+            for(size_t i = 0; i < returnString.size(); ++i)
+            {
+                result.push_back(returnString[i]);
+            }
+            result.push_back('\0');
+
+            return result;
         }
 
-        bool jni_isCommandCenterReady()
+        bool jni_isRemoteConfigsReady()
         {
             cocos2d::JniMethodInfo methodInfo;
             bool result = false;
 
-            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "isCommandCenterReady",
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "isRemoteConfigsReady",
                 "()Z"))
             {
                 result = methodInfo.env->CallStaticBooleanMethod(methodInfo.classID, methodInfo.methodID);
@@ -566,22 +580,29 @@ namespace gameanalytics {
             return false;
         }
 
-        const char* jni_getConfigurationsContentAsString()
+        std::vector<char> jni_getRemoteConfigsContentAsString()
         {
             cocos2d::JniMethodInfo methodInfo;
-            std::string result;
+            std::string returnString;
+            std::vector<char> result;
 
-            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "getConfigurationsContentAsString",
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "getRemoteConfigsContentAsString",
                 "()Ljava/lang/String;"))
             {
                 jstring j_s = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
                 const char* s = methodInfo.env->GetStringUTFChars(j_s, 0);
-                result = s;
+                returnString = s;
                 methodInfo.env->ReleaseStringUTFChars(j_s, s);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }
 
-            return result.c_str();
+            for(size_t i = 0; i < returnString.size(); ++i)
+            {
+                result.push_back(returnString[i]);
+            }
+            result.push_back('\0');
+
+            return result;
         }
     }
 }

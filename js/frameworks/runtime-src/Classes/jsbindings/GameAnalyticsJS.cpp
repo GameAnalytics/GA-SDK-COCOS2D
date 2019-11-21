@@ -718,7 +718,7 @@ static bool js_GameAnalyticsJS_GameAnalytics_endSession(se::State& s)
 }
 SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_endSession)
 
-static bool js_GameAnalyticsJS_GameAnalytics_getCommandCenterValueAsString(se::State& s)
+static bool js_GameAnalyticsJS_GameAnalytics_getRemoteConfigsValueAsString(se::State& s)
 {
     const auto& args = s.args();
     int argc = (int)args.size();
@@ -735,7 +735,7 @@ static bool js_GameAnalyticsJS_GameAnalytics_getCommandCenterValueAsString(se::S
             std::string arg1_tmp;
             ok &= seval_to_std_string(args[1], &arg1_tmp);
             arg1 = arg1_tmp.c_str();
-            s.rval().setString(gameanalytics::cocos2d::GameAnalytics::getCommandCenterValueAsString(arg0, arg1));
+            s.rval().setString(gameanalytics::cocos2d::GameAnalytics::getRemoteConfigsValueAsString(arg0, arg1).data());
             return true;
         }
     } while (0);
@@ -747,40 +747,40 @@ static bool js_GameAnalyticsJS_GameAnalytics_getCommandCenterValueAsString(se::S
             ok &= seval_to_std_string(args[0], &arg0_tmp);
             arg0 = arg0_tmp.c_str();
             if (!ok) { ok = true; break; }
-            s.rval().setString(gameanalytics::cocos2d::GameAnalytics::getCommandCenterValueAsString(arg0));
+            s.rval().setString(gameanalytics::cocos2d::GameAnalytics::getRemoteConfigsValueAsString(arg0).data());
             return true;
         }
     } while (0);
-    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_getCommandCenterValueAsString : wrong number of arguments");
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_getRemoteConfigsValueAsString : wrong number of arguments");
     return false;
 }
-SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_getCommandCenterValueAsString)
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_getRemoteConfigsValueAsString)
 
-static bool js_GameAnalyticsJS_GameAnalytics_isCommandCenterReady(se::State& s)
+static bool js_GameAnalyticsJS_GameAnalytics_isRemoteConfigsReady(se::State& s)
 {
     const auto& args = s.args();
     int argc = (int)args.size();
     if (argc == 0) {
-        s.rval().setBoolean(gameanalytics::cocos2d::GameAnalytics::isCommandCenterReady());
+        s.rval().setBoolean(gameanalytics::cocos2d::GameAnalytics::isRemoteConfigsReady());
         return true;
     }
-    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_isCommandCenterReady : wrong number of arguments");
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_isRemoteConfigsReady : wrong number of arguments");
     return false;
 }
-SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_isCommandCenterReady)
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_isRemoteConfigsReady)
 
-static bool js_GameAnalyticsJS_GameAnalytics_getConfigurationsContentAsString(se::State& s)
+static bool js_GameAnalyticsJS_GameAnalytics_getRemoteConfigsContentAsString(se::State& s)
 {
     const auto& args = s.args();
     int argc = (int)args.size();
     if (argc == 0) {
-        s.rval().setString(gameanalytics::cocos2d::GameAnalytics::getConfigurationsContentAsString());
+        s.rval().setString(gameanalytics::cocos2d::GameAnalytics::getRemoteConfigsContentAsString());
         return true;
     }
-    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_getConfigurationsContentAsString : wrong number of arguments");
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_getRemoteConfigsContentAsString : wrong number of arguments");
     return false;
 }
-SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_getConfigurationsContentAsString)
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_getRemoteConfigsContentAsString)
 
 static bool js_GameAnalyticsJS_GameAnalytics_finalize(se::State& s)
 {
@@ -847,9 +847,9 @@ bool js_register_GameAnalyticsJS_GameAnalytics(se::Object* global) {
         ctorVal.toObject()->defineFunction("setBirthYear", _SE(js_GameAnalyticsJS_GameAnalytics_setBirthYear));
         ctorVal.toObject()->defineFunction("startSession", _SE(js_GameAnalyticsJS_GameAnalytics_startSession));
         ctorVal.toObject()->defineFunction("endSession", _SE(js_GameAnalyticsJS_GameAnalytics_endSession));
-        ctorVal.toObject()->defineFunction("getCommandCenterValueAsString", _SE(js_GameAnalyticsJS_GameAnalytics_getCommandCenterValueAsString));
-        ctorVal.toObject()->defineFunction("isCommandCenterReady", _SE(js_GameAnalyticsJS_GameAnalytics_isCommandCenterReady));
-        ctorVal.toObject()->defineFunction("getConfigurationsContentAsString", _SE(js_GameAnalyticsJS_GameAnalytics_getConfigurationsContentAsString));
+        ctorVal.toObject()->defineFunction("getRemoteConfigsValueAsString", _SE(js_GameAnalyticsJS_GameAnalytics_getRemoteConfigsValueAsString));
+        ctorVal.toObject()->defineFunction("isRemoteConfigsReady", _SE(js_GameAnalyticsJS_GameAnalytics_isRemoteConfigsReady));
+        ctorVal.toObject()->defineFunction("getRemoteConfigsContentAsString", _SE(js_GameAnalyticsJS_GameAnalytics_getRemoteConfigsContentAsString));
     }
 
     // Clear JS exceptions

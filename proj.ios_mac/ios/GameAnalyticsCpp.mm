@@ -265,27 +265,51 @@ void GameAnalyticsCpp::endSession() {
     [GameAnalytics endSession];
 }
 
-const char* GameAnalyticsCpp::getCommandCenterValueAsString(const char *key) {
+std::vector<char> GameAnalyticsCpp::getRemoteConfigsValueAsString(const char *key) {
     NSString *keyString = key != NULL ? [NSString stringWithUTF8String:key] : nil;
-    NSString *result = [GameAnalytics getCommandCenterValueAsString:keyString];
+    NSString *resultns = [GameAnalytics getRemoteConfigsValueAsString:keyString];
+    std::string returnString = resultns != nil ? [resultns UTF8String] : "";
+    std::vector<char> result;
 
-    return result != nil ? [result UTF8String] : NULL;
+    for(size_t i = 0; i < returnString.size(); ++i)
+    {
+        result.push_back(returnString[i]);
+    }
+    result.push_back('\0');
+
+    return result;
 }
 
-const char* GameAnalyticsCpp::getCommandCenterValueAsString(const char *key, const char *defaultValue) {
+std::vector<char> GameAnalyticsCpp::getRemoteConfigsValueAsString(const char *key, const char *defaultValue) {
     NSString *keyString = key != NULL ? [NSString stringWithUTF8String:key] : nil;
     NSString *defaultValueString = key != NULL ? [NSString stringWithUTF8String:defaultValue] : nil;
-    NSString *result = [GameAnalytics getCommandCenterValueAsString:keyString defaultValue:defaultValue];
+    NSString *resultns = [GameAnalytics getRemoteConfigsValueAsString:keyString defaultValue:defaultValue];
+    std::string returnString = resultns != nil ? [resultns UTF8String] : "";
+    std::vector<char> result;
 
-    return result != nil ? [result UTF8String] : NULL;
+    for(size_t i = 0; i < returnString.size(); ++i)
+    {
+        result.push_back(returnString[i]);
+    }
+    result.push_back('\0');
+
+    return result;
 }
 
-bool GameAnalyticsCpp::isCommandCenterReady() {
-    return [GameAnalytics isCommandCenterReady] ? true : false;
+bool GameAnalyticsCpp::isRemoteConfigsReady() {
+    return [GameAnalytics isRemoteConfigsReady] ? true : false;
 }
 
-const char* GameAnalyticsCpp::getConfigurationsContentAsString() {
-    NSString *result = [GameAnalytics getCommandCenterConfigurations];
+std::vector<char> GameAnalyticsCpp::getRemoteConfigsContentAsString() {
+    NSString *resultns = [GameAnalytics getRemoteConfigsConfigurations];
+    std::string returnString = resultns != nil ? [resultns UTF8String] : "";
+    std::vector<char> result;
 
-    return result != nil ? [result UTF8String] : NULL;
+    for(size_t i = 0; i < returnString.size(); ++i)
+    {
+        result.push_back(returnString[i]);
+    }
+    result.push_back('\0');
+
+    return result;
 }

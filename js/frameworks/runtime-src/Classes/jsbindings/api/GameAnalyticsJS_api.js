@@ -289,11 +289,11 @@ ga.GameAnalytics = {
     },
 
     /**
-     * @method getCommandCenterValueAsString
+     * @method getRemoteConfigsValueAsString
      * @param {char} arg0
      * @param {char} arg1
      */
-    getCommandCenterValueAsString : function (
+    getRemoteConfigsValueAsString : function (
     char,
     char,
     )
@@ -302,18 +302,18 @@ ga.GameAnalytics = {
     },
 
     /**
-     * @method isCommandCenterReady
+     * @method isRemoteConfigsReady
      */
-    isCommandCenterReady : function (
+    isRemoteConfigsReady : function (
     )
     {
         return false;
     },
 
     /**
-     * @method getConfigurationsContentAsString
+     * @method getRemoteConfigsContentAsString
      */
-    getConfigurationsContentAsString : function (
+    getRemoteConfigsContentAsString : function (
     )
     {
         return "";

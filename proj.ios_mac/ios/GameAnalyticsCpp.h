@@ -39,8 +39,8 @@ public:
     static void startSession();
     static void endSession();
 
-    static const char* getCommandCenterValueAsString(const char *key);
-    static const char* getCommandCenterValueAsString(const char *key, const char *defaultValue);
-    static bool isCommandCenterReady();
-    static const char* getConfigurationsContentAsString();
+    static std::vector<char> getRemoteConfigsValueAsString(const char *key);
+    static std::vector<char> getRemoteConfigsValueAsString(const char *key, const char *defaultValue);
+    static bool isRemoteConfigsReady();
+    static std::vector<char> getRemoteConfigsContentAsString();
 };

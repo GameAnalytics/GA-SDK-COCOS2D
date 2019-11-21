@@ -30,6 +30,10 @@ If you have any issues or feedback regarding the SDK, please contact our friendl
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**3.0.0**
+* command center is now called remote configs
+* A/B testing support added
+
 **2.1.2**
 * added check if log files and database can't be added
 
