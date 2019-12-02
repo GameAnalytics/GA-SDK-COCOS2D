@@ -30,6 +30,9 @@ If you have any issues or feedback regarding the SDK, please contact our friendl
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**3.0.4**
+* fixed getRemoteConfigsValueAs String bug (ios)
+
 **3.0.3**
 * remote configs fixes
 
