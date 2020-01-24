@@ -163,6 +163,18 @@ namespace gameanalytics {
             }
         }
 
+        void jni_configureAutoDetectAppVersion(bool flag)
+        {
+            cocos2d::JniMethodInfo methodInfo;
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "configureAutoDetectAppVersion",
+                "(Z)V"))
+            {
+                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, flag);
+                methodInfo.env->DeleteLocalRef(methodInfo.classID);
+            }
+        }
+
+
         void jni_configureUserId(const char *userId)
         {
             cocos2d::JniMethodInfo methodInfo;
@@ -448,41 +460,6 @@ namespace gameanalytics {
                 jstring j_customDimension = methodInfo.env->NewStringUTF(customDimension);
                 methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_customDimension);
                 methodInfo.env->DeleteLocalRef(j_customDimension);
-                methodInfo.env->DeleteLocalRef(methodInfo.classID);
-            }
-        }
-
-        void jni_setFacebookId(const char *facebookId)
-        {
-            cocos2d::JniMethodInfo methodInfo;
-            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setFacebookId",
-                "(Ljava/lang/String;)V"))
-            {
-                jstring j_facebookId = methodInfo.env->NewStringUTF(facebookId);
-                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, j_facebookId);
-                methodInfo.env->DeleteLocalRef(j_facebookId);
-                methodInfo.env->DeleteLocalRef(methodInfo.classID);
-            }
-        }
-
-        void jni_setGender(int gender)
-        {
-            cocos2d::JniMethodInfo methodInfo;
-            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setGender",
-                "(I)V"))
-            {
-                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, gender);
-                methodInfo.env->DeleteLocalRef(methodInfo.classID);
-            }
-        }
-
-        void jni_setBirthYear(int birthYear)
-        {
-            cocos2d::JniMethodInfo methodInfo;
-            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "setBirthYear",
-                "(I)V"))
-            {
-                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, birthYear);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }
         }

@@ -30,12 +30,6 @@ namespace gameanalytics {
             Critical = 5
         };
 
-        enum EGAGender
-        {
-            Male = 1,
-            Female = 2
-        };
-
         class GameAnalytics {
         public:
             static void configureAvailableCustomDimensions01(const std::vector<std::string>& list);
@@ -46,6 +40,7 @@ namespace gameanalytics {
             static void configureAvailableResourceItemTypes(const std::vector<std::string>& list);
 
             static void configureBuild(const char *build);
+            static void configureAutoDetectAppVersion(bool flag);
             static void configureUserId(const char *userId);
             static void configureSdkGameEngineVersion(const char *gameEngineSdkVersion);
             static void configureGameEngineVersion(const char *gameEngineVersion);
@@ -90,9 +85,6 @@ namespace gameanalytics {
             static void setCustomDimension01(const char *customDimension);
             static void setCustomDimension02(const char *customDimension);
             static void setCustomDimension03(const char *customDimension);
-            static void setFacebookId(const char *facebookId);
-            static void setGender(EGAGender gender);
-            static void setBirthYear(int birthYear);
 
             static void startSession();
             static void endSession();

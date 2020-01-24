@@ -112,13 +112,6 @@
 
 --------------------------------
 --
--- @function [parent=#GameAnalytics] setGender
--- @param self
--- @param #int gender
--- @return gameanalytics::GameAnalytics#gameanalytics::GameAnalytics self (return value: gameanalytics::cc.GameAnalytics)
-
---------------------------------
---
 -- @function [parent=#GameAnalytics] configureAvailableResourceCurrencies
 -- @param self
 -- @param #array_table list
@@ -133,9 +126,9 @@
 
 --------------------------------
 --
--- @function [parent=#GameAnalytics] setBirthYear
+-- @function [parent=#GameAnalytics] configureAutoDetectAppVersion
 -- @param self
--- @param #int birthYear
+-- @param #bool flag
 -- @return gameanalytics::GameAnalytics#gameanalytics::GameAnalytics self (return value: gameanalytics::cc.GameAnalytics)
 
 --------------------------------
@@ -167,13 +160,6 @@
 -- @function [parent=#GameAnalytics] setEnabledVerboseLog
 -- @param self
 -- @param #bool flag
--- @return gameanalytics::GameAnalytics#gameanalytics::GameAnalytics self (return value: gameanalytics::cc.GameAnalytics)
-
---------------------------------
---
--- @function [parent=#GameAnalytics] setFacebookId
--- @param self
--- @param #char facebookId
 -- @return gameanalytics::GameAnalytics#gameanalytics::GameAnalytics self (return value: gameanalytics::cc.GameAnalytics)
 
 --------------------------------

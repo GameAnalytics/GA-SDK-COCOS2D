@@ -110,6 +110,23 @@ static bool js_GameAnalyticsJS_GameAnalytics_configureBuild(se::State& s)
 }
 SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_configureBuild)
 
+static bool js_GameAnalyticsJS_GameAnalytics_configureAutoDetectAppVersion(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+    if (argc == 1) {
+        bool arg0;
+        ok &= seval_to_boolean(args[0], &arg0);
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_setEnabledEventSubmission : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::configureAutoDetectAppVersion(arg0);
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_configureAutoDetectAppVersion : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_configureAutoDetectAppVersion)
+
 static bool js_GameAnalyticsJS_GameAnalytics_configureUserId(se::State& s)
 {
     const auto& args = s.args();
@@ -639,59 +656,6 @@ static bool js_GameAnalyticsJS_GameAnalytics_setCustomDimension03(se::State& s)
 }
 SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_setCustomDimension03)
 
-static bool js_GameAnalyticsJS_GameAnalytics_setFacebookId(se::State& s)
-{
-    const auto& args = s.args();
-    int argc = (int)args.size();
-    bool ok = true;
-    if (argc == 1) {
-        const char* arg0 = nullptr;
-        std::string arg0_tmp;
-        ok &= seval_to_std_string(args[0], &arg0_tmp);
-        arg0 = arg0_tmp.c_str();
-        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_setFacebookId : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::setFacebookId(arg0);
-        return true;
-    }
-    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_setFacebookId : wrong number of arguments");
-    return false;
-}
-SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_setFacebookId)
-
-static bool js_GameAnalyticsJS_GameAnalytics_setGender(se::State& s)
-{
-    const auto& args = s.args();
-    int argc = (int)args.size();
-    bool ok = true;
-    if (argc == 1) {
-        gameanalytics::cocos2d::EGAGender arg0;
-        ok &= seval_to_int32(args[0], (int32_t *)&arg0);
-        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_setGender : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::setGender(arg0);
-        return true;
-    }
-    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_setGender : wrong number of arguments");
-    return false;
-}
-SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_setGender)
-
-static bool js_GameAnalyticsJS_GameAnalytics_setBirthYear(se::State& s)
-{
-    const auto& args = s.args();
-    int argc = (int)args.size();
-    bool ok = true;
-    if (argc == 1) {
-        int arg0 = 0;
-        ok &= seval_to_int32(args[0], (int32_t *)&arg0);
-        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_setBirthYear : Error processing arguments");
-        gameanalytics::cocos2d::GameAnalytics::setBirthYear(arg0);
-        return true;
-    }
-    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_setBirthYear : wrong number of arguments");
-    return false;
-}
-SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_setBirthYear)
-
 static bool js_GameAnalyticsJS_GameAnalytics_startSession(se::State& s)
 {
     const auto& args = s.args();
@@ -828,6 +792,7 @@ bool js_register_GameAnalyticsJS_GameAnalytics(se::Object* global) {
         ctorVal.toObject()->defineFunction("configureAvailableResourceCurrencies", _SE(js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceCurrencies));
         ctorVal.toObject()->defineFunction("configureAvailableResourceItemTypes", _SE(js_GameAnalyticsJS_GameAnalytics_configureAvailableResourceItemTypes));
         ctorVal.toObject()->defineFunction("configureBuild", _SE(js_GameAnalyticsJS_GameAnalytics_configureBuild));
+        ctorVal.toObject()->defineFunction("configureAutoDetectAppVersion", _SE(js_GameAnalyticsJS_GameAnalytics_configureAutoDetectAppVersion));
         ctorVal.toObject()->defineFunction("configureUserId", _SE(js_GameAnalyticsJS_GameAnalytics_configureUserId));
         ctorVal.toObject()->defineFunction("initialize", _SE(js_GameAnalyticsJS_GameAnalytics_initialize));
         ctorVal.toObject()->defineFunction("addBusinessEvent", _SE(js_GameAnalyticsJS_GameAnalytics_addBusinessEvent));
@@ -842,9 +807,6 @@ bool js_register_GameAnalyticsJS_GameAnalytics(se::Object* global) {
         ctorVal.toObject()->defineFunction("setCustomDimension01", _SE(js_GameAnalyticsJS_GameAnalytics_setCustomDimension01));
         ctorVal.toObject()->defineFunction("setCustomDimension02", _SE(js_GameAnalyticsJS_GameAnalytics_setCustomDimension02));
         ctorVal.toObject()->defineFunction("setCustomDimension03", _SE(js_GameAnalyticsJS_GameAnalytics_setCustomDimension03));
-        ctorVal.toObject()->defineFunction("setFacebookId", _SE(js_GameAnalyticsJS_GameAnalytics_setFacebookId));
-        ctorVal.toObject()->defineFunction("setGender", _SE(js_GameAnalyticsJS_GameAnalytics_setGender));
-        ctorVal.toObject()->defineFunction("setBirthYear", _SE(js_GameAnalyticsJS_GameAnalytics_setBirthYear));
         ctorVal.toObject()->defineFunction("startSession", _SE(js_GameAnalyticsJS_GameAnalytics_startSession));
         ctorVal.toObject()->defineFunction("endSession", _SE(js_GameAnalyticsJS_GameAnalytics_endSession));
         ctorVal.toObject()->defineFunction("getRemoteConfigsValueAsString", _SE(js_GameAnalyticsJS_GameAnalytics_getRemoteConfigsValueAsString));

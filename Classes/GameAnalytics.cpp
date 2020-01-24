@@ -12,7 +12,7 @@
 #include "json/document.h"
 #include "json/writer.h"
 
-#define GA_VERSION "cocos2d 3.0.5"
+#define GA_VERSION "cocos2d 3.0.6"
 
 namespace gameanalytics {
     namespace cocos2d
@@ -177,6 +177,17 @@ namespace gameanalytics {
             jni_configureBuild(build);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::configureBuild(build);
+#endif
+        }
+
+        void GameAnalytics::configureAutoDetectAppVersion(bool flag)
+        {
+            lazySetWritablePath();
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+            GameAnalyticsCpp::configureAutoDetectAppVersion(flag);
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+            jni_configureAutoDetectAppVersion(flag);
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #endif
         }
 
@@ -545,61 +556,6 @@ namespace gameanalytics {
             jni_setCustomDimension03(customDimension);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
             gameanalytics::GameAnalytics::setCustomDimension03(customDimension);
-#endif
-        }
-
-        void GameAnalytics::setFacebookId(const char *facebookId)
-        {
-            lazySetWritablePath();
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::setFacebookId(facebookId);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_setFacebookId(facebookId);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            gameanalytics::GameAnalytics::setFacebookId(facebookId);
-#endif
-        }
-
-        void GameAnalytics::setGender(EGAGender gender)
-        {
-            lazySetWritablePath();
-            switch(gender)
-            {
-                case Male:
-                {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-                    GameAnalyticsCpp::setGender("male");
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-                    jni_setGender((int)gender);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-                    gameanalytics::GameAnalytics::setGender((gameanalytics::EGAGender)((int)gender));
-#endif
-                }
-                break;
-
-                case Female:
-                {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-                    GameAnalyticsCpp::setGender("female");
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-                    jni_setGender((int)gender);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-                    gameanalytics::GameAnalytics::setGender((gameanalytics::EGAGender)((int)gender));
-#endif
-                }
-                break;
-            }
-        }
-
-        void GameAnalytics::setBirthYear(int birthYear)
-        {
-            lazySetWritablePath();
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::setBirthYear(birthYear);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_setBirthYear(birthYear);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-                    gameanalytics::GameAnalytics::setBirthYear(birthYear);
 #endif
         }
 

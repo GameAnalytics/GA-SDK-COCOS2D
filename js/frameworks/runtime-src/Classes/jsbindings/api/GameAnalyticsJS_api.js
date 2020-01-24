@@ -69,6 +69,16 @@ ga.GameAnalytics = {
     },
 
     /**
+     * @method configureAutoDetectAppVersion
+     * @param {bool} arg0
+     */
+    configureAutoDetectAppVersion : function (
+    bool
+    )
+    {
+    },
+
+    /**
      * @method configureUserId
      * @param {char} arg0
      */
@@ -238,36 +248,6 @@ ga.GameAnalytics = {
      */
     setCustomDimension03 : function (
     char
-    )
-    {
-    },
-
-    /**
-     * @method setFacebookId
-     * @param {char} arg0
-     */
-    setFacebookId : function (
-    char
-    )
-    {
-    },
-
-    /**
-     * @method setGender
-     * @param {gameanalytics::cc.EGAGender} arg0
-     */
-    setGender : function (
-    egagender
-    )
-    {
-    },
-
-    /**
-     * @method setBirthYear
-     * @param {int} arg0
-     */
-    setBirthYear : function (
-    int
     )
     {
     },
