@@ -41,4 +41,7 @@ public:
     static std::vector<char> getRemoteConfigsValueAsString(const char *key, const char *defaultValue);
     static bool isRemoteConfigsReady();
     static std::vector<char> getRemoteConfigsContentAsString();
+
+    static std::vector<char> getABTestingId();
+    static std::vector<char> getABTestingVariantId();
 };

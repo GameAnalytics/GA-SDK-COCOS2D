@@ -46,6 +46,9 @@ namespace gameanalytics {
         extern std::vector<char> jni_getRemoteConfigsValueAsStringWithDefaultValue(const char *key, const char *defaultValue);
         extern bool jni_isRemoteConfigsReady();
         extern std::vector<char> jni_getRemoteConfigsContentAsString();
+
+        extern std::vector<char> jni_getABTestingId();
+        extern std::vector<char> jni_getABTestingVariantId();
     }
 }
 

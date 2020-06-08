@@ -30,6 +30,9 @@ If you have any issues or feedback regarding the SDK, please contact our friendl
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**3.1.0**
+* exposed functions to get AB testing id and variant id
+
 **3.0.7**
 * added session_num to init request
 

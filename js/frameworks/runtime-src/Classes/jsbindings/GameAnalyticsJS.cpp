@@ -746,6 +746,32 @@ static bool js_GameAnalyticsJS_GameAnalytics_getRemoteConfigsContentAsString(se:
 }
 SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_getRemoteConfigsContentAsString)
 
+static bool js_GameAnalyticsJS_GameAnalytics_getABTestingId(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    if (argc == 0) {
+        s.rval().setString(gameanalytics::cocos2d::GameAnalytics::getABTestingId());
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_getABTestingId : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_getABTestingId)
+
+static bool js_GameAnalyticsJS_GameAnalytics_getABTestingVariantId(se::State& s)
+{
+    const auto& args = s.args();
+    int argc = (int)args.size();
+    if (argc == 0) {
+        s.rval().setString(gameanalytics::cocos2d::GameAnalytics::getABTestingVariantId());
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_getABTestingVariantId : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_getABTestingVariantId)
+
 static bool js_GameAnalyticsJS_GameAnalytics_finalize(se::State& s)
 {
     CCLOG("jsbindings: finalizing JS object %p (gameanalytics::GameAnalytics)", s.nativeThisObject());

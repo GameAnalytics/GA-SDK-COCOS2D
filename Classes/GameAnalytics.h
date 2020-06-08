@@ -94,6 +94,9 @@ namespace gameanalytics {
             static bool isRemoteConfigsReady();
             static std::vector<char> getRemoteConfigsContentAsString();
 
+            static std::vector<char> getABTestingId();
+            static std::vector<char> getABTestingVariantId();
+
         private:
             static void lazySetWritablePath();
             static bool isWritablePathSet;

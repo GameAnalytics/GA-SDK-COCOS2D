@@ -299,4 +299,22 @@ ga.GameAnalytics = {
         return "";
     },
 
+    /**
+     * @method getABTestingId
+     */
+    getABTestingId : function (
+    )
+    {
+        return "";
+    },
+
+    /**
+     * @method getABTestingVariantId
+     */
+    getABTestingVariantId : function (
+    )
+    {
+        return "";
+    },
+
 };

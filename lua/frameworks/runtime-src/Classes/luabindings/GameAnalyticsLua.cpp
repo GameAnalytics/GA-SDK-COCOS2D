@@ -1278,6 +1278,76 @@ int lua_GameAnalyticsLua_GameAnalytics_getRemoteConfigsContentAsString(lua_State
     return 0;
 }
 
+int lua_GameAnalyticsLua_GameAnalytics_getABTestingId(lua_State* tolua_S)
+{
+    int argc = 0;
+    bool ok  = true;
+
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertable(tolua_S,1,"ga.GameAnalytics",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+    argc = lua_gettop(tolua_S) - 1;
+
+    if (argc == 0)
+    {
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_GameAnalyticsLua_GameAnalytics_getABTestingId'", nullptr);
+            return 0;
+        }
+        std::string result = gameanalytics::cocos2d::GameAnalytics::getABTestingId();
+        tolua_pushstring(tolua_S,(const char*)result.c_str());
+        return 1;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ga.GameAnalytics:getABTestingId",argc, 0);
+    return 0;
+#if COCOS2D_DEBUG >= 1
+    tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_GameAnalyticsLua_GameAnalytics_getABTestingId'.",&tolua_err);
+#endif
+    return 0;
+}
+
+int lua_GameAnalyticsLua_GameAnalytics_getABTestingVariantId(lua_State* tolua_S)
+{
+    int argc = 0;
+    bool ok  = true;
+
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertable(tolua_S,1,"ga.GameAnalytics",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+    argc = lua_gettop(tolua_S) - 1;
+
+    if (argc == 0)
+    {
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_GameAnalyticsLua_GameAnalytics_getABTestingVariantId'", nullptr);
+            return 0;
+        }
+        std::string result = gameanalytics::cocos2d::GameAnalytics::getABTestingVariantId();
+        tolua_pushstring(tolua_S,(const char*)result.c_str());
+        return 1;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ga.GameAnalytics:getABTestingVariantId",argc, 0);
+    return 0;
+#if COCOS2D_DEBUG >= 1
+    tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_GameAnalyticsLua_GameAnalytics_getABTestingVariantId'.",&tolua_err);
+#endif
+    return 0;
+}
+
 static int lua_GameAnalyticsLua_GameAnalytics_finalize(lua_State* tolua_S)
 {
     printf("luabindings: finalizing LUA object (GameAnalytics)");
@@ -1319,6 +1389,8 @@ int lua_register_GameAnalyticsLua_GameAnalytics(lua_State* tolua_S)
         tolua_function(tolua_S,"getRemoteConfigsValueAsString", lua_GameAnalyticsLua_GameAnalytics_getRemoteConfigsValueAsString);
         tolua_function(tolua_S,"isRemoteConfigsReady", lua_GameAnalyticsLua_GameAnalytics_isRemoteConfigsReady);
         tolua_function(tolua_S,"getRemoteConfigsContentAsString", lua_GameAnalyticsLua_GameAnalytics_getRemoteConfigsContentAsString);
+        tolua_function(tolua_S,"getABTestingId", lua_GameAnalyticsLua_GameAnalytics_getABTestingId);
+        tolua_function(tolua_S,"getABTestingVariantId", lua_GameAnalyticsLua_GameAnalytics_getABTestingVariantId);
     tolua_endmodule(tolua_S);
     std::string typeName = typeid(gameanalytics::cocos2d::GameAnalytics).name();
     g_luaType[typeName] = "ga.GameAnalytics";

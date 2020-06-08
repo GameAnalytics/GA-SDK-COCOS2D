@@ -290,7 +290,35 @@ bool GameAnalyticsCpp::isRemoteConfigsReady() {
 }
 
 std::vector<char> GameAnalyticsCpp::getRemoteConfigsContentAsString() {
-    NSString *resultns = [GameAnalytics getRemoteConfigsConfigurations];
+    NSString *resultns = [GameAnalytics getRemoteConfigsContentAsString];
+    std::string returnString = resultns != nil ? [resultns UTF8String] : "";
+    std::vector<char> result;
+
+    for(size_t i = 0; i < returnString.size(); ++i)
+    {
+        result.push_back(returnString[i]);
+    }
+    result.push_back('\0');
+
+    return result;
+}
+
+std::vector<char> GameAnalyticsCpp::getABTestingId() {
+    NSString *resultns = [GameAnalytics getABTestingId];
+    std::string returnString = resultns != nil ? [resultns UTF8String] : "";
+    std::vector<char> result;
+
+    for(size_t i = 0; i < returnString.size(); ++i)
+    {
+        result.push_back(returnString[i]);
+    }
+    result.push_back('\0');
+
+    return result;
+}
+
+std::vector<char> GameAnalyticsCpp::getABTestingVariantId() {
+    NSString *resultns = [GameAnalytics getABTestingVariantId];
     std::string returnString = resultns != nil ? [resultns UTF8String] : "";
     std::vector<char> result;
 

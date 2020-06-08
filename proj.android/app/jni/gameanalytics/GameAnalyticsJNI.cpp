@@ -581,5 +581,55 @@ namespace gameanalytics {
 
             return result;
         }
+
+        std::vector<char> jni_getABTestingId()
+        {
+            cocos2d::JniMethodInfo methodInfo;
+            std::string returnString;
+            std::vector<char> result;
+
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "getABTestingId",
+                "()Ljava/lang/String;"))
+            {
+                jstring j_s = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
+                const char* s = methodInfo.env->GetStringUTFChars(j_s, 0);
+                returnString = s;
+                methodInfo.env->ReleaseStringUTFChars(j_s, s);
+                methodInfo.env->DeleteLocalRef(methodInfo.classID);
+            }
+
+            for(size_t i = 0; i < returnString.size(); ++i)
+            {
+                result.push_back(returnString[i]);
+            }
+            result.push_back('\0');
+
+            return result;
+        }
+
+        std::vector<char> jni_getABTestingVariantId()
+        {
+            cocos2d::JniMethodInfo methodInfo;
+            std::string returnString;
+            std::vector<char> result;
+
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "getABTestingVariantId",
+                "()Ljava/lang/String;"))
+            {
+                jstring j_s = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
+                const char* s = methodInfo.env->GetStringUTFChars(j_s, 0);
+                returnString = s;
+                methodInfo.env->ReleaseStringUTFChars(j_s, s);
+                methodInfo.env->DeleteLocalRef(methodInfo.classID);
+            }
+
+            for(size_t i = 0; i < returnString.size(); ++i)
+            {
+                result.push_back(returnString[i]);
+            }
+            result.push_back('\0');
+
+            return result;
+        }
     }
 }
