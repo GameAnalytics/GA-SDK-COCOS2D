@@ -4,7 +4,7 @@
 #define COCOS2DXACTIVITY_CLASS_NAME "org/cocos2dx/lib/Cocos2dxActivity"
 
 namespace gameanalytics {
-    extern "C"
+    //extern "C"
     {
         void jni_configureAvailableCustomDimensions01(const std::vector<std::string>& list)
         {
@@ -376,6 +376,57 @@ namespace gameanalytics {
                 jstring j_fields = methodInfo.env->NewStringUTF(fields);
                 methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, severity, j_message/*, j_fields*/);
                 methodInfo.env->DeleteLocalRef(j_message);
+                methodInfo.env->DeleteLocalRef(j_fields);
+                methodInfo.env->DeleteLocalRef(methodInfo.classID);
+            }
+        }
+
+        void jni_addAdEvent(int adAction, int adType, const char *adSdkName, const char *adPlacement, const char *fields)
+        {
+            cocos2d::JniMethodInfo methodInfo;
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addAdEvent",
+                                                        "(IILjava/lang/String;Ljava/lang/String;)V"))
+            {
+                jstring j_adSdkName = methodInfo.env->NewStringUTF(adSdkName);
+                jstring j_adPlacement = methodInfo.env->NewStringUTF(adPlacement);
+                jstring j_fields = methodInfo.env->NewStringUTF(fields);
+                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, adAction, adType, j_adSdkName, j_adPlacement /*, j_fields*/);
+                methodInfo.env->DeleteLocalRef(j_adSdkName);
+                methodInfo.env->DeleteLocalRef(j_adPlacement);
+                methodInfo.env->DeleteLocalRef(j_fields);
+                methodInfo.env->DeleteLocalRef(methodInfo.classID);
+            }
+        }
+
+        void jni_addAdEventWithDuration(int adAction, int adType, const char *adSdkName, const char *adPlacement, int duration, const char *fields)
+        {
+            cocos2d::JniMethodInfo methodInfo;
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addAdEvent",
+                                                        "(IILjava/lang/String;Ljava/lang/String;J)V"))
+            {
+                jstring j_adSdkName = methodInfo.env->NewStringUTF(adSdkName);
+                jstring j_adPlacement = methodInfo.env->NewStringUTF(adPlacement);
+                jstring j_fields = methodInfo.env->NewStringUTF(fields);
+                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, adAction, adType, j_adSdkName, j_adPlacement, duration /*, j_fields*/);
+                methodInfo.env->DeleteLocalRef(j_adSdkName);
+                methodInfo.env->DeleteLocalRef(j_adPlacement);
+                methodInfo.env->DeleteLocalRef(j_fields);
+                methodInfo.env->DeleteLocalRef(methodInfo.classID);
+            }
+        }
+
+        void jni_addAdEventWithNoAdReason(int adAction, int adType, const char *adSdkName, const char *adPlacement, int noAdReason, const char *fields)
+        {
+            cocos2d::JniMethodInfo methodInfo;
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addAdEvent",
+                                                        "(IILjava/lang/String;Ljava/lang/String;I)V"))
+            {
+                jstring j_adSdkName = methodInfo.env->NewStringUTF(adSdkName);
+                jstring j_adPlacement = methodInfo.env->NewStringUTF(adPlacement);
+                jstring j_fields = methodInfo.env->NewStringUTF(fields);
+                methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, adAction, adType, j_adSdkName, j_adPlacement, noAdReason /*, j_fields*/);
+                methodInfo.env->DeleteLocalRef(j_adSdkName);
+                methodInfo.env->DeleteLocalRef(j_adPlacement);
                 methodInfo.env->DeleteLocalRef(j_fields);
                 methodInfo.env->DeleteLocalRef(methodInfo.classID);
             }

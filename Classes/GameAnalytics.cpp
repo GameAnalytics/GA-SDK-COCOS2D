@@ -12,7 +12,7 @@
 #include "json/document.h"
 #include "json/writer.h"
 
-#define GA_VERSION "cocos2d 3.2.0"
+#define GA_VERSION "cocos2d 3.3.0"
 
 namespace gameanalytics {
     namespace cocos2d
@@ -474,6 +474,36 @@ namespace gameanalytics {
 //             gameanalytics::GameAnalytics::addErrorEvent((gameanalytics::EGAErrorSeverity)((int)severity), message, getStringFromValueMap(fields).c_str());
 // #endif
 //         }
+
+        void GameAnalytics::addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement)
+        {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+            GameAnalyticsCpp::addErrorEvent((int)severity, message, "");
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+            jni_addErrorEvent((int)severity, message, "");
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+#endif
+        }
+
+        void GameAnalytics::addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, int duration)
+        {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+            GameAnalyticsCpp::addErrorEvent((int)severity, message, "");
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+            jni_addErrorEvent((int)severity, message, "");
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+#endif
+        }
+
+        void GameAnalytics::addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, EGAAdError noAdReason)
+        {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+            GameAnalyticsCpp::addErrorEvent((int)severity, message, "");
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+            jni_addErrorEvent((int)severity, message, "");
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+#endif
+        }
 
         void GameAnalytics::setEnabledInfoLog(bool flag)
         {

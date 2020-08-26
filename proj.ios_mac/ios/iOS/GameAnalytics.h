@@ -16,11 +16,11 @@
  @constant GAResourceFlowTypeSink
  Used when subtracting from a resource currency
  */
-typedef enum GAResourceFlowType : NSInteger {
-    GAResourceFlowTypeSource = 1,
-    GAResourceFlowTypeSink = 2
+typedef enum GAResourceFlowType : NSInteger
+{
+   GAResourceFlowTypeSource = 1,
+   GAResourceFlowTypeSink = 2
 } GAResourceFlowType;
-
 
 /*!
  @enum
@@ -33,12 +33,12 @@ typedef enum GAResourceFlowType : NSInteger {
  @constant GAProgressionStatusFail
  User failed a progression
  */
-typedef enum GAProgressionStatus : NSInteger {
-    GAProgressionStatusStart = 1,
-    GAProgressionStatusComplete = 2,
-    GAProgressionStatusFail = 3
+typedef enum GAProgressionStatus : NSInteger
+{
+   GAProgressionStatusStart = 1,
+   GAProgressionStatusComplete = 2,
+   GAProgressionStatusFail = 3
 } GAProgressionStatus;
-
 
 /*!
  @enum
@@ -50,12 +50,13 @@ typedef enum GAProgressionStatus : NSInteger {
  @constant GAErrorSeverityError
  @constant GAErrorSeverityCritical
  */
-typedef enum GAErrorSeverity : NSInteger {
-    GAErrorSeverityDebug = 1,
-    GAErrorSeverityInfo = 2,
-    GAErrorSeverityWarning = 3,
-    GAErrorSeverityError = 4,
-    GAErrorSeverityCritical = 5
+typedef enum GAErrorSeverity : NSInteger
+{
+   GAErrorSeverityDebug = 1,
+   GAErrorSeverityInfo = 2,
+   GAErrorSeverityWarning = 3,
+   GAErrorSeverityError = 4,
+   GAErrorSeverityCritical = 5
 } GAErrorSeverity;
 
 /*!
@@ -69,13 +70,14 @@ typedef enum GAErrorSeverity : NSInteger {
  @constant GAAdActionRequest
  @constant GAAdActionLoaded
  */
-typedef enum GAAdAction : NSInteger {
-    GAAdActionClicked = 1,
-    GAAdActionShow = 2,
-    GAAdActionFailedShow = 3,
-    GAAdActionRewardReceived = 4,
-    GAAdActionRequest = 5,
-    GAAdActionLoaded = 6
+typedef enum GAAdAction : NSInteger
+{
+   GAAdActionClicked = 1,
+   GAAdActionShow = 2,
+   GAAdActionFailedShow = 3,
+   GAAdActionRewardReceived = 4,
+   GAAdActionRequest = 5,
+   GAAdActionLoaded = 6
 } GAAdAction;
 
 /*!
@@ -89,13 +91,14 @@ typedef enum GAAdAction : NSInteger {
  @constant GAAdTypeOfferWall
  @constant GAAdTypeBanner
  */
-typedef enum GAAdType : NSInteger {
-    GAAdTypeVideo = 1,
-    GAAdTypeRewardedVideo = 2,
-    GAAdTypePlayable = 3,
-    GAAdTypeInterstitial = 4,
-    GAAdTypeOfferWall = 5,
-    GAAdTypeBanner = 6
+typedef enum GAAdType : NSInteger
+{
+   GAAdTypeVideo = 1,
+   GAAdTypeRewardedVideo = 2,
+   GAAdTypePlayable = 3,
+   GAAdTypeInterstitial = 4,
+   GAAdTypeOfferWall = 5,
+   GAAdTypeBanner = 6
 } GAAdType;
 
 /*!
@@ -109,27 +112,25 @@ typedef enum GAAdType : NSInteger {
  @constant GAAdErrorInvalidRequest
  @constant GAAdErrorUnableToPrecache
  */
-typedef enum GAAdError : NSInteger {
-    GAAdErrorUnknown = 1,
-    GAAdErrorOffline = 2,
-    GAAdErrorNoFill = 3,
-    GAAdErrorInternalError = 4,
-    GAAdErrorInvalidRequest = 5,
-    GAAdErrorUnableToPrecache = 6
+typedef enum GAAdError : NSInteger
+{
+   GAAdErrorUnknown = 1,
+   GAAdErrorOffline = 2,
+   GAAdErrorNoFill = 3,
+   GAAdErrorInternalError = 4,
+   GAAdErrorInvalidRequest = 5,
+   GAAdErrorUnableToPrecache = 6
 } GAAdError;
 
 //Similar to IRemoteConfigsListener in the GameAnalytics Android library
 @protocol GARemoteConfigsDelegate <NSObject>
 @optional
-- (void) onRemoteConfigsUpdated; // Updated everytime when configurations are added
+- (void)onRemoteConfigsUpdated; // Updated everytime when configurations are added
 @end
-
-
 
 @class GameAnalytics;
 
 @interface GameAnalytics : NSObject
-
 
 /*!
  @method
@@ -274,7 +275,6 @@ typedef enum GAAdError : NSInteger {
  */
 + (void)configureUserId:(NSString *)userId;
 
-
 /* @IF WRAPPER */
 
 /*
@@ -365,8 +365,6 @@ typedef enum GAAdError : NSInteger {
 + (void)initializeWithGameKey:(NSString *)gameKey
                    gameSecret:(NSString *)gameSecret;
 
-
-
 /*!
  @method
 
@@ -383,7 +381,6 @@ typedef enum GAAdError : NSInteger {
 
  */
 + (void)initializeWithConfiguredGameKeyAndGameSecret;
-
 
 /*!
  @method
@@ -406,11 +403,11 @@ typedef enum GAAdError : NSInteger {
  @attribute Note! This method cannot be called before initialize method has been triggered
  */
 + (void)addBusinessEventWithCurrency:(NSString *)currency
-                           amount:(NSInteger)amount
-                         itemType:(NSString *)itemType
-                           itemId:(NSString *)itemId
-                         cartType:(NSString *)cartType
-                          receipt:(NSString *)receipt;
+                              amount:(NSInteger)amount
+                            itemType:(NSString *)itemType
+                              itemId:(NSString *)itemId
+                            cartType:(NSString *)cartType
+                             receipt:(NSString *)receipt;
 
 /*!
  @method
@@ -547,7 +544,6 @@ typedef enum GAAdError : NSInteger {
 + (void)addDesignEventWithEventId:(NSString *)eventId
                             value:(NSNumber *)value;
 
-
 /*!
  @method
 
@@ -611,7 +607,7 @@ typedef enum GAAdError : NSInteger {
                       adType:(GAAdType)adType
                    adSdkName:(NSString *)adSdkName
                  adPlacement:(NSString *)adPlacement
-                    noAdReason:(GAAdError)noAdReason;
+                  noAdReason:(GAAdError)noAdReason;
 
 /*!
  @method
@@ -659,8 +655,7 @@ typedef enum GAAdError : NSInteger {
  @attribute Note! This method cannot be called before initialize method has been triggered
  */
 + (void)addImpressionEventWithAdNetworkName:(NSString *)adNetworkName
-                   impressionData:(NSDictionary *)impressionData;
-
+                             impressionData:(NSDictionary *)impressionData;
 
 /*!
  @method
@@ -674,8 +669,7 @@ typedef enum GAAdError : NSInteger {
 
  @attribute Note! This method cannot be called before initialize method has been triggered
  */
-+ (NSString *)getRemoteConfigsValueAsString:(NSString*) key;
-
++ (NSString *)getRemoteConfigsValueAsString:(NSString *)key;
 
 /*!
  @method
@@ -692,8 +686,8 @@ typedef enum GAAdError : NSInteger {
 
  @attribute Note! This method cannot be called before initialize method has been triggered
  */
-+ (NSString *) getRemoteConfigsValueAsString:(NSString *) key
-                                defaultValue:(NSString *)defaultValue;
++ (NSString *)getRemoteConfigsValueAsString:(NSString *)key
+                               defaultValue:(NSString *)defaultValue;
 
 /*!
  @method
@@ -704,7 +698,7 @@ typedef enum GAAdError : NSInteger {
 
  @attribute For internal use.
  */
-+ (NSString *) getRemoteConfigsContentAsString;
++ (NSString *)getRemoteConfigsContentAsString;
 
 /*!
  @method
@@ -713,7 +707,7 @@ typedef enum GAAdError : NSInteger {
 
  @availability Available since (TBD)
  */
-+ (void) setRemoteConfigsDelegate:(id)newDelegate;
++ (void)setRemoteConfigsDelegate:(id)newDelegate;
 
 /*!
  @method
@@ -724,7 +718,7 @@ typedef enum GAAdError : NSInteger {
 
  @attribute Note! This method should not be called before initialize method has been triggered
  */
-+ (BOOL) isRemoteConfigsReady;
++ (BOOL)isRemoteConfigsReady;
 
 /*!
  @method
@@ -733,7 +727,7 @@ typedef enum GAAdError : NSInteger {
 
  @availability Available since (TBD)
  */
-+ (NSString *) getABTestingId;
++ (NSString *)getABTestingId;
 
 /*!
  @method
@@ -742,7 +736,7 @@ typedef enum GAAdError : NSInteger {
 
  @availability Available since (TBD)
  */
-+ (NSString *) getABTestingVariantId;
++ (NSString *)getABTestingVariantId;
 
 /*!
  @method
@@ -756,7 +750,6 @@ typedef enum GAAdError : NSInteger {
 
  */
 + (void)setEnabledInfoLog:(BOOL)flag;
-
 
 /*!
  @method
@@ -783,7 +776,6 @@ typedef enum GAAdError : NSInteger {
 
  */
 + (void)setEnabledWarningLog:(BOOL)flag;
-
 
 /*!
  @method
@@ -843,7 +835,6 @@ typedef enum GAAdError : NSInteger {
  */
 + (void)startSession;
 
-
 /*!
  @method
 
@@ -856,7 +847,6 @@ typedef enum GAAdError : NSInteger {
 
  */
 + (void)endSession;
-
 
 /*!
  @method

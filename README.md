@@ -30,6 +30,10 @@ If you have any issues or feedback regarding the SDK, please contact our friendl
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**3.3.0**
+* added ad event
+* fixed various build errors for ios and android
+
 **3.2.0**
 * updated user identifier flow to prepare for iOS 14 IDFA changes (ios)
 

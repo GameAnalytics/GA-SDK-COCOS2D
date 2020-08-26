@@ -531,6 +531,34 @@ static bool js_GameAnalyticsJS_GameAnalytics_addErrorEvent(se::State& s)
 }
 SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_addErrorEvent)
 
+static bool js_GameAnalyticsJS_GameAnalytics_addAdEvent(se::State &s)
+{
+    const auto &args = s.args();
+    int argc = (int)args.size();
+    bool ok = true;
+    if (argc == 4)
+    {
+        gameanalytics::cocos2d::EGAAdAction arg0;
+        gameanalytics::cocos2d::EGAAdType arg1;
+        const char *arg2 = nullptr;
+        const char *arg3 = nullptr;
+        std::string arg2_tmp;
+        std::string arg3_tmp;
+        ok &= seval_to_int32(args[0], (int32_t *)&arg0);
+        ok &= seval_to_int32(args[1], (int32_t *)&arg0);
+        ok &= seval_to_std_string(args[2], &arg2_tmp);
+        arg2 = arg2_tmp.c_str();
+        ok &= seval_to_std_string(args[3], &arg3_tmp);
+        arg3 = arg3_tmp.c_str();
+        SE_PRECONDITION2(ok, false, "js_GameAnalyticsJS_GameAnalytics_addAdEvent : Error processing arguments");
+        gameanalytics::cocos2d::GameAnalytics::addAdEvent(arg0, arg1, arg2, arg3);
+        return true;
+    }
+    SE_REPORT_ERROR("js_GameAnalyticsJS_GameAnalytics_addErrorEvent : wrong number of arguments");
+    return false;
+}
+SE_BIND_FUNC(js_GameAnalyticsJS_GameAnalytics_addErrorEvent)
+
 static bool js_GameAnalyticsJS_GameAnalytics_setEnabledInfoLog(se::State& s)
 {
     const auto& args = s.args();
@@ -826,6 +854,7 @@ bool js_register_GameAnalyticsJS_GameAnalytics(se::Object* global) {
         ctorVal.toObject()->defineFunction("addProgressionEvent", _SE(js_GameAnalyticsJS_GameAnalytics_addProgressionEvent));
         ctorVal.toObject()->defineFunction("addDesignEvent", _SE(js_GameAnalyticsJS_GameAnalytics_addDesignEvent));
         ctorVal.toObject()->defineFunction("addErrorEvent", _SE(js_GameAnalyticsJS_GameAnalytics_addErrorEvent));
+        ctorVal.toObject()->defineFunction("addAdEvent", _SE(js_GameAnalyticsJS_GameAnalytics_addAdEvent));
         ctorVal.toObject()->defineFunction("setEnabledInfoLog", _SE(js_GameAnalyticsJS_GameAnalytics_setEnabledInfoLog));
         ctorVal.toObject()->defineFunction("setEnabledVerboseLog", _SE(js_GameAnalyticsJS_GameAnalytics_setEnabledVerboseLog));
         ctorVal.toObject()->defineFunction("setEnabledManualSessionHandling", _SE(js_GameAnalyticsJS_GameAnalytics_setEnabledManualSessionHandling));

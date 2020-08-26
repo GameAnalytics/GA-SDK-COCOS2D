@@ -633,6 +633,55 @@ int lua_GameAnalyticsLua_GameAnalytics_addErrorEvent(lua_State* tolua_S)
 #endif
     return 0;
 }
+
+int lua_GameAnalyticsLua_GameAnalytics_addAdEvent(lua_State *tolua_S)
+{
+    int argc = 0;
+    bool ok = true;
+
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertable(tolua_S, 1, "ga.GameAnalytics", 0, &tolua_err))
+        goto tolua_lerror;
+#endif
+
+    argc = lua_gettop(tolua_S) - 1;
+
+    if (argc == 4)
+    {
+        gameanalytics::cocos2d::EGAAdAction arg0;
+        gameanalytics::cocos2d::EGAAdType arg1;
+        const char *arg2 = nullptr;
+        const char *arg3 = nullptr;
+        std::string arg2_tmp;
+        std::string arg3_tmp;
+        ok &= luaval_to_int32(tolua_S, 2, (int *)&arg0, "ga.GameAnalytics:addAdEvent");
+        ok &= luaval_to_int32(tolua_S, 3, (int *)&arg1, "ga.GameAnalytics:addAdEvent");
+        ok &= luaval_to_std_string(tolua_S, 4, &arg2_tmp, "ga.GameAnalytics:addAdEvent");
+        arg2 = arg2_tmp.c_str();
+        ok &= luaval_to_std_string(tolua_S, 5, &arg3_tmp, "ga.GameAnalytics:addAdEvent");
+        arg3 = arg3_tmp.c_str();
+        if (!ok)
+        {
+            tolua_error(tolua_S, "invalid arguments in function 'lua_GameAnalyticsLua_GameAnalytics_addAdEvent'", nullptr);
+            return 0;
+        }
+        gameanalytics::cocos2d::GameAnalytics::addAdEvent(arg0, arg1, arg2, arg3);
+        lua_settop(tolua_S, 1);
+        return 1;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ga.GameAnalytics:addAdEvent", argc, 2);
+    return 0;
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+    tolua_error(tolua_S, "#ferror in function 'lua_GameAnalyticsLua_GameAnalytics_addAdEvent'.", &tolua_err);
+#endif
+    return 0;
+}
+
 int lua_GameAnalyticsLua_GameAnalytics_configureAvailableResourceCurrencies(lua_State* tolua_S)
 {
     int argc = 0;
@@ -1374,6 +1423,7 @@ int lua_register_GameAnalyticsLua_GameAnalytics(lua_State* tolua_S)
         tolua_function(tolua_S,"addProgressionEvent", lua_GameAnalyticsLua_GameAnalytics_addProgressionEvent);
         tolua_function(tolua_S,"addResourceEvent", lua_GameAnalyticsLua_GameAnalytics_addResourceEvent);
         tolua_function(tolua_S,"addErrorEvent", lua_GameAnalyticsLua_GameAnalytics_addErrorEvent);
+        tolua_function(tolua_S, "addAdEvent", lua_GameAnalyticsLua_GameAnalytics_addAdEvent);
         tolua_function(tolua_S,"configureAvailableResourceCurrencies", lua_GameAnalyticsLua_GameAnalytics_configureAvailableResourceCurrencies);
         tolua_function(tolua_S,"configureUserId", lua_GameAnalyticsLua_GameAnalytics_configureUserId);
         tolua_function(tolua_S,"configureAutoDetectAppVersion", lua_GameAnalyticsLua_GameAnalytics_configureAutoDetectAppVersion);

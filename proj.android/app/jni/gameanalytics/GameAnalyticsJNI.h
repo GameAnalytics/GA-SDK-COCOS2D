@@ -6,7 +6,7 @@
 #include "platform/android/jni/JniHelper.h"
 
 namespace gameanalytics {
-    extern "C"
+    //extern "C"
     {
         extern void jni_configureAvailableCustomDimensions01(const std::vector<std::string>& list);
         extern void jni_configureAvailableCustomDimensions02(const std::vector<std::string>& list);
@@ -30,6 +30,9 @@ namespace gameanalytics {
         extern void jni_addDesignEvent(const char *eventId, const char *fields);
         extern void jni_addDesignEventWithValue(const char *eventId, float value, const char *fields);
         extern void jni_addErrorEvent(int severity, const char *message, const char *fields);
+        extern void jni_addAdEvent(int adAction, int adType, const char *adSdkName, const char *adPlacement, const char *fields);
+        extern void jni_addAdEventWithDuration(int adAction, int adType, const char *adSdkName, const char *adPlacement, int duration, const char *fields);
+        extern void jni_addAdEventWithNoAdReason(int adAction, int adType, const char *adSdkName, const char *adPlacement, int noAdReason, const char *fields);
 
         extern void jni_setEnabledInfoLog(bool flag);
         extern void jni_setEnabledVerboseLog(bool flag);

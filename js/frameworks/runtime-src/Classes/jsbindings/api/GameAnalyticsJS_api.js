@@ -182,6 +182,12 @@ ga.GameAnalytics = {
     {
     },
 
+    addErrorEvent: function (
+        egaerrorseverity,
+        char
+    ) {
+    },
+
     /**
      * @method setEnabledInfoLog
      * @param {bool} arg0

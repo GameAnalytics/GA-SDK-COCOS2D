@@ -30,7 +30,36 @@ namespace gameanalytics {
             Critical = 5
         };
 
-        class GameAnalytics {
+        enum EGAAdAction
+        {
+            Clicked = 1,
+            Show = 2,
+            FailedShow = 3,
+            RewardReceived = 4
+        };
+
+        enum EGAAdError
+        {
+            Unknown = 1,
+            Offline = 2,
+            NoFill = 3,
+            InternalError = 4,
+            InvalidRequest = 5,
+            UnableToPrecache = 6
+        };
+
+        enum EGAAdType
+        {
+            Video = 1,
+            RewardedVideo = 2,
+            Playable = 3,
+            Interstitial = 4,
+            OfferWall = 5,
+            Banner = 6
+        };
+
+        class GameAnalytics
+        {
         public:
             static void configureAvailableCustomDimensions01(const std::vector<std::string>& list);
             static void configureAvailableCustomDimensions02(const std::vector<std::string>& list);
@@ -77,6 +106,9 @@ namespace gameanalytics {
             // static void addDesignEvent(const char *eventId, float value, const ::cocos2d::ValueMap& fields);
             static void addErrorEvent(EGAErrorSeverity severity, const char *message);
             // static void addErrorEvent(EGAErrorSeverity severity, const char *message, const ::cocos2d::ValueMap& fields);
+            static void addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement);
+            static void addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, int duration);
+            static void addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, EGAAdError noAdReason);
 
             static void setEnabledInfoLog(bool flag);
             static void setEnabledVerboseLog(bool flag);
