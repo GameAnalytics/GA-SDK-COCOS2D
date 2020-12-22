@@ -30,6 +30,9 @@ If you have any issues or feedback regarding the SDK, please contact our friendl
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**3.3.4**
+* removed memory info from automatic crash reports
+
 **3.3.3**
 * added arm64 architecture for mac libs
 
