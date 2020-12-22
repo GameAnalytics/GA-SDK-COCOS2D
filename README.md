@@ -12,27 +12,24 @@ If you have any issues or feedback regarding the SDK, please contact our friendl
 > Supports **C++**, **JavaScript** and **Lua**
 >
 > Requirements:
-> * **Cocos2D-X:** 3.x+  
+> * **Cocos2D-X:** 3.x+
 > * **iOS:** iOS 7+
 > * **Android:** Android API Level 14
-> * **Tizen:** Tizen 2.4+   
->   
-> **Build size:**   
-> Note that download size differ from the actual build size.   
->   
-> **Android:**   
-> The SDK build size in a native Android app is only around **49Kb** and the dependecies take up to **820Kb** depending if your app already uses some of the same dependencies.   
->   
-> **iOS:**   
+> * **Tizen:** Tizen 2.4+
+>
+> **Build size:**
+> Note that download size differ from the actual build size.
+>
+> **Android:**
+> The SDK build size in a native Android app is only around **49Kb** and the dependecies take up to **820Kb** depending if your app already uses some of the same dependencies.
+>
+> **iOS:**
 > The SDK build size in a native iOS app is only around **242Kb** (armv7) / **259Kb** (armv8).
 
 
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
-**3.3.4**
-* removed memory info from automatic crash reports
-
 **3.3.4**
 * removed memory info from automatic crash reports
 
