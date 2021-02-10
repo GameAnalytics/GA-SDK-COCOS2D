@@ -12,7 +12,7 @@
 #include "json/document.h"
 #include "json/writer.h"
 
-#define GA_VERSION "cocos2d 3.3.5"
+#define GA_VERSION "cocos2d 3.3.6"
 
 namespace gameanalytics {
     namespace cocos2d
@@ -478,9 +478,9 @@ namespace gameanalytics {
         void GameAnalytics::addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addErrorEvent((int)severity, message, "");
+            GameAnalyticsCpp::addAdEvent((int)adAction, (int)adType, adSdkName, adPlacement, "");
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addErrorEvent((int)severity, message, "");
+            jni_addAdEvent((int)adAction, (int)adType, adSdkName, adPlacement, "");
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #endif
         }
@@ -488,9 +488,9 @@ namespace gameanalytics {
         void GameAnalytics::addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, int duration)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addErrorEvent((int)severity, message, "");
+            GameAnalyticsCpp::addAdEventWithDuration((int)adAction, (int)adType, adSdkName, adPlacement, duration, "");
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addErrorEvent((int)severity, message, "");
+            jni_addAdEventWithDuration((int)adAction, (int)adType, adSdkName, adPlacement, duration, "");
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #endif
         }
@@ -498,9 +498,9 @@ namespace gameanalytics {
         void GameAnalytics::addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, EGAAdError noAdReason)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addErrorEvent((int)severity, message, "");
+            GameAnalyticsCpp::addAdEventWithNoAdReason((int)adAction, (int)adType, adSdkName, adPlacement, (int)noAdReason, "");
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addErrorEvent((int)severity, message, "");
+            jni_addAdEventWithNoAdReason((int)adAction, (int)adType, adSdkName, adPlacement, (int)noAdReason, "");
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #endif
         }

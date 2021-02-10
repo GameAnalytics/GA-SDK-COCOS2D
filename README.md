@@ -30,6 +30,9 @@ If you have any issues or feedback regarding the SDK, please contact our friendl
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**3.3.6**
+* fixed compile errors
+
 **3.3.5**
 * updated client ts validator
 
