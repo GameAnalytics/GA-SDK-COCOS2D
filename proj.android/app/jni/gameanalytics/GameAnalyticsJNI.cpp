@@ -213,7 +213,7 @@ namespace gameanalytics {
         void jni_initialize(const char *gameKey, const char *gameSecret)
         {
             cocos2d::JniMethodInfo methodInfo1;
-            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo1, GAMEANALYTICS_CLASS_NAME, "initializeWithGameKey", "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V"))
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo1, GAMEANALYTICS_CLASS_NAME, "initialize", "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V"))
             {
                 cocos2d::JniMethodInfo methodInfo2;
                 if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo2, COCOS2DXACTIVITY_CLASS_NAME, "getContext", "()Landroid/content/Context;"))
@@ -233,7 +233,7 @@ namespace gameanalytics {
         void jni_addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *fields)
         {
             cocos2d::JniMethodInfo methodInfo;
-            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addBusinessEventWithCurrency",
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addBusinessEvent",
                 "(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"))
             {
                 jstring j_currency = methodInfo.env->NewStringUTF(currency);
@@ -255,7 +255,7 @@ namespace gameanalytics {
             const char *receipt, const char *store, const char *signature, const char *fields)
         {
             cocos2d::JniMethodInfo methodInfo;
-            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addBusinessEventWithCurrency",
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addBusinessEvent",
                 "(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"))
             {
                 jstring j_currency = methodInfo.env->NewStringUTF(currency);
@@ -282,7 +282,7 @@ namespace gameanalytics {
         void jni_addResourceEvent(int flowType, const char *currency, float amount, const char *itemType, const char *itemId, const char *fields)
         {
             cocos2d::JniMethodInfo methodInfo;
-            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addResourceEventWithFlowType",
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addResourceEvent",
                 "(ILjava/lang/String;FLjava/lang/String;Ljava/lang/String;)V"))
             {
                 jstring j_currency = methodInfo.env->NewStringUTF(currency);
@@ -301,7 +301,7 @@ namespace gameanalytics {
         void jni_addProgressionEvent(int progressionStatus, const char *progression01, const char *progression02, const char *progression03, const char *fields)
         {
             cocos2d::JniMethodInfo methodInfo;
-            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addProgressionEventWithProgressionStatus",
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addProgressionEvent",
                 "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"))
             {
                 jstring j_progression01 = methodInfo.env->NewStringUTF(progression01);
@@ -320,7 +320,7 @@ namespace gameanalytics {
         void jni_addProgressionEventWithScore(int progressionStatus, const char *progression01, const char *progression02, const char *progression03, int score, const char *fields)
         {
             cocos2d::JniMethodInfo methodInfo;
-            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addProgressionEventWithProgressionStatus",
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addProgressionEvent",
                 "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;D)V"))
             {
                 jstring j_progression01 = methodInfo.env->NewStringUTF(progression01);
@@ -339,7 +339,7 @@ namespace gameanalytics {
         void jni_addDesignEvent(const char *eventId, const char *fields)
         {
             cocos2d::JniMethodInfo methodInfo;
-            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addDesignEventWithEventId",
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addDesignEvent",
                 "(Ljava/lang/String;)V"))
             {
                 jstring j_eventId = methodInfo.env->NewStringUTF(eventId);
@@ -354,7 +354,7 @@ namespace gameanalytics {
         void jni_addDesignEventWithValue(const char *eventId, float value, const char *fields)
         {
             cocos2d::JniMethodInfo methodInfo;
-            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addDesignEventWithEventId",
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addDesignEvent",
                 "(Ljava/lang/String;D)V"))
             {
                 jstring j_eventId = methodInfo.env->NewStringUTF(eventId);
@@ -369,7 +369,7 @@ namespace gameanalytics {
         void jni_addErrorEvent(int severity, const char *message, const char *fields)
         {
             cocos2d::JniMethodInfo methodInfo;
-            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addErrorEventWithSeverity",
+            if (cocos2d::JniHelper::getStaticMethodInfo(methodInfo, GAMEANALYTICS_CLASS_NAME, "addErrorEvent",
                 "(ILjava/lang/String;)V"))
             {
                 jstring j_message = methodInfo.env->NewStringUTF(message);
