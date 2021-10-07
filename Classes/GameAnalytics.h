@@ -77,38 +77,41 @@ namespace gameanalytics {
 
     #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
             static void addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt);
-            // static void addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt, const ::cocos2d::ValueMap& fields);
+            static void addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt, const ::cocos2d::ValueMap& customFields);
             static void addBusinessEventAndAutoFetchReceipt(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType);
-            // static void addBusinessEventAndAutoFetchReceipt(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const ::cocos2d::ValueMap& fields);
+            static void addBusinessEventAndAutoFetchReceipt(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const ::cocos2d::ValueMap& customFields);
     #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
             static void addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt, const char *signature);
-            // static void addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt, const char *signature, const ::cocos2d::ValueMap& fields);
+            static void addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt, const char *signature, const ::cocos2d::ValueMap& customFields);
     #endif
             static void addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType);
-            // static void addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const ::cocos2d::ValueMap& fields);
+            static void addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const ::cocos2d::ValueMap &customFields);
             static void addResourceEvent(EGAResourceFlowType flowType, const char *currency, float amount, const char *itemType, const char *itemId);
-            // static void addResourceEvent(EGAResourceFlowType flowType, const char *currency, float amount, const char *itemType, const char *itemId, const ::cocos2d::ValueMap& fields);
+            static void addResourceEvent(EGAResourceFlowType flowType, const char *currency, float amount, const char *itemType, const char *itemId, const ::cocos2d::ValueMap& customFields);
             static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01);
-            // static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const ::cocos2d::ValueMap& fields);
+            static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const ::cocos2d::ValueMap& customFields);
             static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, int score);
-            // static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, int score, const ::cocos2d::ValueMap& fields);
+            static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, int score, const ::cocos2d::ValueMap &customFields);
             static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02);
-            // static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const ::cocos2d::ValueMap& fields);
+            static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const ::cocos2d::ValueMap &customFields);
             static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, int score);
-            // static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, int score, const ::cocos2d::ValueMap& fields);
+            static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, int score, const ::cocos2d::ValueMap& customFields);
             static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03);
-            // static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03, const ::cocos2d::ValueMap& fields);
+            static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03, const ::cocos2d::ValueMap &customFields);
             static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03, int score);
-            // static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03, int score, const ::cocos2d::ValueMap& fields);
+            static void addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03, int score, const ::cocos2d::ValueMap& customFields);
             static void addDesignEvent(const char *eventId);
-            // static void addDesignEvent(const char *eventId, const ::cocos2d::ValueMap& fields);
+            static void addDesignEvent(const char *eventId, const ::cocos2d::ValueMap& customFields);
             static void addDesignEvent(const char *eventId, float value);
-            // static void addDesignEvent(const char *eventId, float value, const ::cocos2d::ValueMap& fields);
+            static void addDesignEvent(const char *eventId, float value, const ::cocos2d::ValueMap &customFields);
             static void addErrorEvent(EGAErrorSeverity severity, const char *message);
-            // static void addErrorEvent(EGAErrorSeverity severity, const char *message, const ::cocos2d::ValueMap& fields);
+            static void addErrorEvent(EGAErrorSeverity severity, const char *message, const ::cocos2d::ValueMap &customFields);
             static void addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement);
+            static void addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, const ::cocos2d::ValueMap &customFields);
             static void addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, int duration);
+            static void addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, int duration, const ::cocos2d::ValueMap &customFields);
             static void addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, EGAAdError noAdReason);
+            static void addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, EGAAdError noAdReason, const ::cocos2d::ValueMap &customFields);
 
             static void setEnabledInfoLog(bool flag);
             static void setEnabledVerboseLog(bool flag);
