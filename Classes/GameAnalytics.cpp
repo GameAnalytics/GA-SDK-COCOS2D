@@ -12,7 +12,7 @@
 #include "json/document.h"
 #include "json/writer.h"
 
-#define GA_VERSION "cocos2d 4.1.2"
+#define GA_VERSION "cocos2d 4.1.3"
 
 namespace gameanalytics {
     namespace cocos2d
@@ -252,76 +252,101 @@ namespace gameanalytics {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         void GameAnalytics::addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt)
         {
-            GameAnalyticsCpp::addBusinessEvent(currency, amount, itemType, itemId, cartType, receipt, "");
+            GameAnalyticsCpp::addBusinessEvent(currency, amount, itemType, itemId, cartType, receipt, "", false);
         }
 
-        void GameAnalytics::addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt, const ::cocos2d::ValueMap& fields)
+        void GameAnalytics::addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt, const ::cocos2d::ValueMap &fields)
         {
-            GameAnalyticsCpp::addBusinessEvent(currency, amount, itemType, itemId, cartType, receipt, getStringFromValueMap(fields).c_str());
+            addBusinessEvent(currency, amount, itemType, itemId, cartType, receipt, fields, false);
+        }
+
+        void GameAnalytics::addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt, const ::cocos2d::ValueMap &fields, bool mergeFields)
+        {
+            GameAnalyticsCpp::addBusinessEvent(currency, amount, itemType, itemId, cartType, receipt, getStringFromValueMap(fields).c_str(), mergeFields);
         }
 
         void GameAnalytics::addBusinessEventAndAutoFetchReceipt(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType)
         {
-            GameAnalyticsCpp::addBusinessEventAndAutoFetchReceipt(currency, amount, itemType, itemId, cartType, "");
+            GameAnalyticsCpp::addBusinessEventAndAutoFetchReceipt(currency, amount, itemType, itemId, cartType, "", false);
         }
 
-        void GameAnalytics::addBusinessEventAndAutoFetchReceipt(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const ::cocos2d::ValueMap& fields)
+        void GameAnalytics::addBusinessEventAndAutoFetchReceipt(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const ::cocos2d::ValueMap &fields)
         {
-            GameAnalyticsCpp::addBusinessEventAndAutoFetchReceipt(currency, amount, itemType, itemId, cartType, getStringFromValueMap(fields).c_str());
+            addBusinessEventAndAutoFetchReceipt(currency, amount, itemType, itemId, cartType, fields, false);
+        }
+
+        void GameAnalytics::addBusinessEventAndAutoFetchReceipt(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const ::cocos2d::ValueMap &fields, bool mergeFields)
+        {
+            GameAnalyticsCpp::addBusinessEventAndAutoFetchReceipt(currency, amount, itemType, itemId, cartType, getStringFromValueMap(fields).c_str(), mergeFields);
         }
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         void GameAnalytics::addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt, const char *signature)
         {
-            jni_addBusinessEventWithReceipt(currency, amount, itemType, itemId, cartType, receipt, "google_play", signature, "");
+            jni_addBusinessEventWithReceipt(currency, amount, itemType, itemId, cartType, receipt, "google_play", signature, "", false);
         }
 
-        void GameAnalytics::addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt, const char *signature, const ::cocos2d::ValueMap& fields)
+        void GameAnalytics::addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt, const char *signature, const ::cocos2d::ValueMap &fields)
         {
-            jni_addBusinessEventWithReceipt(currency, amount, itemType, itemId, cartType, receipt, "google_play", signature, getStringFromValueMap(fields).c_str());
+            addBusinessEvent(currency, amount, itemType, itemId, cartType, receipt, signature, fields, false);
+        }
+
+        void GameAnalytics::addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const char *receipt, const char *signature, const ::cocos2d::ValueMap &fields, bool mergeFields)
+        {
+            jni_addBusinessEventWithReceipt(currency, amount, itemType, itemId, cartType, receipt, "google_play", signature, getStringFromValueMap(fields).c_str(), mergeFields);
         }
 #endif
 
         void GameAnalytics::addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addBusinessEvent(currency, amount, itemType, itemId, cartType, "", "");
+            GameAnalyticsCpp::addBusinessEvent(currency, amount, itemType, itemId, cartType, "", "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addBusinessEvent(currency, amount, itemType, itemId, cartType, "");
+            jni_addBusinessEvent(currency, amount, itemType, itemId, cartType, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            gameanalytics::GameAnalytics::addBusinessEvent(currency, amount, itemType, itemId, cartType, "");
+            gameanalytics::GameAnalytics::addBusinessEvent(currency, amount, itemType, itemId, cartType, "", false);
 #endif
         }
 
-        void GameAnalytics::addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const ::cocos2d::ValueMap& fields)
+        void GameAnalytics::addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const ::cocos2d::ValueMap &fields)
+        {
+            addBusinessEvent(currency, amount, itemType, itemId, cartType, fields, false);
+        }
+
+        void GameAnalytics::addBusinessEvent(const char *currency, int amount, const char *itemType, const char *itemId, const char *cartType, const ::cocos2d::ValueMap &fields, bool mergeFields)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addBusinessEvent(currency, amount, itemType, itemId, cartType, "", getStringFromValueMap(fields).c_str());
+            GameAnalyticsCpp::addBusinessEvent(currency, amount, itemType, itemId, cartType, "", getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addBusinessEvent(currency, amount, itemType, itemId, cartType, getStringFromValueMap(fields).c_str());
+            jni_addBusinessEvent(currency, amount, itemType, itemId, cartType, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            gameanalytics::GameAnalytics::addBusinessEvent(currency, amount, itemType, itemId, cartType, getStringFromValueMap(fields).c_str());
+            gameanalytics::GameAnalytics::addBusinessEvent(currency, amount, itemType, itemId, cartType, getStringFromValueMap(fields).c_str(), mergeFields);
 #endif
         }
 
         void GameAnalytics::addResourceEvent(EGAResourceFlowType flowType, const char *currency, float amount, const char *itemType, const char *itemId)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addResourceEvent((int)flowType, currency, amount, itemType, itemId, "");
+            GameAnalyticsCpp::addResourceEvent((int)flowType, currency, amount, itemType, itemId, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addResourceEvent((int)flowType, currency, amount, itemType, itemId, "");
+            jni_addResourceEvent((int)flowType, currency, amount, itemType, itemId, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            gameanalytics::GameAnalytics::addResourceEvent((gameanalytics::EGAResourceFlowType)((int)flowType), currency, amount, itemType, itemId, "");
+            gameanalytics::GameAnalytics::addResourceEvent((gameanalytics::EGAResourceFlowType)((int)flowType), currency, amount, itemType, itemId, "", false);
 #endif
         }
 
-        void GameAnalytics::addResourceEvent(EGAResourceFlowType flowType, const char *currency, float amount, const char *itemType, const char *itemId, const ::cocos2d::ValueMap& fields)
+        void GameAnalytics::addResourceEvent(EGAResourceFlowType flowType, const char *currency, float amount, const char *itemType, const char *itemId, const ::cocos2d::ValueMap &fields)
+        {
+            addResourceEvent(flowType, currency, amount, itemType, itemId, fields, false);
+        }
+
+        void GameAnalytics::addResourceEvent(EGAResourceFlowType flowType, const char *currency, float amount, const char *itemType, const char *itemId, const ::cocos2d::ValueMap &fields, bool mergeFields)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addResourceEvent((int)flowType, currency, amount, itemType, itemId, getStringFromValueMap(fields).c_str());
+            GameAnalyticsCpp::addResourceEvent((int)flowType, currency, amount, itemType, itemId, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addResourceEvent((int)flowType, currency, amount, itemType, itemId, getStringFromValueMap(fields).c_str());
+            jni_addResourceEvent((int)flowType, currency, amount, itemType, itemId, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            gameanalytics::GameAnalytics::addResourceEvent((gameanalytics::EGAResourceFlowType)((int)flowType), currency, amount, itemType, itemId, getStringFromValueMap(fields).c_str());
+            gameanalytics::GameAnalytics::addResourceEvent((gameanalytics::EGAResourceFlowType)((int)flowType), currency, amount, itemType, itemId, getStringFromValueMap(fields).c_str(), mergeFields);
 #endif
         }
 
@@ -330,9 +355,14 @@ namespace gameanalytics {
             addProgressionEvent(progressionStatus, progression01, "", "");
         }
 
-        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const ::cocos2d::ValueMap& fields)
+        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const ::cocos2d::ValueMap &fields)
         {
-            addProgressionEvent(progressionStatus, progression01, "", "", fields);
+            addProgressionEvent(progressionStatus, progression01, fields, false);
+        }
+
+        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const ::cocos2d::ValueMap &fields, bool mergeFields)
+        {
+            addProgressionEvent(progressionStatus, progression01, "", "", fields, mergeFields);
         }
 
         void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, int score)
@@ -340,9 +370,14 @@ namespace gameanalytics {
             addProgressionEvent(progressionStatus, progression01, "", "", score);
         }
 
-        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, int score, const ::cocos2d::ValueMap& fields)
+        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, int score, const ::cocos2d::ValueMap &fields)
         {
-            addProgressionEvent(progressionStatus, progression01, "", "", score, fields);
+            addProgressionEvent(progressionStatus, progression01, score, fields, false);
+        }
+
+        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, int score, const ::cocos2d::ValueMap &fields, bool mergeFields)
+        {
+            addProgressionEvent(progressionStatus, progression01, "", "", score, fields, mergeFields);
         }
 
         void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02)
@@ -350,9 +385,14 @@ namespace gameanalytics {
             addProgressionEvent(progressionStatus, progression01, progression02, "");
         }
 
-        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const ::cocos2d::ValueMap& fields)
+        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const ::cocos2d::ValueMap &fields)
         {
-            addProgressionEvent(progressionStatus, progression01, progression02, "", fields);
+            addProgressionEvent(progressionStatus, progression01, progression02, fields, false);
+        }
+
+        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const ::cocos2d::ValueMap &fields, bool mergeFields)
+        {
+            addProgressionEvent(progressionStatus, progression01, progression02, "", fields, mergeFields);
         }
 
         void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, int score)
@@ -360,137 +400,172 @@ namespace gameanalytics {
             addProgressionEvent(progressionStatus, progression01, progression02, "", score);
         }
 
-        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, int score, const ::cocos2d::ValueMap& fields)
+        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, int score, const ::cocos2d::ValueMap &fields)
         {
-            addProgressionEvent(progressionStatus, progression01, progression02, "", score, fields);
+            addProgressionEvent(progressionStatus, progression01, progression02, score, fields, false);
+        }
+
+        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, int score, const ::cocos2d::ValueMap &fields, bool mergeFields)
+        {
+            addProgressionEvent(progressionStatus, progression01, progression02, "", score, fields, mergeFields);
         }
 
         void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addProgressionEvent((int)progressionStatus, progression01, progression02, progression03, "");
+            GameAnalyticsCpp::addProgressionEvent((int)progressionStatus, progression01, progression02, progression03, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addProgressionEvent((int)progressionStatus, progression01, progression02, progression03, "");
+            jni_addProgressionEvent((int)progressionStatus, progression01, progression02, progression03, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            gameanalytics::GameAnalytics::addProgressionEvent((gameanalytics::EGAProgressionStatus)((int)progressionStatus), progression01, progression02, progression03, "");
+            gameanalytics::GameAnalytics::addProgressionEvent((gameanalytics::EGAProgressionStatus)((int)progressionStatus), progression01, progression02, progression03, "", false);
 #endif
         }
 
-        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03, const ::cocos2d::ValueMap& fields)
+        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03, const ::cocos2d::ValueMap &fields)
+        {
+            addProgressionEvent(progressionStatus, progression01, progression02, progression03, fields, false);
+        }
+
+        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03, const ::cocos2d::ValueMap &fields, bool mergeFields)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addProgressionEvent((int)progressionStatus, progression01, progression02, progression03, getStringFromValueMap(fields).c_str());
+            GameAnalyticsCpp::addProgressionEvent((int)progressionStatus, progression01, progression02, progression03, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addProgressionEvent((int)progressionStatus, progression01, progression02, progression03, getStringFromValueMap(fields).c_str());
+            jni_addProgressionEvent((int)progressionStatus, progression01, progression02, progression03, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            gameanalytics::GameAnalytics::addProgressionEvent((gameanalytics::EGAProgressionStatus)((int)progressionStatus), progression01, progression02, progression03, getStringFromValueMap(fields).c_str());
+            gameanalytics::GameAnalytics::addProgressionEvent((gameanalytics::EGAProgressionStatus)((int)progressionStatus), progression01, progression02, progression03, getStringFromValueMap(fields).c_str(), mergeFields);
 #endif
         }
 
         void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03, int score)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addProgressionEventWithScore((int)progressionStatus, progression01, progression02, progression03, score, "");
+            GameAnalyticsCpp::addProgressionEventWithScore((int)progressionStatus, progression01, progression02, progression03, score, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addProgressionEventWithScore((int)progressionStatus, progression01, progression02, progression03, score, "");
+            jni_addProgressionEventWithScore((int)progressionStatus, progression01, progression02, progression03, score, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            gameanalytics::GameAnalytics::addProgressionEvent((gameanalytics::EGAProgressionStatus)((int)progressionStatus), progression01, progression02, progression03, score, "");
+            gameanalytics::GameAnalytics::addProgressionEvent((gameanalytics::EGAProgressionStatus)((int)progressionStatus), progression01, progression02, progression03, score, "", false);
 #endif
         }
 
-        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03, int score, const ::cocos2d::ValueMap& fields)
+        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03, int score, const ::cocos2d::ValueMap &fields)
+        {
+            addProgressionEvent(progressionStatus, progression01, progression02, progression03, score, fields, false);
+        }
+
+        void GameAnalytics::addProgressionEvent(EGAProgressionStatus progressionStatus, const char *progression01, const char *progression02, const char *progression03, int score, const ::cocos2d::ValueMap &fields, bool mergeFields)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addProgressionEventWithScore((int)progressionStatus, progression01, progression02, progression03, score, getStringFromValueMap(fields).c_str());
+            GameAnalyticsCpp::addProgressionEventWithScore((int)progressionStatus, progression01, progression02, progression03, score, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addProgressionEventWithScore((int)progressionStatus, progression01, progression02, progression03, score, getStringFromValueMap(fields).c_str());
+            jni_addProgressionEventWithScore((int)progressionStatus, progression01, progression02, progression03, score, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            gameanalytics::GameAnalytics::addProgressionEvent((gameanalytics::EGAProgressionStatus)((int)progressionStatus), progression01, progression02, progression03, score, getStringFromValueMap(fields).c_str());
+            gameanalytics::GameAnalytics::addProgressionEvent((gameanalytics::EGAProgressionStatus)((int)progressionStatus), progression01, progression02, progression03, score, getStringFromValueMap(fields).c_str(), mergeFields);
 #endif
         }
 
         void GameAnalytics::addDesignEvent(const char *eventId)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addDesignEvent(eventId, "");
+            GameAnalyticsCpp::addDesignEvent(eventId, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addDesignEvent(eventId, "");
+            jni_addDesignEvent(eventId, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            gameanalytics::GameAnalytics::addDesignEvent(eventId, "");
+            gameanalytics::GameAnalytics::addDesignEvent(eventId, "", false);
 #endif
         }
 
-        void GameAnalytics::addDesignEvent(const char *eventId, const ::cocos2d::ValueMap& fields)
+        void GameAnalytics::addDesignEvent(const char *eventId, const ::cocos2d::ValueMap &fields)
+        {
+            addDesignEvent(eventId, fields, false);
+        }
+
+        void GameAnalytics::addDesignEvent(const char *eventId, const ::cocos2d::ValueMap &fields, bool mergeFields)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addDesignEvent(eventId, getStringFromValueMap(fields).c_str());
+            GameAnalyticsCpp::addDesignEvent(eventId, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addDesignEvent(eventId, getStringFromValueMap(fields).c_str());
+            jni_addDesignEvent(eventId, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            gameanalytics::GameAnalytics::addDesignEvent(eventId, getStringFromValueMap(fields).c_str());
+            gameanalytics::GameAnalytics::addDesignEvent(eventId, getStringFromValueMap(fields).c_str(), mergeFields);
 #endif
         }
 
         void GameAnalytics::addDesignEvent(const char *eventId, float value)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addDesignEventWithValue(eventId, value, "");
+            GameAnalyticsCpp::addDesignEventWithValue(eventId, value, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addDesignEventWithValue(eventId, value, "");
+            jni_addDesignEventWithValue(eventId, value, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            gameanalytics::GameAnalytics::addDesignEvent(eventId, value, "");
+            gameanalytics::GameAnalytics::addDesignEvent(eventId, value, "", false);
 #endif
         }
 
-        void GameAnalytics::addDesignEvent(const char *eventId, float value, const ::cocos2d::ValueMap& fields)
+        void GameAnalytics::addDesignEvent(const char *eventId, float value, const ::cocos2d::ValueMap &fields)
+        {
+            addDesignEvent(eventId, value, fields, false);
+        }
+
+        void GameAnalytics::addDesignEvent(const char *eventId, float value, const ::cocos2d::ValueMap &fields, bool mergeFields)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addDesignEventWithValue(eventId, value, getStringFromValueMap(fields).c_str());
+            GameAnalyticsCpp::addDesignEventWithValue(eventId, value, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addDesignEventWithValue(eventId, value, getStringFromValueMap(fields).c_str());
+            jni_addDesignEventWithValue(eventId, value, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            gameanalytics::GameAnalytics::addDesignEvent(eventId, value, getStringFromValueMap(fields).c_str());
+            gameanalytics::GameAnalytics::addDesignEvent(eventId, value, getStringFromValueMap(fields).c_str(), mergeFields);
 #endif
         }
 
         void GameAnalytics::addErrorEvent(EGAErrorSeverity severity, const char *message)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addErrorEvent((int)severity, message, "");
+            GameAnalyticsCpp::addErrorEvent((int)severity, message, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addErrorEvent((int)severity, message, "");
+            jni_addErrorEvent((int)severity, message, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            gameanalytics::GameAnalytics::addErrorEvent((gameanalytics::EGAErrorSeverity)((int)severity), message, "");
+            gameanalytics::GameAnalytics::addErrorEvent((gameanalytics::EGAErrorSeverity)((int)severity), message, "", false);
 #endif
         }
 
-        void GameAnalytics::addErrorEvent(EGAErrorSeverity severity, const char *message, const ::cocos2d::ValueMap& fields)
+        void GameAnalytics::addErrorEvent(EGAErrorSeverity severity, const char *message, const ::cocos2d::ValueMap &fields)
+        {
+            addErrorEvent(severity, message, fields, false);
+        }
+
+        void GameAnalytics::addErrorEvent(EGAErrorSeverity severity, const char *message, const ::cocos2d::ValueMap &fields, bool mergeFields)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addErrorEvent((int)severity, message, getStringFromValueMap(fields).c_str());
+            GameAnalyticsCpp::addErrorEvent((int)severity, message, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addErrorEvent((int)severity, message, getStringFromValueMap(fields).c_str());
+            jni_addErrorEvent((int)severity, message, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-            gameanalytics::GameAnalytics::addErrorEvent((gameanalytics::EGAErrorSeverity)((int)severity), message, getStringFromValueMap(fields).c_str());
+            gameanalytics::GameAnalytics::addErrorEvent((gameanalytics::EGAErrorSeverity)((int)severity), message, getStringFromValueMap(fields).c_str(), mergeFields);
 #endif
         }
 
         void GameAnalytics::addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addAdEvent((int)adAction, (int)adType, adSdkName, adPlacement, "");
+            GameAnalyticsCpp::addAdEvent((int)adAction, (int)adType, adSdkName, adPlacement, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addAdEvent((int)adAction, (int)adType, adSdkName, adPlacement, "");
+            jni_addAdEvent((int)adAction, (int)adType, adSdkName, adPlacement, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #endif
         }
 
-        void GameAnalytics::addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, const ::cocos2d::ValueMap& fields)
+        void GameAnalytics::addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, const ::cocos2d::ValueMap &fields)
+        {
+            addAdEvent(adAction, adType, adSdkName, adPlacement, fields, false);
+        }
+
+        void GameAnalytics::addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, const ::cocos2d::ValueMap &fields, bool mergeFields)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addAdEvent((int)adAction, (int)adType, adSdkName, adPlacement, getStringFromValueMap(fields).c_str());
+            GameAnalyticsCpp::addAdEvent((int)adAction, (int)adType, adSdkName, adPlacement, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addAdEvent((int)adAction, (int)adType, adSdkName, adPlacement, getStringFromValueMap(fields).c_str());
+            jni_addAdEvent((int)adAction, (int)adType, adSdkName, adPlacement, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #endif
         }
@@ -498,19 +573,24 @@ namespace gameanalytics {
         void GameAnalytics::addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, int duration)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addAdEventWithDuration((int)adAction, (int)adType, adSdkName, adPlacement, duration, "");
+            GameAnalyticsCpp::addAdEventWithDuration((int)adAction, (int)adType, adSdkName, adPlacement, duration, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addAdEventWithDuration((int)adAction, (int)adType, adSdkName, adPlacement, duration, "");
+            jni_addAdEventWithDuration((int)adAction, (int)adType, adSdkName, adPlacement, duration, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #endif
         }
 
         void GameAnalytics::addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, int duration, const ::cocos2d::ValueMap &fields)
         {
+            addAdEvent(adAction, adType, adSdkName, adPlacement, duration, fields, false);
+        }
+
+        void GameAnalytics::addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, int duration, const ::cocos2d::ValueMap &fields, bool mergeFields)
+        {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addAdEventWithDuration((int)adAction, (int)adType, adSdkName, adPlacement, duration, getStringFromValueMap(fields).c_str());
+            GameAnalyticsCpp::addAdEventWithDuration((int)adAction, (int)adType, adSdkName, adPlacement, duration, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addAdEventWithDuration((int)adAction, (int)adType, adSdkName, adPlacement, duration, getStringFromValueMap(fields).c_str());
+            jni_addAdEventWithDuration((int)adAction, (int)adType, adSdkName, adPlacement, duration, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #endif
         }
@@ -518,19 +598,24 @@ namespace gameanalytics {
         void GameAnalytics::addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, EGAAdError noAdReason)
         {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addAdEventWithNoAdReason((int)adAction, (int)adType, adSdkName, adPlacement, (int)noAdReason, "");
+            GameAnalyticsCpp::addAdEventWithNoAdReason((int)adAction, (int)adType, adSdkName, adPlacement, (int)noAdReason, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addAdEventWithNoAdReason((int)adAction, (int)adType, adSdkName, adPlacement, (int)noAdReason, "");
+            jni_addAdEventWithNoAdReason((int)adAction, (int)adType, adSdkName, adPlacement, (int)noAdReason, "", false);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #endif
         }
 
         void GameAnalytics::addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, EGAAdError noAdReason, const ::cocos2d::ValueMap &fields)
         {
+            addAdEvent(adAction, adType, adSdkName, adPlacement, noAdReason, fields, bool false);
+        }
+
+        void GameAnalytics::addAdEvent(EGAAdAction adAction, EGAAdType adType, const char *adSdkName, const char *adPlacement, EGAAdError noAdReason, const ::cocos2d::ValueMap &fields, bool mergeFields)
+        {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            GameAnalyticsCpp::addAdEventWithNoAdReason((int)adAction, (int)adType, adSdkName, adPlacement, (int)noAdReason, getStringFromValueMap(fields).c_str());
+            GameAnalyticsCpp::addAdEventWithNoAdReason((int)adAction, (int)adType, adSdkName, adPlacement, (int)noAdReason, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-            jni_addAdEventWithNoAdReason((int)adAction, (int)adType, adSdkName, adPlacement, (int)noAdReason, getStringFromValueMap(fields).c_str());
+            jni_addAdEventWithNoAdReason((int)adAction, (int)adType, adSdkName, adPlacement, (int)noAdReason, getStringFromValueMap(fields).c_str(), mergeFields);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #endif
         }

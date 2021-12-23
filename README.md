@@ -30,6 +30,10 @@ If you have any issues or feedback regarding the SDK, please contact our friendl
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**4.1.3**
+* added error events to be sent for invalid custom event fields used
+* added optional mergeFields argument to event methods to merge with global custom fields instead of overwrite them
+
 **4.1.2**
 * fixed missing custom event fields for when trying to fix missing session end events
 
