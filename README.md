@@ -30,6 +30,9 @@ If you have any issues or feedback regarding the SDK, please contact our friendl
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**4.1.5**
+* fixed progression tries bug for desktop platforms
+
 **4.1.4**
 * removed imei identifiers and other alternative identifiers from user identifier logic (android)
 
