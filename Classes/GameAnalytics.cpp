@@ -12,7 +12,7 @@
 #include "json/document.h"
 #include "json/writer.h"
 
-#define GA_VERSION "cocos2d 4.1.6"
+#define GA_VERSION "cocos2d 4.1.7"
 
 namespace gameanalytics {
     namespace cocos2d
